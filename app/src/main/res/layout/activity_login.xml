@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_login"
+    android:orientation="vertical">
+    <include layout="@layout/app_bar_main"/>
+
+    <ImageView
+        android:padding="@dimen/dp5"
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:src="@drawable/logo" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp30"
+        android:background="@drawable/spr_login_edt">
+
+        <ImageView
+            android:id="@+id/img_username"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp2"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/icon_username" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_username"
+            android:theme="@style/TextLabel">
+
+            <EditText
+
+                android:background="@color/white"
+                android:id="@+id/edt_taikhoan_Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="*Tài khoản"
+                android:inputType="text"
+                android:padding="@dimen/dp7"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
+        </android.support.design.widget.TextInputLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@drawable/spr_login_edt"
+       >
+
+        <ImageView
+            android:id="@+id/img_pass"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp2"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/icon_password" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/img_showpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_pass"
+            android:theme="@style/TextLabel">
+
+            <EditText
+
+                android:background="@color/white"
+                android:id="@+id/edt_password_Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:hint="*Mật khẩu"
+                android:inputType="textPassword"
+                android:padding="@dimen/dp7"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <ImageView
+            android:background="@color/white"
+            android:tint="@color/gray"
+            android:layout_alignParentRight="true"
+            android:id="@+id/img_showpass"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp5"
+            android:src="@drawable/ic_eye_show" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:textAllCaps="false"
+        android:id="@+id/btn_dangnhap_Login"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp40"
+        android:background="@drawable/spr_click_button"
+        android:text="Đăng nhập"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_20sp" />
+
+</LinearLayout>

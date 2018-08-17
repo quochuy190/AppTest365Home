@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/background_login"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp120"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_ground_login"
+       />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/img_avata_update"
+        android:src="@drawable/avatar_default"
+        android:layout_width="@dimen/dp120"
+        android:layout_height="@dimen/dp120"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/img_get_image"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30"
+        android:src="@drawable/camera"
+        app:layout_constraintBottom_toBottomOf="@+id/img_avata_update"
+        app:layout_constraintEnd_toEndOf="@+id/img_avata_update" />
+
+    <TextView
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="TẠO TÀI KHOẢN CON"
+        android:textSize="@dimen/text_16sp"
+        android:padding="@dimen/dp10"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_avata_update">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/relative_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+
+                    <EditText
+                        android:id="@+id/edt_city_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="Tỉnh/thành phố"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/red_test365"
+                    android:src="@drawable/ic_arrow_down" />
+
+            </RelativeLayout>
+            <!--Chọn quận huyện-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+                        android:focusable="false"
+                        android:background="@color/white"
+                        android:id="@+id/edt_district_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Quận/huyện"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/red_test365"
+                    android:src="@drawable/ic_arrow_down" />
+
+            </RelativeLayout>
+            <!--Chọn trường-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+                        android:focusable="false"
+                        android:background="@color/white"
+                        android:id="@+id/edt_schools_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Tên trường"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/red_test365"
+                    android:src="@drawable/ic_arrow_down" />
+
+            </RelativeLayout>
+
+            <!--Chọn khối-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+                        android:focusable="false"
+                        android:background="@color/white"
+                        android:id="@+id/edt_class_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Chọn khối học"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/red_test365"
+                    android:src="@drawable/ic_arrow_down" />
+
+            </RelativeLayout>
+
+            <!--Chọn khối-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+          >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+
+                        android:background="@color/white"
+                        android:id="@+id/edt_classname_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Tên lớp"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+
+                        android:background="@color/white"
+                        android:id="@+id/edt_fullname_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Họ và tên"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+
+                        android:background="@color/white"
+                        android:id="@+id/edt_user_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Tài khoản"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt"
+               >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel">
+                    <EditText
+
+                        android:background="@color/white"
+                        android:id="@+id/edt_password_addsub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="Mật khẩu"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:visibility="gone"
+                    android:layout_margin="@dimen/dp10"
+                    android:id="@+id/btn_back_add_sub"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_gravity="center"
+                    android:background="@drawable/spr_click_button_back"
+                    android:text="Bỏ qua"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_18sp" />
+                <Button
+                    android:layout_margin="@dimen/dp10"
+                    android:id="@+id/btn_ok_add_sub"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_gravity="center"
+                    android:background="@drawable/spr_click_button"
+                    android:text="Tạo tài khoản"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_18sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

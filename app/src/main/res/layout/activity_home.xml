@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityHome">
+    <!-- This could be your fragment container, or something -->
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp2"
+        android:layout_above="@+id/bottomBar" />
+
+    <com.roughike.bottombar.BottomBar
+        android:background="@color/bottom_bar"
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:layout_alignParentBottom="true"
+        app:bb_activeTabColor="@color/red_test365"
+        app:bb_badgeBackgroundColor="@color/red_test365"
+        app:bb_inActiveTabColor="#DEE0E2"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"
+        app:bb_titleTextAppearance="@style/MyTextAppearance" />
+
+</RelativeLayout>

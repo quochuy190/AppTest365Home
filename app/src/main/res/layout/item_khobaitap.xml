@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/dp5"
+    android:id="@+id/background_itemkho"
+    android:background="@color/background_login"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/dp1"
+    android:layout_height="@dimen/dp150">
+
+    <TextView
+
+        android:id="@+id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tuần 1"
+        android:textColor="@color/app_bar"
+        android:textSize="@dimen/text_15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
+        android:maxLines="2"
+        android:id="@+id/txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Tuần 1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_13sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+    <LinearLayout
+        android:id="@+id/ll_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp5"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btn_trangthai"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ll_tai">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:padding="@dimen/dp2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_price" />
+
+        <TextView
+            android:id="@+id/txt_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp5"
+            android:singleLine="true"
+            android:text="2.000 đ"
+            android:textColor="@color/btn_back"
+            android:textSize="@dimen/text_11sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp5"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btn_trangthai"
+        app:layout_constraintLeft_toRightOf="@id/ll_price"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:padding="@dimen/dp2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_down" />
+
+        <TextView
+            android:id="@+id/txt_soluongtai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dp5"
+            android:singleLine="true"
+            android:text="1000"
+            android:textColor="@color/btn_back"
+            android:textSize="@dimen/text_11sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_trangthai"
+        android:layout_width="@dimen/dp100"
+        android:layout_height="@dimen/dp30"
+        android:background="@drawable/spr_khotuan_chuatai"
+        android:text="Đã tải"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

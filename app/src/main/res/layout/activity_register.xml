@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_login"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_bar_main" />
+
+    <android.support.v4.widget.NestedScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp20"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:padding="@dimen/dp5"
+                android:src="@drawable/logo" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt">
+
+                <ImageView
+                    android:id="@+id/img_username"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp2"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/icon_username" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_username"
+                    android:theme="@style/TextLabel">
+
+                    <EditText
+                        android:id="@+id/edt_taikhoan_Login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="* Tên tài khoản"
+                        android:inputType="text"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt">
+
+                <ImageView
+                    android:id="@+id/img_password"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp2"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/icon_password" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_password"
+                    android:theme="@style/TextLabel">
+
+                    <EditText
+                        android:id="@+id/edt_password_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="* Mật khẩu"
+                        android:inputType="textPassword"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/img_showpass1"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/ic_eye_show"
+                    android:tint="@color/gray" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_login_edt">
+
+                <ImageView
+                    android:id="@+id/img_pass_comfirm"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp2"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/icon_password" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_pass_comfirm"
+                    android:theme="@style/TextLabel">
+
+                    <EditText
+                        android:id="@+id/edt_password_confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="* Xác nhận mật khẩu"
+                        android:inputType="textPassword"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/img_showpass"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/ic_eye_show"
+                    android:tint="@color/gray" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_edt_login"
+                android:padding="@dimen/dp5"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_pass"
+                    android:layout_width="@dimen/dp40"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp2"
+                    android:padding="@dimen/dp5"
+                    android:src="@drawable/icon_coupon" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_pass"
+                    android:theme="@style/TextLabel">
+
+                    <EditText
+                        android:id="@+id/edt_gift_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:backgroundTint="@color/white"
+                        android:ems="10"
+                        android:hint="* Xác nhận mật khẩu"
+                        android:inputType="phone"
+                        android:padding="@dimen/dp7"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginTop="@dimen/dp10">
+
+                <CheckBox
+                    android:id="@+id/cb_remember_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:checked="true"
+                    android:theme="@style/checkBoxStyle" />
+
+                <TextView
+                    android:id="@+id/tv_dangnhap_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_toRightOf="@id/cb_remember_login"
+                    android:padding="@dimen/dp10"
+                    android:text="@string/txt_dieukhoan"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_13sp" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_dangnhap_Login"
+                android:layout_width="@dimen/dp200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/spr_click_button"
+                android:text="Đăng ký"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_20sp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

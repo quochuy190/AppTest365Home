@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="@dimen/dp5"
+    android:id="@+id/background_itemkho"
+    android:layout_marginBottom="@dimen/dp2"
+    android:background="@color/background_login"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/txt_tentuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:padding="@dimen/dp5"
+        android:text="Tuần 1"
+        android:textColor="#483360"
+        android:textSize="@dimen/text_17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_marginLeft="@dimen/dp5"
+        android:id="@+id/txt_mota_tuan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp5"
+        android:text="Nhận biết các chứ số từ 1 đến 10"
+        android:textColor="#757d94"
+        android:textSize="@dimen/text_14sp"
+        app:layout_constraintRight_toLeftOf="@+id/img_sticker"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tentuan" />
+
+    <TextView
+        android:gravity="center"
+        android:visibility="gone"
+        android:id="@+id/txt_luuy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:padding="@dimen/dp5"
+        android:text="@string/txt_luuy"
+        android:textColor="#757d94"
+        android:textSize="@dimen/text_13sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/img_sticker"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp80"
+        android:src="@drawable/img"
+        android:text="Đang làm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+
+        android:id="@+id/btn_taithem"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp35"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="@drawable/spr_click_button"
+        android:text="Tải thêm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_luuy" />
+
+</android.support.constraint.ConstraintLayout>

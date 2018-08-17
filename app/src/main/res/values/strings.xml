@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Test365.Home</string>
+    <string name="txt_loading_dialog">Đang tải. Vui lòng đợi...</string>
+    <!--error-->
+    <string name="error_network">Lỗi kết nối</string>
+    <string name="error">Lỗi</string>
+    <string name="error_network_message">Lỗi kết nối, vui lòng kiểm tra mạng và thử lại</string>
+    <string name="hint_search">Tìm kiếm</string>
+    <string name="txt_dangkymoi"><u>Đăng ký tài khoản mới</u></string>
+    <string name="txt_name_company"><b>Công ty NEO, thành viên tập đoàn VNPT
+    </b>\n
+    Tầng 2 toà nhà CT2 Tràng An Complex, \n Số 1 Phùng Chí Kiên, Nghĩa Đô, Cầu Giấy, Hà Nội</string>
+
+    <string name="txt_dieukhoan">Tôi hoàn toàn đồng ý với các <b><u>Điều khoản dịch vụ</u></b> của Test365.Home</string>
+    <string name="notify">Thông báo</string>
+    <string name="btn_no">Không</string>
+    <string name="btn_yes">Đồng ý</string>
+    <string name="masseger_edt_null">Vui lòng nhập vào đầy đủ thông tin và tiếp tục!</string>
+    <string name="notify_city_null">Bạn vui lòng chọn tỉnh/thành phố</string>
+    <!--Bottom bar name-->
+    <string name="tab_baitap">Bài tập</string>
+    <string name="tab_thongke">Thống kê</string>
+    <string name="tab_tintuc">Tin tức</string>
+    <string name="tab_setup">Cài đặt</string>
+    <!--lưu ý-->
+    <string name="txt_luuy">Lưu ý: <i>Vẫn còn bài tập các tuần khác ba mẹ chưa tải</i></string>
+</resources>

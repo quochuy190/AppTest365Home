@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/include2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+
+            layout="@layout/app_bar_main" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/txt_chontatca"
+        android:padding="@dimen/dp5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Chọn tất cả"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_14sp"
+        app:layout_constraintBottom_toBottomOf="@id/include2"
+        app:layout_constraintRight_toRightOf="@id/include2"
+        app:layout_constraintTop_toTopOf="@id/include2" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_khobaitap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toTopOf="@+id/txt_soluong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="@dimen/dp2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_taichocon"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp30"
+            android:background="@drawable/spr_click_button"
+            android:text="Tải cho con"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_price_lable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/dp1"
+        android:text="Tổng chi phí:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_15sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/txt_price" />
+
+    <TextView
+        android:id="@+id/txt_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="right"
+        android:padding="@dimen/dp1"
+        android:text="0 vnđ"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_15sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintLeft_toRightOf="@id/txt_price_lable"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_taikhoan_lable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/dp1"
+        android:text="Số dư tài khoản:"
+        android:textColor="@color/black_mo"
+        android:textSize="@dimen/text_15sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_price"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/txt_price" />
+
+    <TextView
+        android:id="@+id/txt_taikhoan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="right"
+        android:padding="@dimen/dp1"
+        android:text="0 vnđ"
+        android:textColor="@color/black_mo"
+        android:textSize="@dimen/text_15sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_price"
+        app:layout_constraintLeft_toRightOf="@id/txt_price_lable"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_soluong_lable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/dp1"
+        android:text="Số tuần đã tải:"
+        android:textColor="@color/black_mo"
+        android:textSize="@dimen/text_15sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_taikhoan"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/txt_price" />
+
+    <TextView
+        android:id="@+id/txt_soluong"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="right"
+        android:padding="@dimen/dp1"
+        android:text="0"
+        android:textColor="@color/black_mo"
+        android:textSize="@dimen/text_15sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_taikhoan"
+        app:layout_constraintLeft_toRightOf="@id/txt_price_lable"
+        app:layout_constraintRight_toRightOf="parent" />
+</android.support.constraint.ConstraintLayout>

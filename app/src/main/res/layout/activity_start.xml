@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/app_bar_main" />
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp30"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:padding="@dimen/dp10"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <Button
+        android:id="@+id/btn_dangnhap_Login"
+        android:layout_width="@dimen/dp250"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/spr_click_button"
+        android:text="Đăng nhập"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/txt_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="@string/txt_dangkymoi"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dangnhap_Login" />
+
+    <ImageView
+        android:layout_width="@dimen/dp25"
+        android:layout_height="@dimen/dp25"
+        android:layout_marginLeft="@dimen/dp10"
+        android:src="@drawable/sign_up"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_register"
+        app:layout_constraintStart_toEndOf="@+id/txt_register"
+        app:layout_constraintTop_toTopOf="@+id/txt_register" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp10"
+        android:gravity="center"
+        android:text="@string/txt_name_company"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

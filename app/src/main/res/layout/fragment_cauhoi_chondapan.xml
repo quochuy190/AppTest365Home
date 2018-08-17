@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp100">
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/txt_number_de"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp5"
+                        android:text="Câu hỏi 1:"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15sp" />
+                    <TextView
+                        android:layout_below="@id/txt_number_de"
+                        android:id="@+id/txt_debai_huongdan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="4"
+                        android:padding="@dimen/dp5"
+                        android:text="hehe"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_14sp" />
+
+                </RelativeLayout>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/red_test365" />
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/txtSubNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp5"
+                    android:text="Câu hỏi: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15sp" />
+
+                <TextView
+                    android:id="@+id/txtCauhoi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp5"
+                    android:text="1.1, Thư gửi các học sinh do ai viêt?"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14sp" />
+
+
+                <LinearLayout
+                    android:id="@+id/ll_dapanA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp5">
+
+                    <ImageView
+                        android:id="@+id/chechbox_A"
+                        android:layout_width="@dimen/dp30"
+                        android:layout_height="@dimen/dp30"
+                        android:src="@drawable/ic_checker" />
+
+                    <TextView
+                        android:id="@+id/txt_dapan_A"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp10"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15sp" />
+
+                    <ImageView
+                        android:id="@+id/img_dapan_A"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_dapanB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp5">
+
+                    <ImageView
+                        android:id="@+id/chechbox_B"
+                        android:layout_width="@dimen/dp30"
+                        android:layout_height="@dimen/dp30"
+                        android:src="@drawable/ic_checker" />
+
+                    <TextView
+                        android:id="@+id/txt_dapan_B"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp10"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15sp" />
+
+                    <ImageView
+                        android:id="@+id/img_dapan_B"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_dapanC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp5">
+
+                    <ImageView
+                        android:id="@+id/chechbox_C"
+                        android:layout_width="@dimen/dp30"
+                        android:layout_height="@dimen/dp30"
+                        android:src="@drawable/ic_checker" />
+
+                    <TextView
+                        android:id="@+id/txt_dapan_C"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp10"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15sp" />
+
+                    <ImageView
+                        android:id="@+id/img_dapan_C"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp2" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_dapanD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/dp5">
+
+                    <ImageView
+                        android:id="@+id/chechbox_D"
+                        android:layout_width="@dimen/dp30"
+                        android:layout_height="@dimen/dp30"
+                        android:src="@drawable/ic_checker" />
+
+                    <TextView
+                        android:id="@+id/txt_dapan_D"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp10"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_15sp" />
+
+                    <ImageView
+                        android:id="@+id/img_dapan_D"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp80"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp2" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/app_bar"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/txt_current"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1/10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_18sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

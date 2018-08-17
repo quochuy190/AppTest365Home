@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_baitap"
+        icon="@drawable/ic_book"
+        title="@string/tab_baitap" />
+    <tab
+        id="@+id/tab_thongke"
+        icon="@drawable/ic_tab_thong_ke"
+        title="@string/tab_thongke" />
+    <tab
+        id="@+id/tab_tintuc"
+        icon="@drawable/ic_page"
+        title="@string/tab_tintuc" />
+    <tab
+        id="@+id/tab_setup"
+        icon="@drawable/ic_menu"
+        title="@string/tab_setup" />
+
+</tabs>
