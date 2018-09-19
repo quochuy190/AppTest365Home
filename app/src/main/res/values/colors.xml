@@ -28,5 +28,5 @@
     <color name="title_dalam">#89d1cd</color>
     <color name="txt_baitap_detail">#727d9f</color>
     <color name="txt_bottom_cauhoi">#00727d9f</color>
-        <color name="color_background">#f2f2f2</color>
+    <color name="color_background">#f2f2f2</color>
 </resources>

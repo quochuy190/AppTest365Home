@@ -103,7 +103,7 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
                     startActivity(new Intent(getContext(), ActivityAddSubUser.class));
                 } else {
                     Childrens objChil = (Childrens) item;
-                    SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT,objChil);
+                    SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, objChil);
                     setupViewPager(objChil);
                     for (int i = 0; i < (mLisChildren.size() - 1); i++) {
                         if (mLisChildren.get(i).getsID() != null && mLisChildren.get(i).getsID().equals(objChil.getsID())) {
@@ -148,8 +148,8 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
                 mLisChildren.get(0).setChecked(true);
                 mLisChildren.add(new Childrens());
                 adapter.notifyDataSetChanged();
-                if (mLisChildren.size() > 0){
-                    SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT,mLisChildren.get(0));
+                if (mLisChildren.size() > 0) {
+                    SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, mLisChildren.get(0));
                     setupViewPager(mLisChildren.get(0));
                 }
 

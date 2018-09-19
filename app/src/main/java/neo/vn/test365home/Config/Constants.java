@@ -24,8 +24,10 @@ public class Constants {
     public static final String KEY_ISTOKEN = "KEY_ISTOKEN";
     public static final String KEY_USERNAME = "KEY_USERNAME";
     public static final String KEY_PASSWORD = "KEY_PASSWORD";
+    public static final String KEY_LOGININFO = "KEY_LOGININFO";
     public static final String KEY_REGISTER_SUCCESS = "KEY_REGISTER_SUCCESS";
     public static final String KEY_ISLOGIN = "KEY_ISLOGIN";
+    public static final String KEY_IS_START_LOGIN= "KEY_IS_START_LOGIN";
     public static final String KEY_SEND_LOGIN_INFO = "KEY_SEND_LOGIN_INFO";
     public static final String KEY_SEND_CITY_ID = "KEY_SEND_CITY_ID";
     public static final String KEY_SEND_DISTRICT_ID = "KEY_SEND_DISTRICT_ID";

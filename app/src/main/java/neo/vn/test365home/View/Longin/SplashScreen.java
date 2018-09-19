@@ -7,13 +7,16 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import neo.vn.test365home.ActivityHome;
 import neo.vn.test365home.Base.BaseActivity;
+import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.R;
+import neo.vn.test365home.Untils.SharedPrefs;
 
 
 public class SplashScreen extends BaseActivity {
     private static final String TAG = "SplashScreen";
-
+    boolean isLogin;
     ImageView img_splash;
     // public static Storage storage; // this Preference comes for free from the library
     /**
@@ -29,8 +32,11 @@ public class SplashScreen extends BaseActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-
-        mainIntent.setClass(SplashScreen.this, ActivityStart.class);
+        isLogin = SharedPrefs.getInstance().get(Constants.KEY_ISLOGIN, Boolean.class);
+        if (isLogin) {
+            mainIntent.setClass(SplashScreen.this, ActivityHome.class);
+        } else
+            mainIntent.setClass(SplashScreen.this, ActivityStart.class);
         img_splash = (ImageView) findViewById(R.id.img_splash);
         Glide.with(this).load(R.drawable.launch).into(img_splash);
         new Handler().postDelayed(new Runnable() {

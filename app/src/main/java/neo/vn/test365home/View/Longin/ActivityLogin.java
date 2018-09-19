@@ -136,7 +136,9 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
                 SharedPrefs.getInstance().put(Constants.KEY_PASSWORD, sPassWord);
                 Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ActivityLogin.this, ActivityUpdateInfo.class);
-                 intent.putExtra(Constants.KEY_SEND_LOGIN_INFO, mLis.get(0));
+                intent.putExtra(Constants.KEY_SEND_LOGIN_INFO, mLis.get(0));
+                intent.putExtra(Constants.KEY_IS_START_LOGIN, true);
+                SharedPrefs.getInstance().put(Constants.KEY_LOGININFO, mLis.get(0));
                 startActivity(intent);
                 finish();
             } else {

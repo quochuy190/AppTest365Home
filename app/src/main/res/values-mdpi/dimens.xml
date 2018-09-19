@@ -47,4 +47,7 @@
     <dimen name="text_time_flight">20dp</dimen>
     <dimen name="img_avata_airline_flight">50dp</dimen>
     <dimen name="margin_flight">0dp</dimen>
+    <!--fragment setup-->
+    <dimen name="hight_avata">110dp</dimen>
+    <dimen name="item_setup">45dp</dimen>
 </resources>

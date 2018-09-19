@@ -13,7 +13,6 @@ import android.widget.TextView;
 import org.parceler.Parcels;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +41,10 @@ public class FragmentCauhoiDienvaochotrong extends BaseFragment {
     private List<DapAn> mLisDapAn;
     @BindView(R.id.txtCauhoi)
     TextView txtCauhoi;
+    @BindView(R.id.txtTraloi)
+    TextView txtTraloi;
+    @BindView(R.id.txtDapan)
+    TextView txtDapan;
     @BindView(R.id.txt_debai_huongdan)
     TextView txt_debai_huongdan;
 
@@ -69,7 +72,7 @@ public class FragmentCauhoiDienvaochotrong extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cauhoi_sapxep, container, false);
+        View view = inflater.inflate(R.layout.fragment_cauhoi_dienchotrong, container, false);
         ButterKnife.bind(this, view);
         Log.i(TAG, "onCreateView: " + mCauhoi.getsQUESTION());
         initData();
@@ -84,42 +87,25 @@ public class FragmentCauhoiDienvaochotrong extends BaseFragment {
         txtSubNumber.setText("Câu hỏi: " + mCauhoi.getsSubNumberCau());
         Log.i(TAG, "initData: " + mCauhoi.getsQUESTION());
 
-         String s = mCauhoi.getsQUESTION();
+        String s = mCauhoi.getsQUESTION();
 
         //String s_new = replaceBetween(mCauhoi.getsQUESTION(), "<<", ">>", "....");
-
-
         //txtCauhoi.setText(replaceXML("<<", ">>", mCauhoi.getsQUESTION()));
         String s_new = replaceXML("<<", ">>", s);
 
         Log.i(TAG, "initData: " + s_new);
 
         txtCauhoi.setText(Html.fromHtml(s_new, Html.FROM_HTML_MODE_COMPACT));
-        //txtCauhoi.setText(replaceBetween(1, 5, "Quốc huy"));
-        // txtCauhoi.setText(s_new.replaceAll("<<", "").replace(">>",""));
         txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan(),
                 Html.FROM_HTML_MODE_COMPACT));
+        String s_Traloi = mCauhoi.getsQUESTION().replaceAll("<<", "<u><b><font color='blue'>")
+                .replaceAll(">>", "</font></b></u>");
         //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
-
+       // txtDapan.setText(s_Traloi);
+        txtDapan.setText(Html.fromHtml(s_Traloi, Html.FROM_HTML_MODE_COMPACT));
+        txtTraloi.setText(Html.fromHtml(s_Traloi, Html.FROM_HTML_MODE_COMPACT));
+        //txtTraloi.setText(s_Traloi);
     }
-
-    public static String replaceBetween(String input,
-                                        String start, String end,
-                                        String replaceWith) {
-        return replaceBetween(input, start, end, false, false, replaceWith);
-    }
-
-    public static String replaceBetween(String input,
-                                        String start, String end,
-                                        boolean startInclusive,
-                                        boolean endInclusive,
-                                        String replaceWith) {
-        start = Pattern.quote(start);
-        end = Pattern.quote(end);
-        return input.replaceAll("(" + start + ")" + ".*" + "(" + end + ")",
-                (startInclusive ? "" : "$1") + replaceWith + (endInclusive ? "" : "$2"));
-    }
-
     public String replaceStringBuffer(int first, int last, String st) {
         String s = "";
         StringBuffer sbf = new StringBuffer(st);
@@ -135,15 +121,15 @@ public class FragmentCauhoiDienvaochotrong extends BaseFragment {
         // int index_end = st.indexOf(end);
         int matchLength = start.length();
         while (index >= 0) {  // indexOf returns -1 if no match found
-            int startIndex = s.indexOf(start, index );
-            int endIndex = s.indexOf(end, index+matchLength );
+            int startIndex = s.indexOf(start, index);
+            int endIndex = s.indexOf(end, index + matchLength);
             //   System.out.println(s.substring(startIndex + 1, endIndex));
-            if (startIndex>-1&&startIndex < endIndex) {
-                s = replaceStringBuffer((startIndex), endIndex+2, s);
+            if (startIndex > -1 && startIndex < endIndex) {
+                s = replaceStringBuffer((startIndex), endIndex + 2, s);
             }
             index = s.indexOf(start, index + matchLength);
         }
-      //  s.replaceAll("<<", "");
+        //  s.replaceAll("<<", "");
         return s;
     }
 }

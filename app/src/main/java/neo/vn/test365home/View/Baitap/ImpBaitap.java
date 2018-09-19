@@ -39,7 +39,9 @@ public interface ImpBaitap {
         void get_api_report_excercise(String sUserMe, String sUserCon, String sIdDebai);
 
         void get_api_get_sticker(String sUserMe, String sIdKhoi);
+
         void get_api_gift_sticker(String sUserMe, String sUserCon, String sIdDebai, String sIdSticker);
+
         void get_api_mt_comment(String sUserMe, String sUserCon, String sIdDebai, String sNoidung);
 
     }

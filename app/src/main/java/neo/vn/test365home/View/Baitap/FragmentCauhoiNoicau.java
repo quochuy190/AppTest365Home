@@ -74,8 +74,7 @@ public class FragmentCauhoiNoicau extends BaseFragment {
        /* mLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL, false);*/
 
-        mLayoutManager = new GridLayoutManager(getContext(),
-                1, GridLayoutManager.VERTICAL, false);
+        mLayoutManager = new GridLayoutManager(getContext(),1, GridLayoutManager.VERTICAL, false);
         list_cauhoi_left.setHasFixedSize(true);
         list_cauhoi_left.setLayoutManager(mLayoutManager);
         list_cauhoi_left.setItemAnimator(new DefaultItemAnimator());

@@ -98,6 +98,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
                 .get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
         showDialogLoading();
         mPresenter.get_api_des_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
+        mPresenter.get_api_report_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
         mPresenter.get_api_get_sticker(sUserMe,mChildren.getsID_LEVEL());
         if (mChildren != null)
             txt_title.setText(mChildren.getsFULLNAME());
@@ -218,6 +219,10 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
 
     @Override
     public void show_list_report_excercise(List<ReportExcercise> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")){
+
+        }
 
     }
 

@@ -24,4 +24,18 @@
     <string name="tab_setup">Cài đặt</string>
     <!--lưu ý-->
     <string name="txt_luuy">Lưu ý: <i>Vẫn còn bài tập các tuần khác ba mẹ chưa tải</i></string>
+    <string name="txt_info">Thông tin cá nhân</string>
+    <string name="txt_setup_notify">Cài đặt thông báo</string>
+    <string name="txt_setup_sub_user">Cài đặt cho con</string>
+    <string name="txt_change_pass">Đổi mật khẩu</string>
+    <string name="txt_account">Quản lý tài khoản</string>
+    <string name="txt_logout">Đăng xuất</string>
+    <!--Thông tin tài khoản-->
+    <string name="lable_user">Tên đăng nhập: </string>
+    <string name="lable_fullname">Họ tên: </string>
+    <string name="lable_email">Email:</string>
+    <string name="lable_phone">SĐT: </string>
+    <string name="lable_account_main">Tài khoản chính</string>
+    <string name="lable_account_bonus">Tài khoản thưởng</string>
+    <string name="lable_recharge">Nạp tiền</string>
 </resources>

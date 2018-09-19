@@ -45,7 +45,7 @@ public class StringUtil {
         int iNumber = Integer.parseInt(number);
         DecimalFormat formatter = new DecimalFormat("###,###,###");
 
-        String sMonney = (formatter.format(iNumber)+" đ");
+        String sMonney = (formatter.format(iNumber)+" VNĐ");
 
         return  sMonney;
     }

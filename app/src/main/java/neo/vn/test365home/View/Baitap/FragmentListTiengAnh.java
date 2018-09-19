@@ -49,8 +49,6 @@ public class FragmentListTiengAnh extends BaseFragment implements View.OnClickLi
         restaurantDetailFragment.setArguments(args);
         return restaurantDetailFragment;
     }
-
-
     PresenterBaitap mPresenter;
     AdapterHeader adapter;
     RecyclerView.LayoutManager mLayoutManager;

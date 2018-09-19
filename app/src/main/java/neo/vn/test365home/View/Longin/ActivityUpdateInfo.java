@@ -46,6 +46,7 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View {
     Button btnOkie;
     PresenterLogin mPresenter;
     Login mLogin;
+    boolean isStartLogin;
 
     @Override
     public int setContentViewId() {
@@ -83,24 +84,34 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityUpdateInfo.this, ActivityAddSubUser.class);
+                if (isStartLogin) {
+                    Intent intent = new Intent(ActivityUpdateInfo.this, ActivityAddSubUser.class);
+                    startActivity(intent);
+                }
+                finish();
+              /*  Intent intent = new Intent(ActivityUpdateInfo.this, ActivityAddSubUser.class);
                 // intent.putExtra(Constants.KEY_REGISTER_SUCCESS, true);
                 startActivity(intent);
-                finish();
+                finish();*/
             }
         });
     }
 
     private void initData() {
-        mLogin = (Login) getIntent().getSerializableExtra(Constants.KEY_SEND_LOGIN_INFO);
-        if (mLogin!=null){
-            if (mLogin.getsFULLNAME()!=null){
+
+        isStartLogin = getIntent().getBooleanExtra(Constants.KEY_IS_START_LOGIN, false);
+        if (!isStartLogin)
+            mLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
+        else
+            mLogin = (Login) getIntent().getSerializableExtra(Constants.KEY_SEND_LOGIN_INFO);
+        if (mLogin != null) {
+            if (mLogin.getsFULLNAME() != null) {
                 edtFullname.setText(mLogin.getsFULLNAME());
             }
-            if (mLogin.getsPHONENUMBER()!=null){
+            if (mLogin.getsPHONENUMBER() != null) {
                 edtPhone.setText(mLogin.getsPHONENUMBER());
             }
-            if (mLogin.getsEMAIL()!=null){
+            if (mLogin.getsEMAIL() != null) {
                 edtEmail.setText(mLogin.getsEMAIL());
             }
         }
@@ -126,11 +137,15 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View {
         hideDialogLoading();
         if (mLis != null) {
             if (mLis.get(0).getsERROR().equals("0000")) {
-                //SharedPrefs.getInstance().put(Constants.KEY_ISLOGIN, true);
+                mLogin.setsFULLNAME(edtFullname.getText().toString());
+                mLogin.setsEMAIL(edtEmail.getText().toString());
+                mLogin.setsPHONENUMBER(edtPhone.getText().toString());
+                SharedPrefs.getInstance().put(Constants.KEY_LOGININFO, mLogin);
                 Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ActivityUpdateInfo.this, ActivityAddSubUser.class);
-                // intent.putExtra(Constants.KEY_REGISTER_SUCCESS, true);
-                startActivity(intent);
+                if (isStartLogin) {
+                    Intent intent = new Intent(ActivityUpdateInfo.this, ActivityAddSubUser.class);
+                    startActivity(intent);
+                }
                 finish();
             } else {
                 showDialogNotify("Thông báo", mLis.get(0).getsRESULT());
