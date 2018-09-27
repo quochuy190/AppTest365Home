@@ -24,6 +24,16 @@
 
         </activity>
         <activity
+            android:screenOrientation="portrait"
+            android:name=".View.Setup.ActivitySetupSubUser">
+
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".View.Setup.ActivityConfigSubUser">
+
+        </activity>
+        <activity
             android:name=".View.Longin.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>

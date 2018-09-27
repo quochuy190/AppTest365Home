@@ -29,4 +29,6 @@
     <color name="txt_baitap_detail">#727d9f</color>
     <color name="txt_bottom_cauhoi">#00727d9f</color>
     <color name="color_background">#f2f2f2</color>
+    <color name="bg_config">#f2f6f9</color>
+    <color name="bg_title_config">#747f9d</color>
 </resources>

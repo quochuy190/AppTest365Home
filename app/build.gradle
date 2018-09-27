@@ -57,5 +57,7 @@ dependencies {
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'org.parceler:parceler-api:1.1.1'
     annotationProcessor 'org.parceler:parceler:1.1.1'
+    //number picker
+    implementation 'com.github.hotchemi:stringpicker:0.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

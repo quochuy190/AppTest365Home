@@ -73,6 +73,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
     @BindView(R.id.edt_content_comment)
     EditText edt_content_comment;
     List<Sticker> lisSticker;
+
     @Override
     public int setContentViewId() {
         return R.layout.activity_baitap_detail;
@@ -99,7 +100,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
         showDialogLoading();
         mPresenter.get_api_des_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
         mPresenter.get_api_report_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
-        mPresenter.get_api_get_sticker(sUserMe,mChildren.getsID_LEVEL());
+        mPresenter.get_api_get_sticker(sUserMe, mChildren.getsID_LEVEL());
         if (mChildren != null)
             txt_title.setText(mChildren.getsFULLNAME());
         Glide.with(this).load(R.drawable.sticker).into(img_sticker);
@@ -145,7 +146,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
                         1, GridLayoutManager.HORIZONTAL,
                         false));
                 AdapterListSticker horizontalAdapter = new AdapterListSticker(
-                        lisSticker,dialog.getContext() );
+                        lisSticker, dialog.getContext());
                 horizontalAdapter.setOnIListener(new ItemClickListener() {
                     @Override
                     public void onClickItem(int position, Object item) {
@@ -220,7 +221,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
     @Override
     public void show_list_report_excercise(List<ReportExcercise> mLis) {
         hideDialogLoading();
-        if (mLis != null && mLis.get(0).getsERROR().equals("0000")){
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
 
         }
 
@@ -229,7 +230,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {
         hideDialogLoading();
-        if (mLis!=null&&mLis.get(0).getsERROR().equals("0000")){
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
             lisSticker.addAll(mLis);
         }
     }
@@ -257,7 +258,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             txt_khoi.setText(excerciseDetail.getsLEVEL_ID());
             txt_nam.setText(excerciseDetail.getsYEAR_NAME());
             txt_tuan.setText(excerciseDetail.getsWEEK_ID());
-          //  setTexMonhoc(excerciseDetail.getsSUBJECT_ID());
+            //  setTexMonhoc(excerciseDetail.getsSUBJECT_ID());
         }
     }
 

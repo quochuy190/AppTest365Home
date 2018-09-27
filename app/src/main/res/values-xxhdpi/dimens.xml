@@ -50,4 +50,5 @@
     <!--fragment setup-->
     <dimen name="hight_avata">125dp</dimen>
     <dimen name="item_setup">52dp</dimen>
+    <dimen name="item_avata_children">100dp</dimen>
 </resources>

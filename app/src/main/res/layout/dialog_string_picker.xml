@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
+    <Button
+
+        android:id="@+id/btn_ok"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/white"
+        android:background="@drawable/spr_click_button"
+        android:layout_margin="@dimen/dp5"
+        android:layout_alignParentRight="true"
+
+        android:text="OK"
+        android:layout_width="@dimen/dp30"
+        android:layout_height="@dimen/dp30" />
+
+    <hotchemi.stringpicker.StringPicker
+        style="@style/NumberPickerText"
+        android:layout_marginBottom="@dimen/dp5"
+        android:layout_below="@id/btn_ok"
+        android:gravity="center"
+        android:id="@+id/string_picker"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </hotchemi.stringpicker.StringPicker>
+</RelativeLayout>

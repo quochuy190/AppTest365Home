@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_config"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/app_bar_main" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include3">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_capnhatthongtin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/spr_click_button"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/dp30"
+                android:text="Cập nhật thông tin"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@color/bg_title_config"
+                android:padding="@dimen/dp10"
+                android:text="Cài đặt lịch làm bài tập cho bé"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_capnhatthongtin" />
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_namemon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:text="Toán"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp" />
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="20:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_dayweek"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Thứ Hai"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:text="Tiếng Việt"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp" />
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_time_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="20:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_week_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Thứ Hai"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:text="Tiếng Anh"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp" />
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_time_ta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="20:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+
+                <TextView
+                    android:id="@+id/txt_setup_cal_week_ta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="Thứ Hai"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_setup_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@color/bg_title_config"
+                android:padding="@dimen/dp10"
+                android:text="Cài đặt thời gian cho bé"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_3" />
+
+            <LinearLayout
+                android:id="@+id/ll_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_setup_time">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:text="Toán"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="20:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="phút"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_4">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:text="Tiếng Việt"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="20:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="phút"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_5">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:text="Tiếng Anh"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:layout_weight="1"
+                    android:background="@drawable/spr_edt_configtime"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="20:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp3"
+                    android:gravity="center"
+                    android:padding="@dimen/dp5"
+                    android:text="phút"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_setup_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:background="@color/bg_title_config"
+                android:padding="@dimen/dp10"
+                android:text="Cài đặt thời gian cho bé"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_6" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_listgame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+                android:background="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_setup_game">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/btn_update_config"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/spr_click_button"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/dp30"
+                android:text="Cập nhật cài đặt"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycle_listgame" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_update_config" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

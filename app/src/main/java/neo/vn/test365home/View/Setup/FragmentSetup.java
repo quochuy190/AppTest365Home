@@ -82,10 +82,10 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
                         startActivity(new Intent(getContext(), ActivityUpdateInfo.class));
                         break;
                     case 1:
-
+                        startActivity(new Intent(getContext(), ActivityConfigSubUser.class));
                         break;
                     case 2:
-
+                        startActivity(new Intent(getContext(), ActivitySetupSubUser.class));
                         break;
                     case 3:
                         startActivity(new Intent(getContext(), ActivityManageAccount.class));

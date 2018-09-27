@@ -47,6 +47,7 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
         initEvent();
         initAppbar();
     }
+
     TextView txt_title;
 
     public void initAppbar() {
@@ -62,6 +63,7 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
         });
 
     }
+
     private void initEvent() {
 
     }
@@ -88,10 +90,14 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
                 txt_main_account.setText(StringUtil.formatNumber(obj.getsCORE_BALANCE()));
             if (obj.getsPROMOTION_BALANCE() != null)
                 txt_bonus_account.setText(StringUtil.formatNumber(obj.getsPROMOTION_BALANCE()));
-            txt_fullname.setText(obj.getsFULLNAME());
-            txt_username.setText(obj.getsUSERNAME());
-            txt_email.setText(obj.getsEMAIL());
-            txt_phone.setText(obj.getsPHONENUMBER());
+            if (obj.getsFULLNAME() != null)
+                txt_fullname.setText(obj.getsFULLNAME());
+            if (obj.getsUSERNAME() != null)
+                txt_username.setText(obj.getsUSERNAME());
+            if (obj.getsEMAIL() != null)
+                txt_email.setText(obj.getsEMAIL());
+            if (obj.getsPHONENUMBER() != null)
+                txt_phone.setText(obj.getsPHONENUMBER());
         }
     }
 }

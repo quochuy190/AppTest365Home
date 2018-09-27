@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import neo.vn.test365home.Adapter.AdapterListChildren;
 import neo.vn.test365home.Adapter.AdapterViewpager;
+import neo.vn.test365home.App;
 import neo.vn.test365home.Base.BaseFragment;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ItemClickListener;
@@ -144,6 +145,8 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
         if (mLis != null) {
             if (mLis.get(0).getsERROR().equals("0000")) {
                 mLisChildren.clear();
+                App.mLisChildren.clear();
+                App.mLisChildren.addAll(mLis);
                 mLisChildren.addAll(mLis);
                 mLisChildren.get(0).setChecked(true);
                 mLisChildren.add(new Childrens());
