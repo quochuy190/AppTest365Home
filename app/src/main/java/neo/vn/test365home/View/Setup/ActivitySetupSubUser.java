@@ -1,5 +1,6 @@
 package neo.vn.test365home.View.Setup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import butterknife.BindView;
 import neo.vn.test365home.Adapter.AdapterListChildrenSetup;
 import neo.vn.test365home.App;
 import neo.vn.test365home.Base.BaseActivity;
+import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.R;
@@ -21,6 +23,7 @@ public class ActivitySetupSubUser extends BaseActivity {
     public int setContentViewId() {
         return R.layout.activity_setup_sub_user;
     }
+
     RecyclerView.LayoutManager mLayoutManager;
     private List<Childrens> mLisChildren;
     @BindView(R.id.recycle_list_subuser)
@@ -49,7 +52,11 @@ public class ActivitySetupSubUser extends BaseActivity {
         adapter.setOnIListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
-
+                Childrens obj = (Childrens) item;
+                Intent intent = new Intent(ActivitySetupSubUser.this, ActivityConfigSubUser.class);
+                intent.putExtra(Constants.KEY_SEND_CHILDREN, obj);
+             //   intent.putExtra(Constants.KEY_SEND_CHILDREN_CONFIG, obj);
+                startActivity(intent);
             }
         });
     }

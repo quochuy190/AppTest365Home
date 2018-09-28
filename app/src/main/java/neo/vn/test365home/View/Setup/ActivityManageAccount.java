@@ -11,6 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
+import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
@@ -100,4 +101,16 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
                 txt_phone.setText(obj.getsPHONENUMBER());
         }
     }
+
+    @Override
+    public void show_config_to_children(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_config_children(List<ConfigChildren> mLis) {
+
+    }
+
+
 }

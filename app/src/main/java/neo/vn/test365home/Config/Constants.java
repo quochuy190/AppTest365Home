@@ -36,4 +36,5 @@ public class Constants {
     public static final String KEY_SEND_OBJECTIVE = "KEY_SEND_OBJECTIVE";
     public static final String KEY_SEND_CAUHOI = "KEY_SEND_CAUHOI";
     public static final String KEY_SEND_ID_WEEKTEST = "KEY_SEND_ID_WEEKTEST";
+    public static final String KEY_SEND_CHILDREN_CONFIG = "KEY_SEND_CHILDREN_CONFIG";
 }

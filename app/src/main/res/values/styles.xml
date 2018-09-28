@@ -13,6 +13,7 @@
         <item name="colorControlNormal">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
     </style>
+
     <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
         <item name="colorAccent">@color/red_test365</item>
         <item name="android:textColorSecondary">@color/app_bar</item>
@@ -31,10 +32,16 @@
     <style name="MyTextAppearance">
         <item name="android:textSize">13sp</item>
     </style>
+
     <style name="text_tab_thongke">
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="NumberPickerText">
         <item name="android:textSize">25dp</item>
+    </style>
+    <!-- Theme.AppCompat.Light is not a dialog theme -->
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/red_test365</item>
     </style>
 </resources>
