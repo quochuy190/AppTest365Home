@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/dp10"
+    android:background="@color/gray"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:background="@color/white"
+        android:textSize="@dimen/text_16sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="@string/lable_naptien_title"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginBottom="@dimen/dp1"
+        android:paddingBottom="@dimen/dp30"
+        android:background="@color/white"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        android:text="@string/lable_naptien_content"
+        android:paddingTop="@dimen/dp5"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txt_naptien_tructuyen"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp1"
+        android:paddingBottom="@dimen/dp15"
+        android:background="@color/white"
+        android:textSize="@dimen/text_17sp"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/lable_naptien_tructuyen"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txt_naptien_sms_8655"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp1"
+        android:paddingBottom="@dimen/dp15"
+        android:background="@color/white"
+        android:textSize="@dimen/text_17sp"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/lable_naptien_sms_8655"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txt_naptien_sms_9029"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp1"
+        android:paddingBottom="@dimen/dp15"
+        android:background="@color/white"
+        android:textSize="@dimen/text_17sp"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/lable_naptien_sms_9029"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txt_naptien_the_test365"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp1"
+        android:paddingBottom="@dimen/dp15"
+        android:background="@color/white"
+        android:textSize="@dimen/text_17sp"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"
+        android:text="@string/lable_naptien_the_test365"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/txt_naptien_huybo"
+        android:textStyle="bold"
+        android:paddingBottom="@dimen/dp15"
+        android:background="@color/white"
+        android:textSize="@dimen/text_17sp"
+        android:textColor="@color/red_test365"
+        android:gravity="center"
+        android:text="@string/lable_naptien_huybo"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -22,15 +22,19 @@ import neo.vn.test365home.Listener.ButtonItemClickListener;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Cauhoi;
 import neo.vn.test365home.Models.Childrens;
+import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
 import neo.vn.test365home.Models.ObjTuanhoc;
 import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
+import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
+import neo.vn.test365home.View.Setup.ImpSetup;
+import neo.vn.test365home.View.Setup.PresenterSetup;
 
 /**
  * @author Quốc Huy
@@ -43,7 +47,7 @@ import neo.vn.test365home.Untils.StringUtil;
  * @updated on 8/3/2018
  * @since 1.0
  */
-public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
+public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, ImpSetup.View {
     private static final String TAG = "ActivityKhobaitap";
     PresenterBaitap mPresenter;
     AdapterListKhobaitap adapter;
@@ -65,6 +69,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
     int iCount = 0;
     int iPrice = 0;
     TextView txt_title;
+    PresenterSetup mPesenterSetup;
 
     @Override
     public int setContentViewId() {
@@ -75,6 +80,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new PresenterBaitap(this);
+        mPesenterSetup = new PresenterSetup(this);
         initAppbar();
         initData();
         init();
@@ -93,6 +99,8 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
         });
 
     }
+
+    String user;
 
     private void initEvent() {
         txt_chontatca.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +141,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
                 }
                 showDialogLoading();
                 String sObjective = getIntent().getStringExtra(Constants.KEY_SEND_OBJECTIVE);
-                String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
                 mPresenter.get_api_buy_excercise(user, mChildren.getsUSERNAME(), sChuoimade, sObjective);
 
             }
@@ -154,13 +162,16 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
                     txt_title.setText("Tiếng Việt lớp " + mChildren.getsID_LEVEL());
                     break;
                 case "3":
-                    txt_title.setText("Tiếng Anh lớp " + mChildren.getsID_LEVEL());     
+                    txt_title.setText("Tiếng Anh lớp " + mChildren.getsID_LEVEL());
                     break;
             }
         }
         String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+        mPesenterSetup.api_get_user_info(user);
         if (mChildren != null)
             mPresenter.get_api_weektest(user, mChildren.getsID_LEVEL(), sObjective, mChildren.getsUSERNAME());
+
+
     }
 
     private void init() {
@@ -205,6 +216,33 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View {
     @Override
     public void show_error_api(List<ErrorApi> mLis) {
         hideDialogLoading();
+    }
+
+    @Override
+    public void show_user_info(List<UserInfo> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            UserInfo obj = mLis.get(0);
+            int iTkChinh = Integer.parseInt(obj.getsCORE_BALANCE());
+            int iTkThuong = Integer.parseInt(obj.getsPROMOTION_BALANCE());
+            int iTkTotal = iTkChinh + iTkThuong;
+            txt_taikhoan.setText(StringUtil.formatNumber("" + iTkTotal));
+        }
+    }
+
+    @Override
+    public void show_config_to_children(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_config_children(List<ConfigChildren> mLis) {
+
+    }
+
+    @Override
+    public void show_payment(List<ErrorApi> mLis) {
+
     }
 
     @Override

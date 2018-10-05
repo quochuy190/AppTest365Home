@@ -370,15 +370,19 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 txt_time_ta.setText(get_week_day_vi(obj.getsENGLISH_TAKEN_TIME().substring(0, 5)));
             }
             if (obj.getsENGLISH_TAKEN_DURATION() != null) {
-                txt_setuptime_ta.setText(""+(Integer.parseInt(obj.getsENGLISH_TAKEN_DURATION())/60));
+                txt_setuptime_ta.setText("" + (Integer.parseInt(obj.getsENGLISH_TAKEN_DURATION()) / 60));
             }
             if (obj.getsVIETNAMESE_TAKEN_DURATION() != null) {
-                txt_setuptime_tv.setText(""+(Integer.parseInt(obj.getsVIETNAMESE_TAKEN_DURATION())/60));
+                txt_setuptime_tv.setText("" + (Integer.parseInt(obj.getsVIETNAMESE_TAKEN_DURATION()) / 60));
             }
             if (obj.getsMATH_TAKEN_DURATION() != null) {
-                txt_setuptime_toan.setText(""+(Integer.parseInt(obj.getsMATH_TAKEN_DURATION())/60));
+                txt_setuptime_toan.setText("" + (Integer.parseInt(obj.getsMATH_TAKEN_DURATION()) / 60));
             }
         }
+    }
+
+    @Override
+    public void show_payment(List<ErrorApi> mLis) {
 
     }
 

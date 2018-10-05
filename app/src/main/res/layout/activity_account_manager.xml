@@ -96,7 +96,7 @@
                     android:layout_weight="3"
                     android:padding="@dimen/dp5"
                     android:textColor="@color/blue"
-                    android:textSize="@dimen/text_16sp" />
+                    android:textSize="@dimen/text_15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -183,8 +183,8 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:text="@string/lable_recharge"
-                android:background="@drawable/spr_click_button"
-                android:layout_width="@dimen/dp150"
+                android:background="@drawable/spr_click_button_blue"
+                android:layout_width="@dimen/dp200"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

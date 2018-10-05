@@ -38,4 +38,12 @@
     <string name="lable_account_main">Tài khoản chính</string>
     <string name="lable_account_bonus">Tài khoản thưởng</string>
     <string name="lable_recharge">Nạp tiền</string>
+    <!--Quản lý tài khoản, nạp tiền-->
+    <string name="lable_naptien_sms_8655">Nạp tiền bằng tin nhắn 8655</string>
+    <string name="lable_naptien_sms_9029">Nạp tiền bằng tin nhắn 9029</string>
+    <string name="lable_naptien_tructuyen">Nạp tiền trực tuyến</string>
+    <string name="lable_naptien_the_test365">Nạp tiền bằng thẻ Test365</string>
+    <string name="lable_naptien_huybo">Hủy bỏ</string>
+    <string name="lable_naptien_title">Chọn hình thức nạp tiền</string>
+    <string name="lable_naptien_content">Bạn hãy chọn hình thức nạp tiền phù hợp nhất với mình</string>
 </resources>

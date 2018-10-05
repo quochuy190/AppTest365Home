@@ -142,4 +142,35 @@ public class PresenterSetup implements ImpSetup.Presenter {
             }
         }, mMap);
     }
+
+    @Override
+    public void api_payment(String sUserMe, String sMenhgia) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "payment");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "2");
+        mMap.put("P1", sUserMe);
+        mMap.put("P2", sMenhgia);
+
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<ErrorApi> mLisFlight = ErrorApi.getList(objT);
+                    mView.show_payment(mLisFlight);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
+    }
 }

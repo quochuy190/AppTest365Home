@@ -82,56 +82,58 @@
     <LinearLayout
         android:id="@+id/ll_traloi"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:background="@color/white"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <TextView
-            android:textStyle="bold"
+            android:id="@+id/txt_egg_result1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="1 - a"
             android:textColor="@color/red"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="@dimen/text_18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
+            android:id="@+id/txt_egg_result2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="2 - c"
+
             android:textColor="@color/red"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="@dimen/text_18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
+            android:id="@+id/txt_egg_result3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="1 - a"
+
             android:textColor="@color/blue"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="@dimen/text_18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
+            android:id="@+id/txt_egg_result4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="1 - a"
+
             android:textColor="@color/blue"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="@dimen/text_18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -163,7 +165,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="1 - a"
+            android:text="2 - b"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_18sp"
             android:textStyle="bold" />
@@ -174,7 +176,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="1 - a"
+            android:text="3 - c"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_18sp"
             android:textStyle="bold" />
@@ -185,7 +187,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:text="1 - a"
+            android:text="4 - d"
             android:textColor="@color/blue"
             android:textSize="@dimen/text_18sp"
             android:textStyle="bold" />
@@ -195,11 +197,9 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         android:background="@color/white"
         android:gravity="center"
         android:padding="@dimen/dp15"
-
         android:textColor="@color/black"
         android:textSize="@dimen/text_18sp"
         android:textStyle="bold"

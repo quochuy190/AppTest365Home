@@ -59,5 +59,7 @@ dependencies {
     annotationProcessor 'org.parceler:parceler:1.1.1'
     //number picker
     implementation 'com.github.hotchemi:stringpicker:0.0.2'
+    //Biểu đồ
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 apply plugin: 'com.google.gms.google-services'

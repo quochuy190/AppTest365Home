@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -189,7 +190,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         View view_warning = (View) dialog_yes.findViewById(R.id.view_warning);
 
         txt_title.setText(title);
-        txt_message.setText(message);
+        txt_message.setText(Html.fromHtml(message));
         // txt_buysongs.setText(Html.fromHtml("Để hoàn tất đăng ký dịch vụ RingTunes, Quý khách vui lòng thực hiện thao tác soạn tin nhắn <font color='#060606'>\"Y2 gửi 9194\"</font> từ số điện thoại giá cước: 3.000Đ/7 ngày. Cảm ơn Quý khách!"));
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override

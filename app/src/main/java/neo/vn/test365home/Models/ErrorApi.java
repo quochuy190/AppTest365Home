@@ -18,18 +18,22 @@ public class ErrorApi {
     String sMESSAGE;
     @SerializedName("RESULT")
     String sRESULT;
+    @SerializedName("URL")
+    String sURL;
 
     public ErrorApi() {
     }
-    private static ErrorApi getObject (JSONObject jsonObject){
-        return new Gson().fromJson(jsonObject.toString(),ErrorApi.class);
+
+    private static ErrorApi getObject(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), ErrorApi.class);
     }
 
-    public  static ArrayList<ErrorApi> getList(String jsonArray) throws JSONException {
+    public static ArrayList<ErrorApi> getList(String jsonArray) throws JSONException {
         ArrayList<ErrorApi> arrayList = new ArrayList<>();
-        Type type = new TypeToken<List<ErrorApi>>(){}.getType();
-        Gson gson= new Gson();
-        arrayList = gson.fromJson(jsonArray,type);
+        Type type = new TypeToken<List<ErrorApi>>() {
+        }.getType();
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
     }
 
@@ -56,6 +60,14 @@ public class ErrorApi {
 
     public void setsRESULT(String sRESULT) {
         this.sRESULT = sRESULT;
+    }
+
+    public String getsURL() {
+        return sURL;
+    }
+
+    public void setsURL(String sURL) {
+        this.sURL = sURL;
     }
 }
 

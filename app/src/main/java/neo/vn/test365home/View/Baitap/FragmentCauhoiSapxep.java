@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,6 @@ public class FragmentCauhoiSapxep extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cauhoi_sapxep, container, false);
         ButterKnife.bind(this, view);
-        Log.i(TAG, "onCreateView: " + mCauhoi.getsQUESTION());
         initData();
         return view;
     }

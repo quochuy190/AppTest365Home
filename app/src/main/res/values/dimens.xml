@@ -56,4 +56,6 @@
     <dimen name="hight_avata">120dp</dimen>
     <dimen name="item_setup">50dp</dimen>
     <dimen name="item_avata_children">90dp</dimen>
+   <!-- nạp tiền trực tuyến-->
+    <dimen name="hight_bg_title">240dp</dimen>
 </resources>

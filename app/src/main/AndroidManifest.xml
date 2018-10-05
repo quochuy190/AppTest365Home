@@ -18,9 +18,20 @@
             android:screenOrientation="portrait">
 
         </activity>
+
         <activity
             android:screenOrientation="portrait"
             android:name=".View.Setup.ActivityManageAccount">
+
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".View.Setup.ActivityNaptienTructuyen">
+
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".View.Setup.ActivityWebviewNaptien">
 
         </activity>
         <activity

@@ -37,6 +37,14 @@ public class StringUtil {
         }
         return new String(chars);
     }
+    public static String convert_html(String content) {
+        String s_resutl = "";
+        if (content != null && content.length() > 0) {
+            s_resutl = content.replaceAll("&#34;", "\"");
+            s_resutl = s_resutl.replaceAll("&#92;", "\\");
+        }
+        return s_resutl;
+    }
     public static String formatNumber(String number) {
         if (number==null)
             return "" ;

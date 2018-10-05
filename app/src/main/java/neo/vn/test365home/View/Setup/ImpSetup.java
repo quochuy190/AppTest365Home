@@ -15,6 +15,8 @@ public interface ImpSetup {
                                     String sEng_taken_time, String pEng_notify, String Eng_duration,
                                     String pmath_dy, String pTv_dy, String pENG_dy);
         void api_get_config_children(String sUserMe, String sUserCon);
+
+        void api_payment(String sUserMe, String sMenhgia);
     }
 
     interface View {
@@ -24,5 +26,6 @@ public interface ImpSetup {
 
         void show_config_to_children(List<ErrorApi> mLis);
         void show_get_config_children(List<ConfigChildren> mLis);
+        void show_payment(List<ErrorApi> mLis);
     }
 }

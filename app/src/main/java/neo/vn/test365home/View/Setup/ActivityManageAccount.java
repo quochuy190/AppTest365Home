@@ -1,6 +1,9 @@
 package neo.vn.test365home.View.Setup;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
+import neo.vn.test365home.Listener.ClickDialog;
 import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.UserInfo;
@@ -34,6 +38,7 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
     @BindView(R.id.btn_naptien)
     Button btn_naptien;
     PresenterSetup mPresenter;
+    String sUserMe;
 
     @Override
     public int setContentViewId() {
@@ -66,10 +71,86 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
     }
 
     private void initEvent() {
+        btn_naptien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final BottomSheetDialog dialog =
+                        new BottomSheetDialog(ActivityManageAccount.this);
+                dialog.setContentView(R.layout.dialog_botton_setup_account);
+                final TextView txt_naptien_tructuyen = dialog.findViewById(R.id.txt_naptien_tructuyen);
+                TextView txt_naptien_sms_8655 = dialog.findViewById(R.id.txt_naptien_sms_8655);
+                TextView txt_naptien_sms_9029 = dialog.findViewById(R.id.txt_naptien_sms_9029);
+                TextView txt_naptien_the_test365 = dialog.findViewById(R.id.txt_naptien_the_test365);
+                TextView txt_naptien_huybo = dialog.findViewById(R.id.txt_naptien_huybo);
 
+                txt_naptien_tructuyen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(ActivityManageAccount.this, ActivityNaptienTructuyen.class);
+                        if (sTkchinh.length() > 0 && sTkThuong.length() > 0) {
+                            int iTkChinh = Integer.parseInt(sTkchinh);
+                            int iTkThuong = Integer.parseInt(sTkThuong);
+                            int iTkTotal = iTkChinh+iTkThuong;
+                            intent.putExtra(Constants.KEY_SEND_TK_TOTAL_NAPTIEN, ""+iTkTotal);
+                        }
+
+                        startActivity(intent);
+                    }
+                });
+                txt_naptien_sms_8655.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        String s = "Để nạp 10.000đ vào tài khoản <b><font color='#3333CC'>" + sUserMe + "</font></b> " +
+                                " Quý phụ hunh vui lòng soạn tin nhắn <b><font color='#FF0000'> 'Test365Home " + sUserMe +
+                                " gửi đến 8655'.</font></b>\n \nGiá cước 10.000đ trên 1 tin nhắn. Xin cảm ơn";
+                        showDialogComfirm("Thông báo", s, false, new ClickDialog() {
+                            @Override
+                            public void onClickYesDialog() {
+                                Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
+                                smsIntent.setType("vnd.android-dir/mms-sms");
+                                smsIntent.putExtra("address", "8655");
+                                smsIntent.putExtra("sms_body", "Test365Home " + sUserMe);
+                                try {
+                                    startActivity(smsIntent);
+                                } catch (ActivityNotFoundException e) {
+                                    // Display some sort of error message here.
+                                }
+                            }
+
+                            @Override
+                            public void onClickNoDialog() {
+
+                            }
+                        });
+                    }
+                });
+                txt_naptien_sms_9029.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        showDialogNotify("Thông báo", "Tính năng hiện tại đang phát triển");
+                    }
+                });
+                txt_naptien_the_test365.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        showDialogNotify("Thông báo", "Tính năng hiện tại đang phát triển");
+                    }
+                });
+                txt_naptien_huybo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
     }
 
-    String sUserMe;
 
     private void initData() {
         showDialogLoading();
@@ -82,15 +163,21 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
 
     }
 
+    String sTkchinh = "", sTkThuong = "";
+
     @Override
     public void show_user_info(List<UserInfo> mLis) {
         hideDialogLoading();
         if (mLis != null && mLis.get(0).getsERROR() != null && mLis.get(0).getsERROR().equals("0000")) {
             UserInfo obj = mLis.get(0);
-            if (obj.getsCORE_BALANCE() != null)
+            if (obj.getsCORE_BALANCE() != null) {
+                sTkchinh = obj.getsCORE_BALANCE();
                 txt_main_account.setText(StringUtil.formatNumber(obj.getsCORE_BALANCE()));
-            if (obj.getsPROMOTION_BALANCE() != null)
+            }
+            if (obj.getsPROMOTION_BALANCE() != null) {
+                sTkThuong = obj.getsPROMOTION_BALANCE();
                 txt_bonus_account.setText(StringUtil.formatNumber(obj.getsPROMOTION_BALANCE()));
+            }
             if (obj.getsFULLNAME() != null)
                 txt_fullname.setText(obj.getsFULLNAME());
             if (obj.getsUSERNAME() != null)
@@ -109,6 +196,11 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
 
     @Override
     public void show_get_config_children(List<ConfigChildren> mLis) {
+
+    }
+
+    @Override
+    public void show_payment(List<ErrorApi> mLis) {
 
     }
 

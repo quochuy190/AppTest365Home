@@ -1,6 +1,6 @@
 package neo.vn.test365home.View.Baitap;
 
-import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,10 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import neo.vn.test365home.Adapter.AdapterDapAn;
 import neo.vn.test365home.Base.BaseFragment;
-import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Models.CauhoiDetail;
 import neo.vn.test365home.Models.DapAn;
 import neo.vn.test365home.R;
+import neo.vn.test365home.Untils.StringUtil;
 
 /**
  * @author Quốc Huy
@@ -44,52 +46,48 @@ public class FragmentCauhoi extends BaseFragment {
     AdapterDapAn adapter;
     RecyclerView.LayoutManager mLayoutManager;
     private List<DapAn> mLisDapAn;
-    @BindView(R.id.txtCauhoi)
-    TextView txtCauhoi;
+    @BindView(R.id.webview_cauhoi)
+    WebView webview_cauhoi;
     @BindView(R.id.txt_debai_huongdan)
     TextView txt_debai_huongdan;
 
     @BindView(R.id.chechbox_A)
     ImageView chechbox_A;
-    @BindView(R.id.img_dapan_A)
-    ImageView img_dapan_A;
-    @BindView(R.id.txt_dapan_A)
-    TextView txt_dapan_A;
+    @BindView(R.id.webview_dapan_A)
+    WebView webview_dapan_A;
     @BindView(R.id.ll_dapanA)
     LinearLayout ll_dapanA;
 
     @BindView(R.id.chechbox_B)
     ImageView chechbox_B;
-    @BindView(R.id.img_dapan_B)
-    ImageView img_dapan_B;
-    @BindView(R.id.txt_dapan_B)
-    TextView txt_dapan_B;
+    @BindView(R.id.webview_dapan_B)
+    WebView webview_dapan_B;
+
     @BindView(R.id.ll_dapanB)
     LinearLayout ll_dapanB;
 
     @BindView(R.id.chechbox_C)
     ImageView chechbox_C;
-    @BindView(R.id.img_dapan_C)
-    ImageView img_dapan_C;
-    @BindView(R.id.txt_dapan_C)
-    TextView txt_dapan_C;
+    @BindView(R.id.webview_dapan_C)
+    WebView webview_dapan_C;
     @BindView(R.id.ll_dapanC)
     LinearLayout ll_dapanC;
 
     @BindView(R.id.chechbox_D)
     ImageView chechbox_D;
-    @BindView(R.id.img_dapan_D)
-    ImageView img_dapan_D;
-    @BindView(R.id.txt_dapan_D)
-    TextView txt_dapan_D;
+    @BindView(R.id.webview_dapan_D)
+    WebView webview_dapan_D;
     @BindView(R.id.ll_dapanD)
     LinearLayout ll_dapanD;
+
     @BindView(R.id.txt_number_de)
     TextView txt_number_de;
     @BindView(R.id.txtSubNumber)
     TextView txtSubNumber;
     @BindView(R.id.txt_current)
     TextView txt_current;
+    @BindView(R.id.img_anwser_chil)
+    ImageView img_anwser_chil;
 
     public static FragmentCauhoi newInstance(CauhoiDetail restaurant) {
         FragmentCauhoi restaurantDetailFragment = new FragmentCauhoi();
@@ -115,70 +113,73 @@ public class FragmentCauhoi extends BaseFragment {
         return view;
     }
 
-    @SuppressLint("NewApi")
     private void initData() {
+
         //txtCauhoi.setText(mCauhoi.getsQUESTION());
-        txt_current.setText("Bài: "+mCauhoi.getsNumberDe()+" - Câu hỏi: "+mCauhoi.getsSubNumberCau());
-        txt_number_de.setText("Bài: "+mCauhoi.getsNumberDe());
-        txtSubNumber.setText("Câu hỏi: "+mCauhoi.getsSubNumberCau());
-        txtCauhoi.setText(Html.fromHtml(mCauhoi.getsQUESTION(), Html.FROM_HTML_MODE_COMPACT));
-        txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan(), Html.FROM_HTML_MODE_COMPACT));
-     //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
-        if (mCauhoi.getsA().length() > 0) {
-            if (mCauhoi.getsANSWER().equals("A")){
-                txt_dapan_A.setTextColor(getResources().getColor(R.color.blue));
+        txt_current.setText("Bài: " + mCauhoi.getsNumberDe() + " - Câu hỏi: " + mCauhoi.getsSubNumberCau());
+        txt_number_de.setText("Bài: " + mCauhoi.getsNumberDe());
+        txtSubNumber.setText("Câu hỏi: " + mCauhoi.getsSubNumberCau());
+
+        if (mCauhoi.getsRESULT_CHILD().length() > 0) {
+            if (mCauhoi.getsRESULT_CHILD().equals("1")) {
+                Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
+            } else
+                Glide.with(getContext()).load(R.drawable.icon_anwser_false).into(img_anwser_chil);
+        } else {
+            Glide.with(getContext()).load(R.drawable.icon_anwser_unknow).into(img_anwser_chil);
+        }
+
+        // txtCauhoi.setText(Html.fromHtml(mCauhoi.getsQUESTION(), Html.FROM_HTML_MODE_COMPACT));
+        initWebview(webview_cauhoi, StringUtil.convert_html(mCauhoi.getsHTML_CONTENT()));
+        txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()));
+        //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
+        if (mCauhoi.getsHTML_A().length() > 0) {
+            if (mCauhoi.getsANSWER().equals("A")) {
+                //  txt_dapan_A.setTextColor(getResources().getColor(R.color.blue));
                 Glide.with(getContext()).load(R.drawable.ic_checked_blue).into(chechbox_A);
             }
-            if (mCauhoi.getsA().indexOf("upload") > 0) {
-                txt_dapan_A.setVisibility(View.GONE);
-                Glide.with(getContext()).load(Config.URL_IMAGE + mCauhoi.getsA()).into(img_dapan_A);
-            } else {
-                img_dapan_A.setVisibility(View.GONE);
-
-                txt_dapan_A.setText(mCauhoi.getsA());
-            }
+            initWebview(webview_dapan_A, StringUtil.convert_html(mCauhoi.getsHTML_A()));
         } else ll_dapanA.setVisibility(View.GONE);
 
-        if (mCauhoi.getsC().length() > 0) {
-            if (mCauhoi.getsANSWER().equals("C")){
-                txt_dapan_C.setTextColor(getResources().getColor(R.color.blue));
+        if (mCauhoi.getsHTML_C().length() > 0) {
+            if (mCauhoi.getsANSWER().equals("C")) {
+                // txt_dapan_C.setTextColor(getResources().getColor(R.color.blue));
                 Glide.with(getContext()).load(R.drawable.ic_checked_blue).into(chechbox_C);
             }
-            if (mCauhoi.getsC().indexOf("upload") > 0) {
-                txt_dapan_C.setVisibility(View.GONE);
-                Glide.with(getContext()).load(Config.URL_IMAGE + mCauhoi.getsC()).into(img_dapan_C);
-            } else {
-                img_dapan_C.setVisibility(View.GONE);
-                txt_dapan_C.setText(mCauhoi.getsC());
-            }
+            initWebview(webview_dapan_C, StringUtil.convert_html(mCauhoi.getsHTML_C()));
         } else ll_dapanC.setVisibility(View.GONE);
 
-        if (mCauhoi.getsB().length() > 0) {
-            if (mCauhoi.getsANSWER().equals("B")){
-                txt_dapan_B.setTextColor(getResources().getColor(R.color.blue));
+        if (mCauhoi.getsHTML_B().length() > 0) {
+            if (mCauhoi.getsANSWER().equals("B")) {
+                //txt_dapan_B.setTextColor(getResources().getColor(R.color.blue));
                 Glide.with(getContext()).load(R.drawable.ic_checked_blue).into(chechbox_B);
             }
-            if (mCauhoi.getsB().indexOf("upload") > 0) {
-                txt_dapan_B.setVisibility(View.GONE);
-                Glide.with(getContext()).load(Config.URL_IMAGE + mCauhoi.getsB()).into(img_dapan_B);
-            } else {
-                img_dapan_B.setVisibility(View.GONE);
-                txt_dapan_B.setText(mCauhoi.getsB());
-            }
+            initWebview(webview_dapan_B, StringUtil.convert_html(mCauhoi.getsHTML_B()));
         } else ll_dapanB.setVisibility(View.GONE);
 
-        if (mCauhoi.getsD().length() > 0) {
-            if (mCauhoi.getsANSWER().equals("D")){
-                txt_dapan_D.setTextColor(getResources().getColor(R.color.blue));
+        if (mCauhoi.getsHTML_D().length() > 0) {
+            if (mCauhoi.getsANSWER().equals("D")) {
+                //   txt_dapan_D.setTextColor(getResources().getColor(R.color.blue));
                 Glide.with(getContext()).load(R.drawable.ic_checked_blue).into(chechbox_D);
             }
-            if (mCauhoi.getsD().indexOf("upload") > 0) {
-                txt_dapan_D.setVisibility(View.GONE);
-                Glide.with(getContext()).load(Config.URL_IMAGE + mCauhoi.getsD()).into(img_dapan_D);
-            } else {
-                img_dapan_D.setVisibility(View.GONE);
-                txt_dapan_D.setText(mCauhoi.getsD());
-            }
+            initWebview(webview_dapan_D, StringUtil.convert_html(mCauhoi.getsHTML_D()));
         } else ll_dapanD.setVisibility(View.GONE);
+    }
+
+    private void initWebview(WebView webview_debai, String link_web) {
+        webview_debai.setInitialScale(200);
+        webview_debai.getSettings().setJavaScriptEnabled(true);
+        webview_debai.getSettings();
+        webview_debai.setBackgroundColor(Color.TRANSPARENT);
+        WebSettings webSettings = webview_debai.getSettings();
+        webSettings.setTextSize(WebSettings.TextSize.LARGEST);
+        webSettings.setDefaultFontSize(17);
+        /* <html><body  align='center'>You scored <b>192</b> points.</body></html>*/
+        String pish = "<html><body  align='center'>";
+        String pas = "</body></html>";
+
+        webview_debai.loadDataWithBaseURL("", pish + link_web + pas,
+                "text/html", "UTF-8", "");
+
     }
 }

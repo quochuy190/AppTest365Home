@@ -102,7 +102,7 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
         mChildren = SharedPrefs.getInstance().get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
         if (mExcercise != null && mExcercise.getsID() != null) {
             showDialogLoading();
-            mPresenter.get_api_get_part(sUserMe, mChildren.getsUSERNAME(), mExcercise.getsID());
+            mPresenter.get_api_get_part(sUserMe, mChildren.getsUSERNAME(), mExcercise.getsWEEK_TEST_ID());
         }
     }
 
@@ -209,15 +209,15 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
         if (mLis != null) {
             adapterViewpager = new AdapterViewpager(getSupportFragmentManager());
             maxPage = 0;
-            for (int j = 0;j<mLis.size();j++) {
+            for (int j = 0; j < mLis.size(); j++) {
                 Cauhoi obj = mLis.get(j);
                 if (obj.getLisInfo() != null) {
                     for (int i = 0; i < obj.getLisInfo().size(); i++) {
                         maxPage++;
-                        obj.getLisInfo().get(i).setsNumberDe(""+(j+1));
-                        obj.getLisInfo().get(i).setsSubNumberCau(""+(i+1));
+                        obj.getLisInfo().get(i).setsNumberDe("" + (j + 1));
+                        obj.getLisInfo().get(i).setsSubNumberCau("" + (i + 1));
                         obj.getLisInfo().get(i).setsCauhoi_huongdan(obj.getsHUONGDAN());
-                        if (obj.getsKIEU().equals("1"))
+                        if (obj.getsKIEU().equals("1") || obj.getsKIEU().equals("10"))
                             adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         else if (obj.getsKIEU().equals("2"))
                             adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
@@ -225,8 +225,8 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
                             adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         else if (obj.getsKIEU().equals("4")) {
                             adapterViewpager.addFragment(FragmentCauhoiSapxep.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
-                        } else if (obj.getsKIEU().equals("5")) {
-                           // adapterViewpager.addFragment(FragmentDienvaochotrong.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
+                        } else if (obj.getsKIEU().equals("5") || obj.getsKIEU().equals("11")) {
+                            adapterViewpager.addFragment(FragmentCauhoiNoicau.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         } else if (obj.getsKIEU().equals("6")) {
                             adapterViewpager.addFragment(FragmentCauhoiDienvaochotrong.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         }
@@ -245,7 +245,7 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
 
                 @Override
                 public void onPageSelected(int position) {
-                   // txt_current.setText("Câu " + (position + 1) + "/" + maxPage);
+                    // txt_current.setText("Câu " + (position + 1) + "/" + maxPage);
                 }
 
                 @Override

@@ -51,6 +51,27 @@ public class CauhoiDetail implements Parcelable {
     String sRESULT_CHILD;
     @SerializedName("POINT_CHILD")
     String sPOINT_CHILD;
+
+    @SerializedName("HTML_CONTENT")
+    String sHTML_CONTENT;
+    @SerializedName("HTML_A")
+    String sHTML_A;
+    @SerializedName("HTML_B")
+    String sHTML_B;
+    @SerializedName("HTML_C")
+    String sHTML_C;
+    @SerializedName("HTML_D")
+    String sHTML_D;
+
+    @SerializedName("EGG_1_RESULT")
+    String sEGG_1_RESULT;
+    @SerializedName("EGG_2_RESULT")
+    String sEGG_2_RESULT;
+    @SerializedName("EGG_3_RESULT")
+    String sEGG_3_RESULT;
+    @SerializedName("EGG_4_RESULT")
+    String sEGG_4_RESULT;
+
     String sCauhoi_huongdan;
     String sNumberDe;
     String sSubNumberCau;
@@ -84,15 +105,16 @@ public class CauhoiDetail implements Parcelable {
         }
     };
 
-    private static CauhoiDetail getObject (JSONObject jsonObject){
-        return new Gson().fromJson(jsonObject.toString(),CauhoiDetail.class);
+    private static CauhoiDetail getObject(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), CauhoiDetail.class);
     }
 
-    public  static ArrayList<CauhoiDetail> getList(String jsonArray) throws JSONException {
+    public static ArrayList<CauhoiDetail> getList(String jsonArray) throws JSONException {
         ArrayList<CauhoiDetail> arrayList = new ArrayList<>();
-        Type type = new TypeToken<List<CauhoiDetail>>(){}.getType();
-        Gson gson= new Gson();
-        arrayList = gson.fromJson(jsonArray,type);
+        Type type = new TypeToken<List<CauhoiDetail>>() {
+        }.getType();
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
     }
 
@@ -286,6 +308,76 @@ public class CauhoiDetail implements Parcelable {
 
     }
 
+    public String getsHTML_CONTENT() {
+        return sHTML_CONTENT;
+    }
 
+    public void setsHTML_CONTENT(String sHTML_CONTENT) {
+        this.sHTML_CONTENT = sHTML_CONTENT;
+    }
+
+    public String getsHTML_A() {
+        return sHTML_A;
+    }
+
+    public void setsHTML_A(String sHTML_A) {
+        this.sHTML_A = sHTML_A;
+    }
+
+    public String getsHTML_B() {
+        return sHTML_B;
+    }
+
+    public void setsHTML_B(String sHTML_B) {
+        this.sHTML_B = sHTML_B;
+    }
+
+    public String getsHTML_C() {
+        return sHTML_C;
+    }
+
+    public void setsHTML_C(String sHTML_C) {
+        this.sHTML_C = sHTML_C;
+    }
+
+    public String getsHTML_D() {
+        return sHTML_D;
+    }
+
+    public void setsHTML_D(String sHTML_D) {
+        this.sHTML_D = sHTML_D;
+    }
+
+    public String getsEGG_1_RESULT() {
+        return sEGG_1_RESULT;
+    }
+
+    public void setsEGG_1_RESULT(String sEGG_1_RESULT) {
+        this.sEGG_1_RESULT = sEGG_1_RESULT;
+    }
+
+    public String getsEGG_2_RESULT() {
+        return sEGG_2_RESULT;
+    }
+
+    public void setsEGG_2_RESULT(String sEGG_2_RESULT) {
+        this.sEGG_2_RESULT = sEGG_2_RESULT;
+    }
+
+    public String getsEGG_3_RESULT() {
+        return sEGG_3_RESULT;
+    }
+
+    public void setsEGG_3_RESULT(String sEGG_3_RESULT) {
+        this.sEGG_3_RESULT = sEGG_3_RESULT;
+    }
+
+    public String getsEGG_4_RESULT() {
+        return sEGG_4_RESULT;
+    }
+
+    public void setsEGG_4_RESULT(String sEGG_4_RESULT) {
+        this.sEGG_4_RESULT = sEGG_4_RESULT;
+    }
 }
 
