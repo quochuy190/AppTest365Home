@@ -3,6 +3,7 @@ package neo.vn.test365home.Adapter;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,12 +56,16 @@ public class AdapterListKhobaitap extends RecyclerView.Adapter<AdapterListKhobai
     public void onBindViewHolder(TopicViewHoder holder, final int position) {
         ObjTuanhoc airport = listChildren.get(position);
         holder.txt_name.setText(airport.getsWEEK_NAME());
-        holder.txt_mota.setText(airport.getsNAME());
+        if (airport.getsNAME() != null && airport.getsNAME().length() > 0)
+            holder.txt_mota.setText(Html.fromHtml(StringUtil.convert_html(airport.getsNAME())));
         // holder.btnTrangthai.setText(airport.getsTrangthai());
-        holder.txt_price.setText(StringUtil.formatNumber(airport.getsPRICE()));
-        holder.txt_soluongtai.setText(airport.getsTOTAL_BUY());
+        holder.txt_price.setText("Giá: " + StringUtil.formatNumber(airport.getsPRICE()));
+        if (airport.getsTOTAL_BUY() != null && airport.getsTOTAL_BUY().length() > 0) {
+            holder.txt_soluongtai.setText(airport.getsTOTAL_BUY());
+        } else holder.txt_soluongtai.setText(0);
+
         if (airport.getsSTATUS().equals("0")) {
-            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_khotuan_chuatai);
+            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_click_baitap_chuatai);
             holder.btnTrangthai.setText("Chọn tải");
             holder.btnTrangthai.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -69,10 +74,10 @@ public class AdapterListKhobaitap extends RecyclerView.Adapter<AdapterListKhobai
                 }
             });
         } else if (airport.getsSTATUS().equals("1")) {
-            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_khotuan_dataii);
+            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_click_baitap_datai);
             holder.btnTrangthai.setText("Đã tải");
         } else if (airport.getsSTATUS().equals("2")) {
-            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_khotuan_duoctang);
+            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_click_baitap_duoctang);
             holder.btnTrangthai.setText("Được tặng");
         } else if (airport.getsSTATUS().equals("4")) {
             holder.btnTrangthai.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +86,7 @@ public class AdapterListKhobaitap extends RecyclerView.Adapter<AdapterListKhobai
                     buttonItemClickListener.onClickButtonItem(position);
                 }
             });
-            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_khotuan_duocchon);
+            holder.btnTrangthai.setBackgroundResource(R.drawable.spr_click_baitap_duocchon);
             holder.btnTrangthai.setText("Bỏ chọn");
         }
     }

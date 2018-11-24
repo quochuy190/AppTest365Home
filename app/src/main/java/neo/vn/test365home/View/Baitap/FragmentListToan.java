@@ -28,7 +28,6 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
 import neo.vn.test365home.Models.ObjTuanhoc;
-import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
 import neo.vn.test365home.R;
@@ -50,7 +49,6 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
         return restaurantDetailFragment;
     }
 
-
     PresenterBaitap mPresenter;
     AdapterHeader adapter;
     RecyclerView.LayoutManager mLayoutManager;
@@ -70,9 +68,6 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_baitap, container, false);
-        mChildren = SharedPrefs.getInstance()
-                .get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
-        Log.i(TAG, "onCreateView: " + mChildren.getsUSERNAME());
         ButterKnife.bind(this, view);
         mPresenter = new PresenterBaitap(this);
         Log.i(TAG, "onCreateView: ");
@@ -83,8 +78,11 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
     }
 
     private void initData() {
-        showDialogLoading();
+        mChildren = SharedPrefs.getInstance()
+                .get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
         String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+        Log.i(TAG, "initData lớp: " + mChildren.getsID_LEVEL());
+        showDialogLoading();
         mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(),
                 "1", mChildren.getsID_LEVEL());
 
@@ -117,6 +115,7 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
                 intent.putExtra(Constants.KEY_SEND_CHILDREN, mChildren);
                 intent.putExtra(Constants.KEY_SEND_OBJECTIVE, "1");
                 intent.putExtra(Constants.KEY_SEND_ID_WEEKTEST, mLisTuanDamua.get(i));
+                //intent.putExtra(Constants.KEY_SEND_TYPE_EXERCISE, mLisTuanDamua.get(i));
                 startActivity(intent);
             }
         });
@@ -160,6 +159,8 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
 
     @Override
     public void show_list_list_buy(List<TuanDamua> mLis) {
+        Log.i(TAG, "show_list_list_buy: ");
+        mLisTuanDamua.clear();
         hideDialogLoading();
         if (mLis != null) {
             if (mLis.get(0).getsERROR() != null && mLis.get(0).getsERROR().equals("0000")) {
@@ -219,6 +220,7 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
             }
 
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -232,7 +234,7 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
     }
 
     @Override
-    public void show_list_report_excercise(List<ReportExcercise> mLis) {
+    public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
 
     }
 
@@ -259,7 +261,7 @@ public class FragmentListToan extends BaseFragment implements View.OnClickListen
                 if (resultCode == RESULT_OK) {
                     showDialogLoading();
                     String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                    mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(),"1",
+                    mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(), "1",
                             mChildren.getsID_LEVEL());
                 }
                 break;

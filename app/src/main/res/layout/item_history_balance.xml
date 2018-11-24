@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/dp1"
+    android:orientation="vertical">
+    
+    <TextView
+        android:id="@+id/txt_date_history"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/black"
+        android:text="Ngày giao dịch: "
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
+        android:padding="@dimen/dp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/txt_total_type_history"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/black"
+        android:text="Giao dịch: "
+        android:layout_marginLeft="@dimen/dp5"
+        android:padding="@dimen/dp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+
+        android:id="@+id/txt_total_descrip_history"
+        android:textSize="@dimen/text_15sp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="@dimen/dp5"
+        android:padding="@dimen/dp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp5"
+        android:id="@+id/txt_total_monney_history"
+        android:textSize="@dimen/text_18sp"
+        android:layout_marginLeft="@dimen/dp5"
+        android:padding="@dimen/dp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

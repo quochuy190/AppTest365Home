@@ -2,20 +2,19 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/dp5"
+    android:padding="@dimen/dp7"
     android:id="@+id/background_itemkho"
-    android:background="@color/background_login"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/dp1"
-    android:layout_height="@dimen/dp150">
+    android:layout_margin="@dimen/dp3"
+    android:layout_height="@dimen/height_item_khobaitap">
 
     <TextView
-
         android:id="@+id/txt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tuần 1"
-        android:textColor="@color/app_bar"
+        android:textColor="@color/red_test365"
         android:textSize="@dimen/text_15sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,13 +22,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp5"
         android:layout_marginBottom="@dimen/dp10"
-        android:maxLines="2"
+        android:maxLines="3"
         android:id="@+id/txt_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="Tuần 1"
         android:textColor="@color/black"
         android:textSize="@dimen/text_13sp"
@@ -37,7 +35,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
+    <View
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ll_price"
+        android:background="@color/red_test365"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
     <LinearLayout
+
+        android:orientation="horizontal"
         android:id="@+id/ll_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,9 +53,10 @@
         android:gravity="center_vertical"
         app:layout_constraintBottom_toTopOf="@+id/btn_trangthai"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/ll_tai">
+        app:layout_constraintRight_toRightOf="parent">
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/imageView2"
             android:layout_width="@dimen/dp20"
             android:layout_height="@dimen/dp20"
@@ -56,6 +65,7 @@
             android:src="@drawable/ic_price" />
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/txt_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,46 +73,46 @@
             android:padding="@dimen/dp5"
             android:singleLine="true"
             android:text="2.000 đ"
-            android:textColor="@color/btn_back"
-            android:textSize="@dimen/text_11sp" />
-    </LinearLayout>
+            android:textColor="@color/red_test365"
+            android:textSize="@dimen/text_15sp" />
 
-    <LinearLayout
-        android:id="@+id/ll_tai"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp5"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_trangthai"
-        app:layout_constraintLeft_toRightOf="@id/ll_price"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <ImageView
-            android:layout_width="@dimen/dp20"
-            android:layout_height="@dimen/dp20"
-            android:padding="@dimen/dp2"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_down" />
-
-        <TextView
-            android:id="@+id/txt_soluongtai"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/ll_tai"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/dp5"
-            android:singleLine="true"
-            android:text="1000"
-            android:textColor="@color/btn_back"
-            android:textSize="@dimen/text_11sp" />
+            app:layout_constraintBottom_toTopOf="@+id/btn_trangthai"
+            app:layout_constraintLeft_toRightOf="@id/ll_price"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:padding="@dimen/dp2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_down" />
+
+            <TextView
+                android:id="@+id/txt_soluongtai"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/dp5"
+                android:singleLine="true"
+                android:text="1000"
+                android:textColor="@color/btn_datai_item_kho"
+                android:textSize="@dimen/text_12sp" />
+        </LinearLayout>
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/btn_trangthai"
-        android:layout_width="@dimen/dp100"
+        android:layout_width="@dimen/dp120"
         android:layout_height="@dimen/dp30"
-        android:background="@drawable/spr_khotuan_chuatai"
+        android:background="@drawable/spr_click_baitap_chuatai"
         android:text="Đã tải"
-        android:textAllCaps="false"
+
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

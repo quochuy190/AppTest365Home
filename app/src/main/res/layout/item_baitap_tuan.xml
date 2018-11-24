@@ -1,61 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:padding="@dimen/dp5"
     android:id="@+id/background_itemkho"
-    android:layout_marginBottom="@dimen/dp2"
-    android:background="@color/background_login"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0.5dp"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/dp5"
+    android:paddingTop="@dimen/dp10"
+    android:paddingRight="@dimen/dp5"
+    android:paddingBottom="@dimen/dp10">
 
     <TextView
-        android:textStyle="bold"
         android:id="@+id/txt_tentuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp5"
         android:padding="@dimen/dp5"
-        android:text="Tuần 1"
-        android:textColor="#483360"
+
+        android:textColor="@color/app_bar_new"
         android:textSize="@dimen/text_17sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_marginLeft="@dimen/dp5"
         android:id="@+id/txt_mota_tuan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
         android:padding="@dimen/dp5"
-        android:text="Nhận biết các chứ số từ 1 đến 10"
-        android:textColor="#757d94"
+
+        android:textColor="@color/black"
         android:textSize="@dimen/text_14sp"
-        app:layout_constraintRight_toLeftOf="@+id/img_sticker"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tentuan" />
+        app:layout_constraintRight_toLeftOf="@+id/img_sticker"
+        app:layout_constraintTop_toBottomOf="@+id/txt_muctieu_tuan" />
 
     <TextView
-        android:gravity="center"
+        android:id="@+id/txt_muctieu_tuan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:padding="@dimen/dp5"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/img_sticker"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tentuan" />
+    <TextView
         android:visibility="gone"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:id="@+id/txt_point_tuan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp5"
+        android:padding="@dimen/dp5"
+        android:text="9đ"
+        android:textColor="@color/app_bar_new"
+        android:textSize="@dimen/text_18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/img_sticker"
+        app:layout_constraintTop_toBottomOf="@+id/txt_mota_tuan" />
+    <TextView
         android:id="@+id/txt_luuy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:maxLines="1"
         android:padding="@dimen/dp5"
         android:text="@string/txt_luuy"
         android:textColor="#757d94"
         android:textSize="@dimen/text_13sp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/img_sticker"
         android:layout_width="@dimen/dp50"
         android:layout_height="@dimen/dp80"
-        android:src="@drawable/img"
-        android:text="Đang làm"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

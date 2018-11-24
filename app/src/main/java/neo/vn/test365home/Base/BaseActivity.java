@@ -128,6 +128,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }, time);
         if (dialog == null) {
             dialog = new ProgressDialog(this);
+            dialog.setCancelable(true);
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.setMessage("Loading. Please wait...");
             dialog.setIndeterminate(true);

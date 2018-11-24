@@ -1,5 +1,6 @@
 package neo.vn.test365home.View.Longin;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -8,19 +9,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
 import butterknife.BindView;
+import neo.vn.test365home.ActivityHome;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.BuildConfig;
 import neo.vn.test365home.Config.Constants;
+import neo.vn.test365home.Listener.ClickDialog;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.Login;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
+import neo.vn.test365home.Untils.StringUtil;
 
 
 /**
@@ -39,6 +44,10 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
     ImageView img_showpass;
     PresenterLogin mPresenter;
     String sUserName, sPassWord, sTokenKey;
+    @BindView(R.id.ll_bottom)
+    LinearLayout ll_bottom;
+    @BindView(R.id.txt_quenmatkhau)
+    TextView txt_quenmatkhau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +70,12 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
         return R.layout.activity_login;
     }
 
-
     public void initData() {
         boolean isRegister = getIntent().getBooleanExtra(Constants.KEY_REGISTER_SUCCESS, false);
+        sUserName = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+        sPassWord = SharedPrefs.getInstance().get(Constants.KEY_PASSWORD, String.class);
+        edt_taikhoan_Login.setText(sUserName);
         if (isRegister) {
-            sUserName = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-            sPassWord = SharedPrefs.getInstance().get(Constants.KEY_PASSWORD, String.class);
-            edt_taikhoan_Login.setText(sUserName);
             edt_matkhau_Login.setText(sPassWord);
             login_api();
         } else {
@@ -77,20 +85,74 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
     }
 
     private void initEvent() {
+        txt_quenmatkhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = "Nếu quên mật khẩu, quý phụ huynh có thể nhắn tin theo mẫu " +
+                        "<b><font color='#FF6600'>Home365 MK</font></b> " +
+                        " gửi <b><font color='#FF6600'>8055</font></b> để lấy lại mật khẩu." +
+                        "\nCước tin nhắn 1.000 đồng";
+                showDialogComfirm("Thông báo", s, false, new ClickDialog() {
+                    @Override
+                    public void onClickYesDialog() {
+                        Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
+                        smsIntent.setType("vnd.android-dir/mms-sms");
+                        smsIntent.putExtra("address", "8055");
+                        smsIntent.putExtra("sms_body", "Home365 MK");
+                        try {
+                            startActivity(smsIntent);
+                        } catch (ActivityNotFoundException e) {
+                            // Display some sort of error message here.
+                        }
+                    }
+
+                    @Override
+                    public void onClickNoDialog() {
+
+                    }
+                });
+            }
+        });
+        ll_bottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityLogin.this, ActivityRegister.class);
+                intent.putExtra(Constants.KEY_REGISTER_SUCCESS, false);
+                startActivity(intent);
+                finish();
+            }
+        });
         btn_dangnhap_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_dangnhap_Login.setEnabled(false);
                 if (!isNetwork()) {
+                    btn_dangnhap_Login.setEnabled(true);
                     showDialogNotify("Thông báo",
                             "Mất kết nối, vui long kiểm tra lại mạng để tiếp tục");
                 } else {
                     if (edt_taikhoan_Login.getText().length() > 0 && edt_matkhau_Login.getText().length() > 0) {
-                        sUserName = edt_taikhoan_Login.getText().toString();
-                        sPassWord = edt_matkhau_Login.getText().toString();
+                        sUserName = edt_taikhoan_Login.getText().toString().trim();
+                        sPassWord = edt_matkhau_Login.getText().toString().trim();
+                        if (!StringUtil.check_tiengviet(sUserName)) {
+                            btn_dangnhap_Login.setEnabled(true);
+                            showDialogNotify("Lỗi", "Tên đăng nhập phải là tiếng việt không dấu," +
+                                    " không chứa dấu cách và ký tự đặc biệt");
+                            return;
+                        }
+                        if (!StringUtil.check_tiengviet(sPassWord)) {
+                            btn_dangnhap_Login.setEnabled(true);
+                            showDialogNotify("Lỗi", "Mật khẩu nhập vào là tiếng việt không dấu," +
+                                    " không chứa dấu cách và ký tự đặc biệt");
+                            return;
+                        }
                         login_api();
-                    } else
+                    } else{
+                        btn_dangnhap_Login.setEnabled(true);
                         showDialogNotify("Thông báo",
                                 "Mời bạn nhập vào tài khoản và mật khẩu để đăng nhập");
+                    }
+
 
                 }
             }
@@ -128,19 +190,21 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
 
     @Override
     public void show_api_login(List<Login> mLis) {
+        btn_dangnhap_Login.setEnabled(true);
         hideDialogLoading();
         if (mLis != null) {
             if (mLis.get(0).getsERROR().equals("0000")) {
-                SharedPrefs.getInstance().put(Constants.KEY_ISLOGIN, true);
+                //SharedPrefs.getInstance().put(Constants.KEY_SAVE_PROMOTIONCODE, sUserName);
                 SharedPrefs.getInstance().put(Constants.KEY_USERNAME, sUserName);
                 SharedPrefs.getInstance().put(Constants.KEY_PASSWORD, sPassWord);
-                Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ActivityLogin.this, ActivityUpdateInfo.class);
+                SharedPrefs.getInstance().put(Constants.KEY_LOGININFO, mLis.get(0));
+                mPresenter.api_lis_children(sUserName);
+              /*  Intent intent = new Intent(ActivityLogin.this, ActivityUpdateInfo.class);
                 intent.putExtra(Constants.KEY_SEND_LOGIN_INFO, mLis.get(0));
                 intent.putExtra(Constants.KEY_IS_START_LOGIN, true);
                 SharedPrefs.getInstance().put(Constants.KEY_LOGININFO, mLis.get(0));
                 startActivity(intent);
-                finish();
+                finish();*/
             } else {
                 showDialogNotify("Thông báo", mLis.get(0).getsRESULT());
             }
@@ -154,12 +218,26 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
 
     @Override
     public void show_error_api(List<ErrorApi> mLis) {
+        btn_dangnhap_Login.setEnabled(true);
         hideDialogLoading();
     }
 
     @Override
     public void show_lis_children(List<Childrens> mLis) {
-
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            SharedPrefs.getInstance().put(Constants.KEY_ISLOGIN, true);
+            Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
+            intent.putExtra(Constants.KEY_SEND_LOGIN_INFO, mLis.get(0));
+            intent.putExtra(Constants.KEY_IS_START_LOGIN, true);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(ActivityLogin.this, ActivityNewActive.class);
+            startActivity(intent);
+            finish();
+            //   Toast.makeText(this, "Không có tài khoản", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void login_api() {

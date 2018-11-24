@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentNavigationBaitap">
+
+    <android.support.design.widget.AppBarLayout
+        android:paddingBottom="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_appbar_new"
+                android:scaleType="fitXY"
+                android:src="@drawable/app_bar_cong" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/icon_back_appbar_new"
+                app:popupTheme="@style/PopupOverlay" />
+            <TextView
+                android:id="@+id/txt_title_main"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/icon_back_appbar_new"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/dp40"
+                android:layout_marginRight="@dimen/dp40"
+                android:gravity="center_horizontal|center_vertical"
+                android:singleLine="true"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_appbar_new"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_fragment_navigation_baitap" />
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -51,7 +51,7 @@ public class AdapterGame extends RecyclerView.Adapter<AdapterGame.TopicViewHoder
     public void onBindViewHolder(TopicViewHoder holder, int position) {
         Game obj = lisGame.get(position);
         holder.txt_name.setText(obj.getsName());
-
+        holder.img_avata.setImageResource(obj.getiAvata());
     }
 
     @Override

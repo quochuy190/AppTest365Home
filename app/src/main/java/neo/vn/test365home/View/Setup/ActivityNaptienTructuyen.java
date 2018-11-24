@@ -16,8 +16,10 @@ import hotchemi.stringpicker.StringPicker;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ClickDialogPicker;
+import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
+import neo.vn.test365home.Models.HistoryBalance;
 import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
@@ -153,5 +155,25 @@ public class ActivityNaptienTructuyen extends BaseActivity implements ImpSetup.V
             intent.putExtra(Constants.KEY_SEND_URL_WEBVIEW_NAPTIEN, mLis.get(0).getsURL());
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void show_change_pass(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_info_chil(List<Childrens> mLis) {
+
+    }
+
+    @Override
+    public void show_update_info_chil(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_history_balance(List<HistoryBalance> mLis) {
+
     }
 }

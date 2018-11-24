@@ -1,13 +1,15 @@
 package neo.vn.test365home.View.Baitap;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.parceler.Parcels;
 
@@ -49,6 +51,14 @@ public class FragmentCauhoiSapxep extends BaseFragment {
     TextView txtSubNumber;
     @BindView(R.id.txt_current)
     TextView txt_current;
+    @BindView(R.id.img_anwser_chil)
+    ImageView img_anwser_chil;
+    @BindView(R.id.txt_title_betraloi)
+    TextView txt_title_betraloi;
+      @BindView(R.id.txt_title_dapan)
+    TextView txt_title_dapan;
+      @BindView(R.id.txtDapan_noicau)
+    TextView txtDapan_noicau;
 
     public static FragmentCauhoiSapxep newInstance(CauhoiDetail restaurant) {
         FragmentCauhoiSapxep restaurantDetailFragment = new FragmentCauhoiSapxep();
@@ -73,15 +83,46 @@ public class FragmentCauhoiSapxep extends BaseFragment {
         return view;
     }
 
-    @SuppressLint("NewApi")
+
     private void initData() {
         //txtCauhoi.setText(mCauhoi.getsQUESTION());
         txt_current.setText("Bài: "+mCauhoi.getsNumberDe()+" - Câu hỏi: "+mCauhoi.getsSubNumberCau());
         txt_number_de.setText("Bài: "+mCauhoi.getsNumberDe());
         txtSubNumber.setText("Câu hỏi: "+mCauhoi.getsSubNumberCau());
-        txtCauhoi.setText(Html.fromHtml(mCauhoi.getsQUESTION(), Html.FROM_HTML_MODE_COMPACT));
-        txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan(), Html.FROM_HTML_MODE_COMPACT));
+
+        txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()));
      //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
+
+        if (mCauhoi.getsANSWER_CHILD()!=null&&mCauhoi.getsANSWER_CHILD().length()>0){
+            txt_title_betraloi.setVisibility(View.VISIBLE);
+            txtCauhoi.setVisibility(View.VISIBLE);
+            if (mCauhoi.getsRESULT_CHILD()!=null&&mCauhoi.getsRESULT_CHILD().length() > 0) {
+                if (mCauhoi.getsRESULT_CHILD().equals("1")) {
+                    txtCauhoi.setTextColor(getResources().getColor(R.color.blue));
+                    Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
+                } else{
+                    txtCauhoi.setTextColor(getResources().getColor(R.color.red));
+                    Glide.with(getContext()).load(R.drawable.icon_anwser_false).into(img_anwser_chil);
+                }
+
+            }
+        }else {
+            txt_title_betraloi.setVisibility(View.GONE);
+            txtCauhoi.setVisibility(View.GONE);
+            Glide.with(getContext()).load(R.drawable.icon_anwser_unknow).into(img_anwser_chil);
+        }
+        String s = "";
+        if (mCauhoi.getsANSWER_CHILD()!=null&&mCauhoi.getsANSWER_CHILD().length()>0){
+            String sAnwser[] = mCauhoi.getsANSWER_CHILD().split("::");
+            for (int i = 0;i<sAnwser.length;i++){
+                s = s+sAnwser[i].trim()+" ";
+            }
+            txtCauhoi.setText(s);
+        }
+        if (mCauhoi.getsQUESTION()!=null&&mCauhoi.getsQUESTION().length()>0){
+            txtDapan_noicau.setText(mCauhoi.getsQUESTION().replaceAll("::", " "));
+        }
+
 
     }
 }

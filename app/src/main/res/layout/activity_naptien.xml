@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/bg_app"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include7"
+        layout="@layout/title_bar_main_new" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/bg_naptien"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_purchase_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp5">
+
+                <TextView
+                    android:id="@+id/txt_lable_sms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:padding="1dp"
+                    android:text="@string/lable_naptien_sms"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_lable_sms"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_toLeftOf="@id/img_next"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/naptien_sms_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15sp" />
+
+                <ImageView
+                    android:id="@+id/img_next"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_next" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_purchase_banking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp5">
+
+                <TextView
+                    android:id="@+id/txt_lable_chuyenkhoan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:padding="1dp"
+                    android:text="@string/lable_purchase_chuyenkhoan"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_lable_chuyenkhoan"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_toLeftOf="@id/img_next_1"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/naptien_chuyenkhoan_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15sp" />
+
+                <ImageView
+                    android:id="@+id/img_next_1"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_next" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_purchase_visa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp5">
+
+                <TextView
+                    android:id="@+id/txt_lable_visa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:padding="1dp"
+                    android:text="@string/lable_naptien_tructuyen"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_lable_visa"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_toLeftOf="@id/img_next_1"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/naptien_visa_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15sp" />
+
+                <ImageView
+                    android:id="@+id/img_next_1"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_next" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_purchase_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp5">
+
+                <TextView
+                    android:id="@+id/txt_lable_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:padding="1dp"
+                    android:text="@string/lable_naptien_the_test365"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_lable_card"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_toLeftOf="@id/img_next_1"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/naptien_card_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15sp" />
+
+                <ImageView
+                    android:id="@+id/img_next_1"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_next" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_purchase_promotion_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp5">
+
+                <TextView
+                    android:id="@+id/txt_lable_promotion_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:padding="1dp"
+                    android:text="@string/lable_naptien_macode"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_lable_promotion_code"
+                    android:layout_marginBottom="@dimen/dp5"
+                    android:layout_toLeftOf="@id/img_next_1"
+                    android:gravity="left"
+                    android:padding="1dp"
+                    android:text="@string/lable_naptien_content_code"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_15sp" />
+
+                <ImageView
+                    android:id="@+id/img_next_1"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp45"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_next" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

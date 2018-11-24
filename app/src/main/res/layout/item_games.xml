@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="@dimen/dp7"
-    android:gravity="center_vertical"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
-    android:background="@color/bg_config"
-    android:layout_height="wrap_content">
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:padding="@dimen/dp10">
 
     <ImageView
-        android:layout_centerVertical="true"
         android:id="@+id/img_avata"
-        android:layout_width="@dimen/dp40"
-        android:layout_height="@dimen/dp40" />
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icon_game_tptt" />
+
     <TextView
         android:id="@+id/txt_name"
-        android:textStyle="bold"
-        android:layout_toLeftOf="@id/switch_on"
-        android:layout_marginLeft="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp5"
+        android:layout_toLeftOf="@id/switch_on"
+        android:layout_toRightOf="@+id/img_avata"
+        android:text="Triệu phú tri thức"
         android:textColor="@color/black"
         android:textSize="@dimen/text_17sp"
-        android:text="Triệu phú tri thức"
-        android:layout_toRightOf="@+id/img_avata"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold" />
+
     <Switch
-        android:checked="true"
         android:id="@+id/switch_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:checked="true" />
+
 
 </RelativeLayout>

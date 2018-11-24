@@ -1,8 +1,11 @@
 package neo.vn.test365home.View.Setup;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import hotchemi.stringpicker.StringPicker;
 import neo.vn.test365home.Adapter.AdapterGame;
+import neo.vn.test365home.App;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ClickDialogPicker;
@@ -28,6 +32,7 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.Game;
+import neo.vn.test365home.Models.HistoryBalance;
 import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
@@ -59,10 +64,14 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     TextView txt_setuptime_tv;
     @BindView(R.id.txt_setuptime_ta)
     TextView txt_setuptime_ta;
+    @BindView(R.id.scroll_config)
+    NestedScrollView scroll_config;
     List<String> mLisWeek = new ArrayList<>();
     List<String> mLisTime = new ArrayList<>();
     @BindView(R.id.btn_update_config)
     Button btn_update;
+    @BindView(R.id.btn_capnhatthongtin)
+    Button btn_capnhatthongtin;
     PresenterSetup mPresenter;
     String pmath_taken_time = "20:00:00", pvietnam_taken_time = "20:00:00", peng_taken_time = "20:00:00",
             pmath_notify = "1", pvietnam_notify = "1", peng_notify = "1",
@@ -80,14 +89,14 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
         mPresenter = new PresenterSetup(this);
         initAppbar();
         init();
-        initData();
         initEvent();
+        initData();
     }
 
     private Childrens objChildren;
+    private boolean isAddSubUser = false;
 
     private void initData() {
-
         mLisWeek.add("Thứ hai");
         mLisWeek.add("Thứ ba");
         mLisWeek.add("Thứ tư");
@@ -101,13 +110,28 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
         mLisTime.add("40");
         mLisTime.add("50");
         mLisTime.add("60");
-        objChildren = getIntent().getParcelableExtra(Constants.KEY_SEND_CHILDREN);
+        objChildren = App.mChilSetup;
         //objChildren = (Childrens) getIntent().getSerializableExtra(Constants.KEY_SEND_CHILDREN_CONFIG);
-        sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-        showDialogLoading();
-        if (objChildren != null && objChildren.getsUSERNAME() != null)
-            mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
 
+        sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+        isAddSubUser = getIntent().getBooleanExtra(Constants.KEY_SEND_ADD_ADDSUBUSER, false);
+        if (isAddSubUser) {
+            String sUserCon = getIntent().getStringExtra(Constants.KEY_SEND_USERCON_ADD_ADDSUBUSER);
+            showDialogLoading();
+            if (sUserCon != null && sUserCon.length() > 0) {
+                mPresenter.api_get_config_children(sUserMe, sUserCon);
+                mPresenter.api_get_info_children(sUserMe, sUserCon);
+            }
+        } else {
+            showDialogLoading();
+            if (objChildren != null && objChildren.getsUSERNAME() != null) {
+                mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
+                mPresenter.api_get_info_children(sUserMe, objChildren.getsUSERNAME());
+            }
+        }
+
+
+        //txt_time_tv.setText("dfskd;fs");
     }
 
     private void initEvent() {
@@ -212,7 +236,6 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 pmath_taken_duration = "" + (Integer.parseInt(txt_setuptime_toan.getText().toString()) * 60);
                 pvietnam_taken_duration = "" + (Integer.parseInt(txt_setuptime_tv.getText().toString()) * 60);
                 peng_taken_duration = "" + (Integer.parseInt(txt_setuptime_ta.getText().toString()) * 60);
-
                 showDialogLoading();
                 sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
                 if (objChildren.getsUSERNAME() != null)
@@ -222,15 +245,23 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                             pmath_dy, pvietnam_dy, peng_dy);
             }
         });
+        btn_capnhatthongtin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityConfigSubUser.this, ActivityUpdateSubUser.class);
+                startActivityForResult(intent, Constants.RequestCode.GET_UPDATE_USER_CON);
+                //  startActivityForResult(intent, );
+            }
+        });
     }
 
-    TextView txt_title;
-    String sUserMe, SUserCon;
 
+    String sUserMe, SUserCon;
+    TextView txt_title;
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
         txt_title = findViewById(R.id.txt_title_main);
-        txt_title.setText("Quản lý tài khoản");
+        txt_title.setText("CẤU HÌNH TÀI KHOẢN CON");
         img_back.setVisibility(View.VISIBLE);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,10 +274,10 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
 
     private void init() {
         mLisGame = new ArrayList<>();
-        mLisGame.add(new Game("Triệu phú tri thức", "", true));
-        mLisGame.add(new Game("King of Word", "", true));
-        mLisGame.add(new Game("Sudoku", "", true));
-        mLisGame.add(new Game("Tính nhanh nhớ lâu", "", true));
+        mLisGame.add(new Game("Triệu phú tri thức", "", true, R.drawable.icon_game_tptt, R.string.detail_game_tptt));
+        mLisGame.add(new Game("King of Word", "", true, R.drawable.icon_game_kigofword, R.string.detail_game_kow));
+        mLisGame.add(new Game("Sudoku", "", true, R.drawable.icon_game_sudoku, R.string.detail_game_sudoku));
+        mLisGame.add(new Game("Tính nhanh nhớ lâu", "", true, R.drawable.icon_game_tinhnhanh, R.string.detail_game_tnnl));
         adapter = new AdapterGame(mLisGame, this);
      /*   mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false);*/
@@ -259,7 +290,10 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
         adapter.setOnIListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
-
+                Game obj = (Game) item;
+                Intent intent = new Intent(ActivityConfigSubUser.this, ActivityGameDetail.class);
+                intent.putExtra(Constants.KEY_SEND_GAME_DETAIL, obj);
+                startActivity(intent);
             }
         });
     }
@@ -332,6 +366,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     @Override
     public void show_error_api(List<ErrorApi> mLis) {
         hideDialogLoading();
+        // showDialogNotify("Thông báo", mLis.get(0).getsRESULT());
     }
 
     @Override
@@ -342,6 +377,13 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     @Override
     public void show_config_to_children(List<ErrorApi> mLis) {
         hideDialogLoading();
+        if (mLis != null && mLis.get(0).equals("0000")) {
+            showDialogNotify("Thông báo", "Cài đặt thành công");
+            if (objChildren != null && objChildren.getsUSERNAME() != null)
+                mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
+        } else {
+            showDialogNotify("Thông báo", "Cài đặt lỗi");
+        }
     }
 
     @Override
@@ -358,17 +400,6 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
             if (obj.getsVIETNAMESE_DY() != null) {
                 txt_weekday_tv.setText(get_week_day_vi(obj.getsVIETNAMESE_DY()));
             }
-            if (obj.getsMATH_TAKEN_TIME() != null) {
-                txt_time.setText(get_week_day_vi(obj.getsMATH_TAKEN_TIME().substring(0, 5)));
-            }
-
-            if (obj.getsVIETNAMESE_TAKEN_TIME() != null) {
-                String s = obj.getsVIETNAMESE_TAKEN_TIME().substring(0, 4);
-                txt_time_tv.setText(get_week_day_vi(obj.getsVIETNAMESE_TAKEN_TIME().substring(0, 5)));
-            }
-            if (obj.getsENGLISH_TAKEN_TIME() != null) {
-                txt_time_ta.setText(get_week_day_vi(obj.getsENGLISH_TAKEN_TIME().substring(0, 5)));
-            }
             if (obj.getsENGLISH_TAKEN_DURATION() != null) {
                 txt_setuptime_ta.setText("" + (Integer.parseInt(obj.getsENGLISH_TAKEN_DURATION()) / 60));
             }
@@ -378,12 +409,49 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
             if (obj.getsMATH_TAKEN_DURATION() != null) {
                 txt_setuptime_toan.setText("" + (Integer.parseInt(obj.getsMATH_TAKEN_DURATION()) / 60));
             }
+            if (obj.getsMATH_TAKEN_TIME() != null) {
+                txt_time.setText(obj.getsMATH_TAKEN_TIME().substring(0, 5));
+            }
+            if (obj.getsVIETNAMESE_TAKEN_TIME() != null) {
+                txt_time_tv.setText(obj.getsVIETNAMESE_TAKEN_TIME().substring(0, 5));
+            }
+            if (obj.getsENGLISH_TAKEN_TIME() != null) {
+                txt_time_ta.setText(obj.getsENGLISH_TAKEN_TIME().substring(0, 5));
+            }
         }
     }
 
     @Override
     public void show_payment(List<ErrorApi> mLis) {
 
+    }
+
+    @Override
+    public void show_change_pass(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_info_chil(List<Childrens> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000"))
+            App.mChilSetup = mLis.get(0);
+    }
+
+    @Override
+    public void show_update_info_chil(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_history_balance(List<HistoryBalance> mLis) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        scroll_config.scrollTo(0, 0);
     }
 
     public String get_week_day(String input) {
@@ -440,5 +508,14 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 break;
         }
         return sResutl;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.RequestCode.GET_UPDATE_USER_CON && resultCode == RESULT_OK) {
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+        }
     }
 }

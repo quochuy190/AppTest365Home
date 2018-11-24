@@ -1,194 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#EEF2F4"
     android:orientation="vertical">
-    <include layout="@layout/app_bar_main"></include>
+    <include
+        android:id="@+id/appbar"
+        layout="@layout/title_bar_main_new"/>
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp5"
+        app:layout_constraintBottom_toTopOf="@id/btn_naptien"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/img_avata_menu"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_tkchinh"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/hight_avata"
-                android:adjustViewBounds="true"
-                android:padding="@dimen/dp5"
-                android:src="@drawable/avatar_default" />
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:padding="@dimen/dp5"
-                    android:text="@string/lable_user"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:src="@drawable/icon_monney"
+                    android:id="@+id/img_lable1"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30" />
 
                 <TextView
-                    android:id="@+id/txt_username"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:padding="@dimen/dp5"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:padding="@dimen/dp5"
-                    android:text="@string/lable_fullname"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:id="@+id/txt_fullname"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:padding="@dimen/dp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_marginLeft="@dimen/dp40"
+                    android:fontFamily="@font/roboco"
+                    android:gravity="center_vertical"
+                    android:text="@string/lable_account_main"
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:padding="@dimen/dp5"
-                    android:text="@string/lable_email"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txt_email"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:padding="@dimen/dp5"
-                    android:textColor="@color/blue"
                     android:textSize="@dimen/text_15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/txt_account_main"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:padding="@dimen/dp5"
-                    android:text="@string/lable_phone"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp"
+                    android:layout_below="@id/img_lable1"
+                    android:fontFamily="@font/roboco"
+                    android:gravity="center"
+                    android:textColor="@color/red_test365"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:id="@+id/rl_tkthuong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:background="@color/white"
+                android:padding="@dimen/dp15"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rl_tkchinh">
+
+                <ImageView
+                    android:src="@drawable/icon_monney"
+                    android:id="@+id/img_lable2"
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30" />
 
                 <TextView
-                    android:id="@+id/txt_phone"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_marginLeft="@dimen/dp40"
+                    android:fontFamily="@font/roboco"
+                    android:gravity="center_vertical"
+                    android:text="@string/lable_account_bonus"
+                    android:textColor="@color/red_test365"
+                    android:textSize="@dimen/text_15sp" />
+
+                <TextView
+                    android:id="@+id/txt_bonus_account"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:padding="@dimen/dp5"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/dp50"
-                android:layout_marginRight="@dimen/dp50"
-                android:layout_marginTop="@dimen/dp5"
-                android:background="@color/app_bar" />
+                    android:layout_below="@id/img_lable2"
+                    android:fontFamily="@font/roboco"
+                    android:gravity="center"
+                    android:textColor="@color/red_test365"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
             <TextView
+                android:id="@+id/txt_lable_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp5"
-                android:gravity="center"
-                android:padding="@dimen/dp5"
-                android:text="@string/lable_account_main"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_17sp" />
-
-            <TextView
-                android:id="@+id/txt_account_main"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp5"
-                android:gravity="center"
-                android:padding="@dimen/dp5"
-                android:text="1.000.000 VNĐ"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/text_30sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp5"
-                android:gravity="center"
-                android:padding="@dimen/dp5"
-                android:text="@string/lable_account_bonus"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_17sp" />
-
-            <TextView
-                android:id="@+id/txt_bonus_account"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp5"
-                android:gravity="center"
-                android:padding="@dimen/dp5"
-                android:text="100.000 VNĐ"
-                android:textColor="@color/app_bar"
-                android:textSize="@dimen/text_25sp" />
-
-            <Button
-                android:id="@+id/btn_naptien"
-                android:layout_marginTop="@dimen/dp40"
-                android:layout_gravity="center"
-                android:textSize="@dimen/text_17sp"
-                android:textAllCaps="false"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@color/bottom_bar"
+                android:padding="@dimen/dp10"
+                android:text="LỊCH SỬ GIAO DỊCH"
                 android:textColor="@color/white"
-                android:text="@string/lable_recharge"
-                android:background="@drawable/spr_click_button_blue"
-                android:layout_width="@dimen/dp200"
-                android:layout_height="wrap_content" />
+                android:textSize="@dimen/text_18sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/rl_tkthuong" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_history"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_lable_history">
+
+            </android.support.v7.widget.RecyclerView>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_naptien"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp40"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/dp5"
+        android:background="@drawable/spr_click_button"
+        android:text="@string/lable_recharge"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/bg_naptien"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/title_bar_main_new"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/dp15"
+        android:background="@color/white"
+        android:layout_margin="@dimen/dp20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="@dimen/dp5"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_17sp"
+            android:text="Nhập mã giới thiệu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:hint="Mã giới thiệu"
+            android:focusable="true"
+            android:textSize="@dimen/text_16sp"
+            android:id="@+id/edt_card_input"
+            android:gravity="center"
+            android:inputType="textCapCharacters"
+            android:maxLength="6"
+            android:layout_marginTop="@dimen/dp10"
+            android:padding="@dimen/dp10"
+            android:background="@drawable/spr_naptien_tructuyen_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_purchase"
+            android:textSize="@dimen/text_17sp"
+            android:textColor="@color/white"
+            android:text="Gửi mã"
+            android:background="@drawable/spr_click_button"
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp40" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/dp15"
+        android:background="@color/white"
+        android:layout_margin="@dimen/dp20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="@dimen/dp5"
+
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_14sp"
+            android:text="@string/lable_naptien_content_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btn_share"
+            android:textSize="@dimen/text_17sp"
+            android:textColor="@color/white"
+            android:text="Chia sẻ ngay"
+            android:background="@drawable/spr_click_button_blue"
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp40" />
+
+    </LinearLayout>
+
+</LinearLayout>

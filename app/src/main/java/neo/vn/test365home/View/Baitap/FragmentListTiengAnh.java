@@ -28,7 +28,6 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
 import neo.vn.test365home.Models.ObjTuanhoc;
-import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
 import neo.vn.test365home.R;
@@ -226,7 +225,7 @@ public class FragmentListTiengAnh extends BaseFragment implements View.OnClickLi
     }
 
     @Override
-    public void show_list_report_excercise(List<ReportExcercise> mLis) {
+    public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
 
     }
 

@@ -83,9 +83,17 @@ public class BaseFragment extends Fragment {
     private Handler StopDialogLoadingHandler = new Handler();
 
     public void hideDialogLoading() {
-        if (dialog != null && dialog.isShowing()) {
+        StopDialogLoadingHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }, 500);
+     /*   if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
-        }
+        }*/
     }
 
 

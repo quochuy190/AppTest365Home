@@ -11,10 +11,11 @@
     android:orientation="horizontal">
 
     <ImageView
+        android:src="@drawable/icon_wallet"
         android:id="@+id/img_setup_avata"
         android:layout_width="@dimen/item_setup"
         android:layout_height="@dimen/item_setup"
-        android:padding="@dimen/dp5"
+        android:padding="@dimen/dp15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,23 +25,36 @@
         android:id="@+id/txt_setup_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/dp20"
         android:text="@string/txt_info"
         android:textColor="@color/app_bar"
         android:textSize="@dimen/text_18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintLeft_toRightOf="@id/img_setup_avata"
         app:layout_constraintStart_toEndOf="@+id/img_setup_avata"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/app_bar"
+        android:background="@color/bg_naptien"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/dp25"
+        android:layout_height="@dimen/dp45"
+        android:src="@drawable/ic_next"
+        android:tint="@color/red_test365"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

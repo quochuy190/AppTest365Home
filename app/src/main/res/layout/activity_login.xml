@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_login"
     android:orientation="vertical">
-    <include layout="@layout/app_bar_main"/>
+
 
     <ImageView
-        android:padding="@dimen/dp5"
+        android:id="@+id/appbar_cong"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_appbar_new"
+        android:scaleType="fitXY"
+        android:src="@drawable/app_bar_cong" />
+
+    <TextView
+        android:textSize="@dimen/txt_appbar_new"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/icon_back_appbar_new"
+        android:gravity="center"
+        android:text="ĐĂNG NHẬP"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <ImageView
         android:id="@+id/img_logo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp20"
+        android:layout_height="@dimen/dp80"
+        android:layout_below="@+id/appbar_cong"
+        android:layout_margin="@dimen/dp40"
         android:adjustViewBounds="true"
-        android:background="@color/white"
+        android:padding="@dimen/dp5"
+
         android:src="@drawable/logo" />
 
     <RelativeLayout
+        android:id="@+id/rl_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/img_logo"
         android:layout_marginLeft="@dimen/dp20"
         android:layout_marginRight="@dimen/dp20"
-        android:layout_marginTop="@dimen/dp30"
+
         android:background="@drawable/spr_login_edt">
 
         <ImageView
@@ -32,19 +51,20 @@
             android:layout_marginLeft="@dimen/dp2"
             android:padding="@dimen/dp5"
             android:src="@drawable/icon_username" />
+
         <android.support.design.widget.TextInputLayout
-            android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/img_username"
             android:theme="@style/TextLabel">
 
             <EditText
 
-                android:background="@color/white"
                 android:id="@+id/edt_taikhoan_Login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:backgroundTint="@color/white"
                 android:ems="10"
                 android:hint="*Tài khoản"
@@ -58,13 +78,14 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_user"
         android:layout_marginLeft="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
         android:layout_marginTop="@dimen/dp20"
-        android:background="@drawable/spr_login_edt"
-       >
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@drawable/spr_login_edt">
 
         <ImageView
             android:id="@+id/img_pass"
@@ -74,20 +95,21 @@
             android:layout_marginLeft="@dimen/dp2"
             android:padding="@dimen/dp5"
             android:src="@drawable/icon_password" />
+
         <android.support.design.widget.TextInputLayout
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/img_showpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/img_showpass"
             android:layout_toRightOf="@+id/img_pass"
             android:theme="@style/TextLabel">
 
             <EditText
 
-                android:background="@color/white"
                 android:id="@+id/edt_password_Login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:backgroundTint="@color/white"
                 android:ems="10"
                 android:hint="*Mật khẩu"
@@ -99,29 +121,64 @@
 
 
         <ImageView
-            android:background="@color/white"
-            android:tint="@color/gray"
-            android:layout_alignParentRight="true"
             android:id="@+id/img_showpass"
             android:layout_width="@dimen/dp40"
             android:layout_height="@dimen/dp40"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:background="@color/white"
             android:padding="@dimen/dp5"
-            android:src="@drawable/ic_eye_show" />
+            android:src="@drawable/ic_eye_show"
+            android:tint="@color/gray" />
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/txt_quenmatkhau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_pass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp10"
+        android:padding="@dimen/dp5"
+        android:text="Quên mật khẩu?"
+        android:textColor="@color/tab_layout"
+        android:textSize="@dimen/text_15sp"
+        android:textStyle="bold" />
 
     <Button
-        android:textAllCaps="false"
         android:id="@+id/btn_dangnhap_Login"
         android:layout_width="@dimen/dp200"
         android:layout_height="wrap_content"
+        android:layout_below="@id/txt_quenmatkhau"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp40"
+        android:layout_marginTop="@dimen/dp30"
         android:background="@drawable/spr_click_button"
         android:text="Đăng nhập"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/text_20sp" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background_login"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_or_login" />
+
+        <TextView
+            android:id="@+id/txt_dangnhapngay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Tạo tài khoản mới"
+            android:textColor="@color/tab_layout"
+            android:textSize="@dimen/text_18sp" />
+    </LinearLayout>
+
+</RelativeLayout>

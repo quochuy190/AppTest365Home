@@ -45,6 +45,8 @@ public class TuanDamua implements Serializable {
     String sWEEK_NAME;
     @SerializedName("REQUIREMENT")
     String sREQUIREMENT;
+    @SerializedName("POINT")
+    String sPOINT;
     String sHeaderId;
     String sMonhoc;
 
@@ -62,6 +64,14 @@ public class TuanDamua implements Serializable {
         Gson gson = new Gson();
         arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
+    }
+
+    public String getsPOINT() {
+        return sPOINT;
+    }
+
+    public void setsPOINT(String sPOINT) {
+        this.sPOINT = sPOINT;
     }
 
     public String getsMonhoc() {

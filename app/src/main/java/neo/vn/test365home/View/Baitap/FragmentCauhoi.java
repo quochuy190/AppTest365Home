@@ -120,7 +120,7 @@ public class FragmentCauhoi extends BaseFragment {
         txt_number_de.setText("Bài: " + mCauhoi.getsNumberDe());
         txtSubNumber.setText("Câu hỏi: " + mCauhoi.getsSubNumberCau());
 
-        if (mCauhoi.getsRESULT_CHILD().length() > 0) {
+        if (mCauhoi.getsRESULT_CHILD()!=null&&mCauhoi.getsRESULT_CHILD().length() > 0) {
             if (mCauhoi.getsRESULT_CHILD().equals("1")) {
                 Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
             } else
@@ -167,13 +167,12 @@ public class FragmentCauhoi extends BaseFragment {
     }
 
     private void initWebview(WebView webview_debai, String link_web) {
-        webview_debai.setInitialScale(200);
         webview_debai.getSettings().setJavaScriptEnabled(true);
         webview_debai.getSettings();
         webview_debai.setBackgroundColor(Color.TRANSPARENT);
         WebSettings webSettings = webview_debai.getSettings();
-        webSettings.setTextSize(WebSettings.TextSize.LARGEST);
-        webSettings.setDefaultFontSize(17);
+        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
+        webSettings.setDefaultFontSize(16);
         /* <html><body  align='center'>You scored <b>192</b> points.</body></html>*/
         String pish = "<html><body  align='center'>";
         String pas = "</body></html>";

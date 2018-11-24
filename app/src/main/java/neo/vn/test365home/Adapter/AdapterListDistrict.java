@@ -2,6 +2,7 @@ package neo.vn.test365home.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,14 @@ import butterknife.ButterKnife;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.District;
 import neo.vn.test365home.R;
+import neo.vn.test365home.Untils.StringUtil;
 
 
 /**
  * Created by QQ on 7/7/2017.
  */
 
-public class AdapterListDistrict extends RecyclerView.Adapter<AdapterListDistrict.TopicViewHoder>{
+public class AdapterListDistrict extends RecyclerView.Adapter<AdapterListDistrict.TopicViewHoder> {
     private List<District> listAirport;
     private Context context;
     private ItemClickListener OnIListener;
@@ -42,7 +44,7 @@ public class AdapterListDistrict extends RecyclerView.Adapter<AdapterListDistric
     @Override
     public TopicViewHoder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_listview,parent,false);
+                .inflate(R.layout.item_listview, parent, false);
         return new TopicViewHoder(view);
     }
 
@@ -50,7 +52,9 @@ public class AdapterListDistrict extends RecyclerView.Adapter<AdapterListDistric
     public void onBindViewHolder(TopicViewHoder holder, int position) {
 
         District airport = listAirport.get(position);
-        holder.txt_name.setText(airport.getsDISTRICT_NAME());
+        if (airport.getsDISTRICT_NAME() != null && airport.getsDISTRICT_NAME().length() > 0)
+            holder.txt_name.setText(Html.fromHtml(StringUtil.convert_html(airport.getsDISTRICT_NAME())));
+        //holder.txt_name.setText(airport.getsDISTRICT_NAME());
 
     }
 
@@ -60,7 +64,7 @@ public class AdapterListDistrict extends RecyclerView.Adapter<AdapterListDistric
     }
 
     public class TopicViewHoder extends RecyclerView.ViewHolder implements
-            View.OnClickListener, View.OnLongClickListener{
+            View.OnClickListener, View.OnLongClickListener {
         @BindView(R.id.txt_name)
         TextView txt_name;
 
@@ -81,7 +85,7 @@ public class AdapterListDistrict extends RecyclerView.Adapter<AdapterListDistric
         }
     }
 
-    public void updateList(List<District> list){
+    public void updateList(List<District> list) {
         listAirport = list;
         notifyDataSetChanged();
     }

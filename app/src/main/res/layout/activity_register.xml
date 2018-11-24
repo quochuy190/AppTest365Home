@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_login"
-    android:orientation="vertical">
+    android:background="@color/background_login">
 
-    <include layout="@layout/app_bar_main" />
-
-    <android.support.v4.widget.NestedScrollView
-
+    <include
+        android:id="@+id/iclude_app_bar"
+        layout="@layout/app_bar_main"
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/appbar_cong"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/height_appbar_new"
+        android:scaleType="fitXY"
+        android:src="@drawable/app_bar_cong" />
+
+    <TextView
+        android:textSize="@dimen/txt_appbar_new"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/icon_back_appbar_new"
+        android:gravity="center"
+        android:text="ĐĂNG KÝ TÀI KHOẢN"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_below="@+id/appbar_cong"
+        android:clipToPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,13 +38,10 @@
             <ImageView
                 android:id="@+id/img_logo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp20"
-                android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginRight="@dimen/dp20"
-                android:layout_marginTop="@dimen/dp20"
+                android:layout_height="@dimen/dp80"
+                android:layout_margin="@dimen/dp35"
                 android:adjustViewBounds="true"
-                android:background="@color/white"
+
                 android:padding="@dimen/dp5"
                 android:src="@drawable/logo" />
 
@@ -34,8 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginRight="@dimen/dp20"
                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp20"
                 android:background="@drawable/spr_login_edt">
 
                 <ImageView
@@ -74,8 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginRight="@dimen/dp20"
                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp20"
                 android:background="@drawable/spr_login_edt">
 
                 <ImageView
@@ -116,7 +131,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/ic_eye_show"
+                    android:src="@drawable/ic_eye_hide"
                     android:tint="@color/gray" />
 
             </RelativeLayout>
@@ -125,8 +140,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginRight="@dimen/dp20"
                 android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp20"
                 android:background="@drawable/spr_login_edt">
 
                 <ImageView
@@ -167,7 +182,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:padding="@dimen/dp5"
-                    android:src="@drawable/ic_eye_show"
+                    android:src="@drawable/ic_eye_hide"
                     android:tint="@color/gray" />
 
             </RelativeLayout>
@@ -176,16 +191,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginRight="@dimen/dp20"
                 android:layout_marginTop="@dimen/dp10"
-                android:background="@drawable/spr_edt_login"
-                android:padding="@dimen/dp5"
-                android:visibility="gone">
+                android:layout_marginRight="@dimen/dp20"
+                android:background="@drawable/spr_login_edt"
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/img_pass"
-                    android:layout_width="@dimen/dp40"
-                    android:layout_height="@dimen/dp40"
+                    android:layout_width="@dimen/dp35"
+                    android:layout_height="@dimen/dp35"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp2"
                     android:padding="@dimen/dp5"
@@ -204,8 +218,8 @@
                         android:background="@color/white"
                         android:backgroundTint="@color/white"
                         android:ems="10"
-                        android:hint="* Xác nhận mật khẩu"
-                        android:inputType="phone"
+                        android:hint="Mã giới thiệu (nếu có)"
+                        android:inputType="textCapCharacters"
                         android:padding="@dimen/dp7"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray" />
@@ -224,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:checked="true"
+                    android:checked="false"
                     android:theme="@style/checkBoxStyle" />
 
                 <TextView
@@ -245,13 +259,34 @@
                 android:layout_width="@dimen/dp200"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp20"
+                android:layout_marginBottom="@dimen/dp10"
                 android:background="@drawable/spr_click_button"
                 android:text="Đăng ký"
-                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_20sp" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background_login"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_or_login" />
+
+        <TextView
+            android:id="@+id/txt_dangnhapngay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp5"
+            android:text="Đăng nhập ngay"
+            android:textColor="@color/tab_layout"
+            android:textSize="@dimen/text_18sp" />
+    </LinearLayout>
+
+</RelativeLayout>

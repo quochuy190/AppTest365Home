@@ -79,7 +79,18 @@ public class ExcerciseDetail {
     @SerializedName("STICKER_ID")
     String sSTICKER_ID;
 
-
+    @SerializedName("cunglam")
+    String sCunglam;
+    @SerializedName("cungtruong")
+    String sCungtruong;
+    @SerializedName("cunglop")
+    String sCunglop;
+    @SerializedName("caonhat")
+    String sCaonhat;
+    @SerializedName("trungbinh")
+    String sTrungbinh;
+    @SerializedName("thapnhat")
+    String sThapnhat;
 
     public ExcerciseDetail() {
     }
@@ -97,6 +108,53 @@ public class ExcerciseDetail {
         return arrayList;
     }
 
+    public String getsCunglam() {
+        return sCunglam;
+    }
+
+    public void setsCunglam(String sCunglam) {
+        this.sCunglam = sCunglam;
+    }
+
+    public String getsCungtruong() {
+        return sCungtruong;
+    }
+
+    public void setsCungtruong(String sCungtruong) {
+        this.sCungtruong = sCungtruong;
+    }
+
+    public String getsCunglop() {
+        return sCunglop;
+    }
+
+    public void setsCunglop(String sCunglop) {
+        this.sCunglop = sCunglop;
+    }
+
+    public String getsCaonhat() {
+        return sCaonhat;
+    }
+
+    public void setsCaonhat(String sCaonhat) {
+        this.sCaonhat = sCaonhat;
+    }
+
+    public String getsTrungbinh() {
+        return sTrungbinh;
+    }
+
+    public void setsTrungbinh(String sTrungbinh) {
+        this.sTrungbinh = sTrungbinh;
+    }
+
+    public String getsThapnhat() {
+        return sThapnhat;
+    }
+
+    public void setsThapnhat(String sThapnhat) {
+        this.sThapnhat = sThapnhat;
+    }
 
     public String getsERROR() {
         return sERROR;

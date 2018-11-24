@@ -4,19 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_naptien"
+
     android:orientation="vertical">
 
-
     <ImageView
-        android:id="@+id/img_avata_menu"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/hight_avata"
-        android:adjustViewBounds="true"
+        android:layout_height="@dimen/dp120"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_ground_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="@dimen/dp50"
         android:padding="@dimen/dp5"
-        android:src="@drawable/avatar_default" />
+        android:id="@+id/img_avata_update"
+        android:src="@drawable/avatar_default"
+        android:layout_width="@dimen/hight_avata"
+        android:layout_height="@dimen/hight_avata"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:visibility="gone"
         android:text="Nguyễn Quốc Huy"
         android:gravity="center"
         android:padding="@dimen/dp5"
@@ -28,13 +41,14 @@
         android:textColor="@color/red_test365"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_avata_menu" />
+        app:layout_constraintTop_toBottomOf="@+id/img_avata_update" />
 
     <android.support.v7.widget.RecyclerView
+
+        android:layout_margin="@dimen/dp10"
         android:id="@+id/recycle_setup"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

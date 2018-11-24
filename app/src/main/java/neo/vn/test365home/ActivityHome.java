@@ -1,25 +1,29 @@
 package neo.vn.test365home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
+import android.util.Log;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import butterknife.BindView;
 import neo.vn.test365home.Base.BaseActivity;
+import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Untils.FragmentUtil;
-import neo.vn.test365home.View.Baitap.FragmentBaitap;
+import neo.vn.test365home.Untils.SharedPrefs;
+import neo.vn.test365home.View.Baitap.FragmentBaitapNew;
 import neo.vn.test365home.View.Setup.FragmentSetup;
-import neo.vn.test365home.View.Thongke.FragmentThongke;
-import neo.vn.test365home.View.Tintuc.FragmentTintuc;
+import neo.vn.test365home.View.Thongke.FragmentThongkeHome;
 
 public class ActivityHome extends BaseActivity {
     private static final String TAG = "ActivityHome";
     public static BottomBar bottomBar;
+    @BindView(R.id.frame_content)
+    FrameLayout frame_content;
 
     @Override
     public int setContentViewId() {
@@ -29,27 +33,15 @@ public class ActivityHome extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String data="[{\"ERROR\":\"0000\",\"MESSAGE\":\"SUCCESS\",\"RESULT\":\"Lấy danh sách con thành công\"," +
-                "\"ID\":\"38\",\"FULLNAME\":\"C.Ronaldo\",\"AVATAR\":\"\",\"USERNAME\":\"ronaldo123\",\"PASS\":" +
-                "\"123456\",\"ID_LEVEL\":\"1\",\"LEVEL_NAME\":\"Lớp 1\",\"CLASS\":\"1A5\"}]";
-        //String data = "[{\"ERROR\":\"0000\",\"MESSAGE\":\"SUCCESS\",\"RESULT\":\"Đăng ký thành công\"}]";
-        String data2 = "[{\"userName\": \"sandeep\",\"age\":30},{\"userName\": \"vivan\",\"age\":5}]";
-        JSONArray jsonArr = null;
-        try {
-            jsonArr = new JSONArray(data);
-            for (int i = 0; i < jsonArr.length(); i++)
-            {
-                JSONObject jsonObj = jsonArr.getJSONObject(i);
-
-                System.out.println(jsonObj);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
+        initData();
         bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         initBottomBar();
+        String sToken = SharedPrefs.getInstance().get(Constants.KEY_TOKEN, String.class);
+        Log.i(TAG, "onCreate: " + sToken);
+    }
+
+    private void initData() {
+
     }
 
     private void initBottomBar() {
@@ -59,22 +51,22 @@ public class ActivityHome extends BaseActivity {
                 switch (tabId) {
                     case R.id.tab_baitap:
                         FragmentUtil.replaceFragmentMain(ActivityHome.this,
-                                FragmentBaitap.getInstance(),
+                                FragmentBaitapNew.getInstance(),
                                 R.id.frame_content);
                         break;
                     case R.id.tab_thongke:
                         FragmentUtil.replaceFragmentMain(ActivityHome.this,
-                                FragmentThongke.getInstance(),
+                                FragmentThongkeHome.getInstance(),
                                 R.id.frame_content);
 
                         break;
-                    case R.id.tab_tintuc:
+              /*      case R.id.tab_tintuc:
 
                         FragmentUtil.replaceFragmentMain(ActivityHome.this,
                                 FragmentTintuc.getInstance(),
                                 R.id.frame_content);
 
-                        break;
+                        break;*/
                     case R.id.tab_setup:
                         FragmentUtil.replaceFragmentMain(ActivityHome.this,
                                 FragmentSetup.getInstance(),
@@ -85,5 +77,27 @@ public class ActivityHome extends BaseActivity {
             }
         });
 
+    }
+    boolean isDoubleClick;
+    @Override
+    public void onBackPressed() {
+        if (isDoubleClick) {
+            finish();
+            return;
+        }
+        this.isDoubleClick = true;
+        Toast.makeText(this, "Chạm lần nữa để thoát", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isDoubleClick = false;
+            }
+        }, 2000);
+        /*Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_content);
+        if (fragment instanceof FragmentBaitap) {
+            FragmentBaitap.getInstance().fragmentBackTack();
+        } else {
+            super.onBackPressed();
+        }*/
     }
 }

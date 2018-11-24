@@ -17,12 +17,13 @@ import neo.vn.test365home.Untils.SharedPrefs;
 public class SplashScreen extends BaseActivity {
     private static final String TAG = "SplashScreen";
     boolean isLogin;
+    boolean isThanksWelcom;
     ImageView img_splash;
     // public static Storage storage; // this Preference comes for free from the library
     /**
      * Duration of wait
      **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DISPLAY_LENGTH = 1500;
     Intent mainIntent = new Intent();
     Intent mainIntent_language = new Intent();
 
@@ -32,13 +33,20 @@ public class SplashScreen extends BaseActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        isLogin = SharedPrefs.getInstance().get(Constants.KEY_ISLOGIN, Boolean.class);
-        if (isLogin) {
-            mainIntent.setClass(SplashScreen.this, ActivityHome.class);
-        } else
-            mainIntent.setClass(SplashScreen.this, ActivityStart.class);
         img_splash = (ImageView) findViewById(R.id.img_splash);
         Glide.with(this).load(R.drawable.launch).into(img_splash);
+        isLogin = SharedPrefs.getInstance().get(Constants.KEY_ISLOGIN, Boolean.class);
+        isThanksWelcom = SharedPrefs.getInstance().get(Constants.KEY_THANKS_WELCOM, Boolean.class);
+        if (!isThanksWelcom) {
+            mainIntent.setClass(SplashScreen.this, ActivityThanksWelcome.class);
+            SharedPrefs.getInstance().put(Constants.KEY_THANKS_WELCOM, true);
+        } else {
+            if (isLogin) {
+                mainIntent.setClass(SplashScreen.this, ActivityHome.class);
+            } else
+                mainIntent.setClass(SplashScreen.this, ActivityRegister.class);
+        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

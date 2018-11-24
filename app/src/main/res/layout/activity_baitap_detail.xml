@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <include
         android:id="@+id/include2"
-        layout="@layout/app_bar_main"
+        layout="@layout/title_bar_main_new"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,19 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txt_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="@dimen/dp5"
-                android:text="Bài tập toán lớp 1"
-                android:textColor="@color/app_bar"
-                android:textSize="@dimen/text_18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
 
             <LinearLayout
                 android:id="@+id/txt_namhoc"
@@ -45,7 +30,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/txt_khohoc"
-                app:layout_constraintTop_toBottomOf="@id/txt_name">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
 
@@ -53,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:padding="@dimen/dp5"
+                    android:padding="@dimen/dp2"
                     android:singleLine="true"
                     android:text="Năm học: "
                     android:textColor="@color/app_bar"
@@ -64,12 +49,13 @@
 
                 <TextView
                     android:id="@+id/txt_nam"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="end"
                     android:maxLines="2"
-                    android:padding="@dimen/dp5"
+                    android:padding="@dimen/dp2"
                     android:singleLine="true"
-                    android:text="2018 - 2019"
+                    android:text=""
                     android:textColor="@color/red_test365"
                     android:textSize="@dimen/text_16sp"
                     android:textStyle="bold"
@@ -79,11 +65,13 @@
 
             <LinearLayout
                 android:id="@+id/txt_khohoc"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
                 app:layout_constraintLeft_toRightOf="@id/txt_namhoc"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_name">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
 
@@ -91,20 +79,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:maxLines="2"
-                    android:padding="@dimen/dp5"
-                    android:text="Khối: "
+                    android:padding="@dimen/dp2"
+                    android:text="Khối:"
                     android:textColor="@color/app_bar"
                     android:textSize="@dimen/text_16sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_khoi"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:maxLines="2"
-                    android:padding="@dimen/dp5"
-                    android:text="1"
+                    android:padding="@dimen/dp2"
+                    android:text=""
                     android:textColor="@color/red_test365"
                     android:textSize="@dimen/text_15sp"
                     android:textStyle="bold" />
@@ -122,8 +110,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:padding="@dimen/dp5"
+                    android:maxLines="1"
+                    android:padding="@dimen/dp2"
                     android:text="Tuần: "
                     android:textColor="@color/app_bar"
                     android:textSize="@dimen/text_15sp"
@@ -131,11 +119,12 @@
 
                 <TextView
                     android:id="@+id/txt_tuan"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:padding="@dimen/dp5"
-                    android:text="12"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:padding="@dimen/dp2"
+                    android:text=""
                     android:textColor="@color/red_test365"
                     android:textSize="@dimen/text_16sp"
                     android:textStyle="bold" />
@@ -147,6 +136,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
                 app:layout_constraintLeft_toRightOf="@id/txt_tuanhoc"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_namhoc">
@@ -156,41 +147,50 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:maxLines="2"
-                    android:padding="@dimen/dp5"
-                    android:text="Môn học: "
+                    android:maxLines="1"
+                    android:padding="@dimen/dp2"
+                    android:text="Môn: "
                     android:textColor="@color/app_bar"
                     android:textSize="@dimen/text_15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txt_mon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:maxLines="2"
-                    android:padding="@dimen/dp5"
-                    android:text="Toán"
+                    android:maxLines="1"
+                    android:padding="@dimen/dp2"
+
                     android:textColor="@color/red_test365"
                     android:textSize="@dimen/text_16sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
-
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_tuanhoc"  />
             <TextView
                 android:id="@+id/txt_mota"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:padding="@dimen/dp5"
-                android:text="Các bài tập nhận biết chứ cái và số"
-                android:textColor="@color/txt_lable"
-                android:textSize="@dimen/text_14sp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_15sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_tuanhoc" />
+                app:layout_constraintTop_toBottomOf="@id/txt_name" />
 
             <android.support.constraint.ConstraintLayout
+
                 android:id="@+id/constrain_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -210,7 +210,8 @@
                     android:padding="@dimen/dp5"
                     android:text="KẾT QUẢ LÀM BÀI"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -224,7 +225,7 @@
                     android:gravity="right"
                     android:maxLines="2"
                     android:padding="@dimen/dp10"
-                    android:text="8.5 ĐIỂM"
+                    android:text="0 ĐIỂM"
                     android:textColor="@color/red_test365"
                     android:textSize="@dimen/text_30sp"
                     android:textStyle="bold"
@@ -237,30 +238,30 @@
                     android:id="@+id/img_sticker"
                     android:layout_width="@dimen/dp70"
                     android:layout_height="@dimen/dp70"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_ketqualambai" />
 
                 <TextView
-
                     android:id="@+id/txt_tangsticker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp20"
-                    android:layout_marginRight="@dimen/dp10"
                     android:layout_marginTop="@dimen/dp10"
-
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginBottom="@dimen/dp10"
                     android:background="@drawable/spr_click_button"
+
                     android:gravity="center"
                     android:maxLines="2"
                     android:padding="@dimen/dp10"
                     android:text="TẶNG STICKER"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/txt_xembailam"
                     app:layout_constraintTop_toBottomOf="@id/img_sticker" />
@@ -270,17 +271,18 @@
                     android:id="@+id/txt_xembailam"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp20"
                     android:layout_marginTop="@dimen/dp10"
-                    android:background="@drawable/spr_btn_xembailam"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:background="@drawable/spr_btn_xembailam_notclick"
                     android:gravity="center"
                     android:maxLines="2"
                     android:padding="@dimen/dp10"
                     android:text="XEM BÀI LÀM"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_14sp"
+                    android:textStyle="bold"
                     app:layout_constraintLeft_toRightOf="@id/txt_tangsticker"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/img_sticker" />
@@ -291,13 +293,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp15"
                     android:maxLines="2"
-                    android:paddingBottom="@dimen/dp2"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Thời gian bắt đầu:"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
+
                     android:textSize="@dimen/text_15sp"
+                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_tangsticker" />
@@ -310,13 +313,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:paddingBottom="@dimen/dp2"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Thời gian làm bài:"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
+
                     android:textSize="@dimen/text_15sp"
+                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_time_start" />
@@ -326,15 +330,16 @@
                 <TextView
                     android:id="@+id/txt_speed_lambai"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:maxLines="2"
-                    android:paddingBottom="@dimen/dp2"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Tốc độ làm bài:"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
+
                     android:textSize="@dimen/text_15sp"
+                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_time_lambai" />
@@ -362,13 +367,11 @@
                     android:id="@+id/txt_sobanlamcung"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-
                     android:maxLines="2"
-                    android:paddingBottom="@dimen/dp2"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Số bạn cùng làm bài: 1.265"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
                     android:textSize="@dimen/text_15sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -382,11 +385,11 @@
                     android:layout_height="27dp"
                     android:gravity="right"
                     android:maxLines="2"
-                    android:paddingBottom="@dimen/dp2"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Số bạn cùng trường: 1.256"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp2"
+
                     android:textColor="@color/txt_baitap_detail"
                     android:textSize="@dimen/text_15sp"
                     app:layout_constraintRight_toRightOf="parent"
@@ -399,11 +402,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:paddingBottom="@dimen/dp7"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Số bạn cùng lớp: 35"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp7"
+
                     android:textColor="@color/txt_baitap_detail"
                     android:textSize="@dimen/text_15sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -434,22 +437,23 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:maxLines="2"
-                        android:paddingBottom="@dimen/dp5"
                         android:paddingLeft="@dimen/dp2"
-                        android:paddingRight="@dimen/dp2"
                         android:paddingTop="@dimen/dp5"
+                        android:paddingRight="@dimen/dp2"
+                        android:paddingBottom="@dimen/dp5"
                         android:text="Điểm cao nhất"
                         android:textColor="@color/app_bar"
                         android:textSize="@dimen/text_14sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txt_point_max"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:maxLines="2"
                         android:padding="@dimen/dp5"
-                        android:text="8.5 ĐIỂM"
+
                         android:textColor="@color/red_test365"
                         android:textSize="@dimen/text_17sp"
                         android:textStyle="bold" />
@@ -472,23 +476,23 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:maxLines="2"
-                        android:paddingBottom="@dimen/dp5"
                         android:paddingLeft="@dimen/dp2"
-                        android:paddingRight="@dimen/dp2"
                         android:paddingTop="@dimen/dp5"
+                        android:paddingRight="@dimen/dp2"
+                        android:paddingBottom="@dimen/dp5"
                         android:text="Điểm trung bình"
                         android:textColor="@color/app_bar"
                         android:textSize="@dimen/text_14sp"
                         android:textStyle="bold" />
 
                     <TextView
-
+                        android:id="@+id/txt_point_average"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
                         android:maxLines="2"
                         android:padding="@dimen/dp5"
-                        android:text="8"
+
                         android:textColor="@color/red_test365"
                         android:textSize="@dimen/text_17sp"
                         android:textStyle="bold" />
@@ -510,23 +514,23 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:maxLines="2"
-                        android:paddingBottom="@dimen/dp5"
                         android:paddingLeft="@dimen/dp2"
-                        android:paddingRight="@dimen/dp2"
                         android:paddingTop="@dimen/dp5"
+                        android:paddingRight="@dimen/dp2"
+                        android:paddingBottom="@dimen/dp5"
                         android:text="Điểm thấp nhất"
                         android:textColor="@color/app_bar"
                         android:textSize="@dimen/text_14sp"
                         android:textStyle="bold" />
 
                     <TextView
-
+                        android:id="@+id/txt_point_min"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:maxLines="2"
                         android:padding="@dimen/dp5"
-                        android:text="5"
+
                         android:textColor="@color/red_test365"
                         android:textSize="@dimen/text_17sp"
                         android:textStyle="bold" />
@@ -542,6 +546,7 @@
                     android:textColor="@color/app_bar"
                     android:textSize="@dimen/text_15sp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ll_diemtrungbinh" />
@@ -550,13 +555,15 @@
                     android:id="@+id/txt_nhanxet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp2"
+                    android:gravity="center"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingRight="@dimen/dp5"
                     android:paddingTop="@dimen/dp2"
-                    android:text="Nhận xét của hệ thống:"
-                    android:textColor="@color/txt_baitap_detail"
-                    android:textSize="@dimen/text_14sp"
+                    android:paddingRight="@dimen/dp5"
+                    android:paddingBottom="@dimen/dp2"
+                    android:text="Mời mẹ nhận xét và tặng sticker động viên con"
+                    android:textColor="@color/app_bar"
+                    android:textSize="@dimen/text_15sp"
+                    android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lable_nhanxet" />
@@ -565,6 +572,7 @@
             </android.support.constraint.ConstraintLayout>
 
             <LinearLayout
+                android:id="@+id/ll_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -579,7 +587,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
-                    android:background="@drawable/spr_edt_nhanxet"
+                    android:background="@drawable/spr_edt_comment_mother"
                     android:padding="@dimen/dp5" />
 
                 <ImageView
@@ -588,11 +596,9 @@
                     android:layout_height="@dimen/dp40"
                     android:layout_margin="@dimen/dp5"
                     android:background="@drawable/spr_click_button"
-                    android:padding="@dimen/dp5"
-                    android:src="@drawable/ic_send"
-                    android:tint="@color/white" />
+                    android:padding="@dimen/dp10"
+                    android:src="@drawable/ic_send" />
             </LinearLayout>
-
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 

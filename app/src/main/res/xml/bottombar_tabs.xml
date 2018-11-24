@@ -8,10 +8,10 @@
         id="@+id/tab_thongke"
         icon="@drawable/ic_tab_thong_ke"
         title="@string/tab_thongke" />
-    <tab
+<!--    <tab
         id="@+id/tab_tintuc"
         icon="@drawable/ic_page"
-        title="@string/tab_tintuc" />
+        title="@string/tab_tintuc" />-->
     <tab
         id="@+id/tab_setup"
         icon="@drawable/ic_menu"

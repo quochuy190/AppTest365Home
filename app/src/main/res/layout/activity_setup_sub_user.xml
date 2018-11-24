@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/bg_app"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/app_bar_main" />
-
-    <android.support.v7.widget.RecyclerView
-        android:background="@color/gray"
-        android:id="@+id/recycle_list_subuser"
+    <include layout="@layout/title_bar_main_new" />
+    <android.support.v4.widget.NestedScrollView
+        android:clipToPadding="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_list_subuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray">
 
-    </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/spr_click_button"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginBottom="@dimen/dp20"
+                android:id="@+id/btn_add_subuser"
+                android:textColor="@color/white"
+                android:text="Tạo tài khoản con"
+                android:layout_width="@dimen/dp250"
+                android:layout_height="@dimen/dp40" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 
 </LinearLayout>

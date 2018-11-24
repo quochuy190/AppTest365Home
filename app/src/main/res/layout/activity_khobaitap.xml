@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/bg_app">
 
     <RelativeLayout
         android:id="@+id/include2"
@@ -16,23 +16,21 @@
 
         <include
 
-            layout="@layout/app_bar_main" />
+            layout="@layout/title_bar_main_new" />
     </RelativeLayout>
 
 
     <TextView
         android:id="@+id/txt_chontatca"
-        android:padding="@dimen/dp5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_height="@dimen/icon_back_appbar_new"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="Chọn tất cả"
         android:textColor="@color/white"
         android:textSize="@dimen/text_14sp"
-        app:layout_constraintBottom_toBottomOf="@id/include2"
         app:layout_constraintRight_toRightOf="@id/include2"
         app:layout_constraintTop_toTopOf="@id/include2" />
 
@@ -40,7 +38,7 @@
         android:id="@+id/recycle_khobaitap"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/gray"
+
         app:layout_constraintBottom_toTopOf="@+id/txt_soluong"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,9 +50,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:gravity="center"
-        android:padding="@dimen/dp2"
+        android:padding="@dimen/dp5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -65,7 +63,6 @@
             android:layout_height="@dimen/dp30"
             android:background="@drawable/spr_click_button"
             android:text="Tải cho con"
-            android:textAllCaps="false"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -73,10 +70,9 @@
         android:id="@+id/txt_price_lable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:padding="@dimen/dp1"
         android:text="Tổng chi phí:"
-        android:textColor="@color/black"
+        android:textColor="@color/black_mo"
         android:textSize="@dimen/text_15sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -86,11 +82,11 @@
         android:id="@+id/txt_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:gravity="right"
         android:padding="@dimen/dp1"
         android:text="0 vnđ"
-        android:textColor="@color/black"
+        android:textColor="@color/red_test365"
         android:textSize="@dimen/text_15sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintLeft_toRightOf="@id/txt_price_lable"
@@ -100,7 +96,7 @@
         android:id="@+id/txt_taikhoan_lable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:padding="@dimen/dp1"
         android:text="Số dư tài khoản:"
         android:textColor="@color/black_mo"
@@ -113,11 +109,11 @@
         android:id="@+id/txt_taikhoan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:gravity="right"
         android:padding="@dimen/dp1"
         android:text="0 vnđ"
-        android:textColor="@color/black_mo"
+        android:textColor="@color/red_test365"
         android:textSize="@dimen/text_15sp"
         app:layout_constraintBottom_toTopOf="@+id/txt_price"
         app:layout_constraintLeft_toRightOf="@id/txt_price_lable"
@@ -127,7 +123,7 @@
         android:id="@+id/txt_soluong_lable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:padding="@dimen/dp1"
         android:text="Số tuần đã tải:"
         android:textColor="@color/black_mo"
@@ -140,11 +136,11 @@
         android:id="@+id/txt_soluong"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:gravity="right"
         android:padding="@dimen/dp1"
         android:text="0"
-        android:textColor="@color/black_mo"
+        android:textColor="@color/red_test365"
         android:textSize="@dimen/text_15sp"
         app:layout_constraintBottom_toTopOf="@+id/txt_taikhoan"
         app:layout_constraintLeft_toRightOf="@id/txt_price_lable"

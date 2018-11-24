@@ -10,8 +10,10 @@ import java.util.Map;
 
 import neo.vn.test365home.ApiService.ApiServiceIml;
 import neo.vn.test365home.Listener.CallbackData;
+import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
+import neo.vn.test365home.Models.HistoryBalance;
 import neo.vn.test365home.Models.UserInfo;
 
 /**
@@ -172,5 +174,140 @@ public class PresenterSetup implements ImpSetup.Presenter {
                 }
             }
         }, mMap);
+    }
+
+    @Override
+    public void api_get_change_pass(String sUserMe, String sPassOld, String sPassNew) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "change_pass");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "3");
+        mMap.put("P1", sUserMe);
+        mMap.put("P2", sPassOld);
+        mMap.put("P3", sPassNew);
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<ErrorApi> mLiss = ErrorApi.getList(objT);
+                    mView.show_change_pass(mLiss);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
+    }
+
+    @Override
+    public void api_get_info_children(String sUserMe, String sUserCon) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "get_info_children");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "2");
+        mMap.put("P1", sUserMe);
+        mMap.put("P2", sUserCon);
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<Childrens> mLiss = Childrens.getList(objT);
+                    mView.show_get_info_chil(mLiss);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
+
+    }
+
+    @Override
+    public void api_update_info_children(String sUserMe, String sUserCon, String sProvince, String sDistrict,
+                                         String sSchool, String sLevel, String sClass, String sYear, String sChil_Name,
+                                         String sPass, String sAvata) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "update_info_children");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "11");
+        mMap.put("P1", sUserMe);
+        mMap.put("P2", sUserCon);
+        mMap.put("P3", sProvince);
+        mMap.put("P4", sDistrict);
+        mMap.put("P5", sSchool);
+        mMap.put("P6", sLevel);
+        mMap.put("P7", sClass);
+        mMap.put("P8", sYear);
+        mMap.put("P9", sChil_Name);
+        mMap.put("P10", sPass);
+        mMap.put("P11", sAvata);
+
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<ErrorApi> mLiss = ErrorApi.getList(objT);
+                    mView.show_update_info_chil(mLiss);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
+    }
+
+    @Override
+    public void api_get_history_balance(String sUserMe) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "get_history_balance");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "1");
+        mMap.put("P1", sUserMe);
+
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<HistoryBalance> mLiss = HistoryBalance.getList(objT);
+                    mView.show_get_history_balance(mLiss);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
+
     }
 }

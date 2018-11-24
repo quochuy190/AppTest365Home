@@ -3,6 +3,9 @@
     <dimen name="dp55">55dp</dimen>
     <dimen name="height_bottombar">50dp</dimen>
     <dimen name="height_appbar">45dp</dimen>
+    <dimen name="height_appbar_new">55dp</dimen>
+    <dimen name="icon_back_appbar_new">40dp</dimen>
+    <dimen name="txt_appbar_new">14sp</dimen>
     <dimen name="image_avata">100dp</dimen>
 
     <!--size magin-->
@@ -51,4 +54,7 @@
     <dimen name="hight_avata">110dp</dimen>
     <dimen name="item_setup">45dp</dimen>
     <dimen name="item_avata_children">90dp</dimen>
+    <!--view welcom thanks-->
+    <dimen name="height_logo">50dp</dimen>
+    <dimen name="width_logo">200dp</dimen>
 </resources>

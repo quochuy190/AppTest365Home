@@ -23,7 +23,6 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
 import neo.vn.test365home.Models.ObjTuanhoc;
-import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
 import neo.vn.test365home.R;
@@ -51,7 +50,6 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
     ImageView img_back;
     private List<Cauhoi> mLisCauhoi;
     List<CauhoiDetail> mLisCauhoiDetail;
-
     ExcerciseDetail mExcercise;
     int iCurrentCauhoi = 0;
     PresenterBaitap mPresenter;
@@ -81,11 +79,11 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
 
         //    setupViewPager(mLisCauhoi.get(iCurrentCauhoi));
     }
-
+    TextView txt_title;
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
-        TextView txt_title = findViewById(R.id.txt_title_main);
-        txt_title.setText("Câu hỏi 1");
+        txt_title = findViewById(R.id.txt_title_main);
+       // txt_title.setText("Xem lại bài tập");
         img_back.setVisibility(View.VISIBLE);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,10 +96,12 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
 
     private void initData() {
         mExcercise = SharedPrefs.getInstance().get(Constants.KEY_SEND_CAUHOI, ExcerciseDetail.class);
+        txt_title.setText("Xem lại bài tập");
         sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
         mChildren = SharedPrefs.getInstance().get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
         if (mExcercise != null && mExcercise.getsID() != null) {
-            showDialogLoading();
+            txt_title.setText(mExcercise.getsSUBJECT_NAME()+  " - "+mExcercise.getsWEEK_NAME());
+            showDialogLoadingtime(10000);
             mPresenter.get_api_get_part(sUserMe, mChildren.getsUSERNAME(), mExcercise.getsWEEK_TEST_ID());
         }
     }
@@ -205,8 +205,7 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
 
     @Override
     public void show_list_get_part(List<Cauhoi> mLis) {
-        hideDialogLoading();
-        if (mLis != null) {
+        if (mLis != null&&mLis.get(0).getsERROR().equals("0000")) {
             adapterViewpager = new AdapterViewpager(getSupportFragmentManager());
             maxPage = 0;
             for (int j = 0; j < mLis.size(); j++) {
@@ -257,10 +256,11 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
     }
 
     @Override
-    public void show_list_report_excercise(List<ReportExcercise> mLis) {
-        hideDialogLoading();
+    public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
 
     }
+
+
 
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {

@@ -2,6 +2,7 @@ package neo.vn.test365home.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import butterknife.ButterKnife;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Schools;
 import neo.vn.test365home.R;
+import neo.vn.test365home.Untils.StringUtil;
 
 
 /**
@@ -49,7 +51,9 @@ public class AdapterListSchools extends RecyclerView.Adapter<AdapterListSchools.
     @Override
     public void onBindViewHolder(TopicViewHoder holder, int position) {
         Schools airport = listAirport.get(position);
-        holder.txt_name.setText(airport.getsSCHOOL_NAME());
+        if (airport.getsSCHOOL_NAME() != null && airport.getsSCHOOL_NAME().length() > 0)
+            holder.txt_name.setText(Html.fromHtml(StringUtil.convert_html(airport.getsSCHOOL_NAME())));
+       // holder.txt_name.setText(airport.getsSCHOOL_NAME());
 
     }
 

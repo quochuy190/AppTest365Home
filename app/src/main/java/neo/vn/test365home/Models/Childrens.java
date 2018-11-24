@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Childrens implements Parcelable{
+public class Childrens implements Parcelable {
     @SerializedName("ERROR")
     String sERROR;
     @SerializedName("MESSAGE")
@@ -33,14 +33,45 @@ public class Childrens implements Parcelable{
     String sPASS;
     @SerializedName("ID_LEVEL")
     String sID_LEVEL;
+    @SerializedName("LEVEL_ID")
+    String sLEVEL_ID;
     @SerializedName("LEVEL_NAME")
     String sLEVEL_NAME;
     @SerializedName("CLASS")
     String sCLASS;
+    @SerializedName("ID_PROVINCE")
+    String sID_PROVINCE;
+    @SerializedName("PROVINCE_NAME")
+    String sPROVINCE_NAME;
+    @SerializedName("DISTRICT_ID")
+    String sDISTRICT_ID;
+    @SerializedName("DISTRICT_NAME")
+    String sDISTRICT_NAME;
+    @SerializedName("SCHOOL_ID")
+    String sSCHOOL_ID;
+    @SerializedName("SCHOOL_NAME")
+    String sSCHOOL_NAME;
+    @SerializedName("PARENT_ID")
+    String sPARENT_ID;
+    @SerializedName("YEAR_ID")
+    String sYEAR_ID;
+    @SerializedName("YEAR_NAME")
+    String sYEAR_NAME;
+    boolean isAddSub;
+    String sHeaderId;
     private boolean isChecked;
+
     public Childrens() {
     }
 
+    public Childrens(String sFULLNAME, String sHeaderId) {
+        this.sFULLNAME = sFULLNAME;
+        this.sHeaderId = sHeaderId;
+    }
+
+    public Childrens(boolean isAddSub) {
+        this.isAddSub = isAddSub;
+    }
 
     protected Childrens(Parcel in) {
         sERROR = in.readString();
@@ -69,18 +100,114 @@ public class Childrens implements Parcelable{
         }
     };
 
-    private static Childrens getObject (JSONObject jsonObject){
-        return new Gson().fromJson(jsonObject.toString(),Childrens.class);
+    private static Childrens getObject(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), Childrens.class);
     }
 
-    public  static ArrayList<Childrens> getList(String jsonArray) throws JSONException {
+    public static ArrayList<Childrens> getList(String jsonArray) throws JSONException {
         ArrayList<Childrens> arrayList = new ArrayList<>();
-        Type type = new TypeToken<List<Childrens>>(){}.getType();
-        Gson gson= new Gson();
-        arrayList = gson.fromJson(jsonArray,type);
+        Type type = new TypeToken<List<Childrens>>() {
+        }.getType();
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
     }
 
+    public String getsHeaderId() {
+        return sHeaderId;
+    }
+
+    public void setsHeaderId(String sHeaderId) {
+        this.sHeaderId = sHeaderId;
+    }
+
+    public String getsLEVEL_ID() {
+        return sLEVEL_ID;
+    }
+
+    public void setsLEVEL_ID(String sLEVEL_ID) {
+        this.sLEVEL_ID = sLEVEL_ID;
+    }
+
+    public boolean isAddSub() {
+        return isAddSub;
+    }
+
+    public void setAddSub(boolean addSub) {
+        isAddSub = addSub;
+    }
+
+    public String getsID_PROVINCE() {
+        return sID_PROVINCE;
+    }
+
+    public void setsID_PROVINCE(String sID_PROVINCE) {
+        this.sID_PROVINCE = sID_PROVINCE;
+    }
+
+    public String getsPROVINCE_NAME() {
+        return sPROVINCE_NAME;
+    }
+
+    public void setsPROVINCE_NAME(String sPROVINCE_NAME) {
+        this.sPROVINCE_NAME = sPROVINCE_NAME;
+    }
+
+    public String getsDISTRICT_ID() {
+        return sDISTRICT_ID;
+    }
+
+    public void setsDISTRICT_ID(String sDISTRICT_ID) {
+        this.sDISTRICT_ID = sDISTRICT_ID;
+    }
+
+    public String getsDISTRICT_NAME() {
+        return sDISTRICT_NAME;
+    }
+
+    public void setsDISTRICT_NAME(String sDISTRICT_NAME) {
+        this.sDISTRICT_NAME = sDISTRICT_NAME;
+    }
+
+    public String getsSCHOOL_ID() {
+        return sSCHOOL_ID;
+    }
+
+    public void setsSCHOOL_ID(String sSCHOOL_ID) {
+        this.sSCHOOL_ID = sSCHOOL_ID;
+    }
+
+    public String getsSCHOOL_NAME() {
+        return sSCHOOL_NAME;
+    }
+
+    public void setsSCHOOL_NAME(String sSCHOOL_NAME) {
+        this.sSCHOOL_NAME = sSCHOOL_NAME;
+    }
+
+    public String getsPARENT_ID() {
+        return sPARENT_ID;
+    }
+
+    public void setsPARENT_ID(String sPARENT_ID) {
+        this.sPARENT_ID = sPARENT_ID;
+    }
+
+    public String getsYEAR_ID() {
+        return sYEAR_ID;
+    }
+
+    public void setsYEAR_ID(String sYEAR_ID) {
+        this.sYEAR_ID = sYEAR_ID;
+    }
+
+    public String getsYEAR_NAME() {
+        return sYEAR_NAME;
+    }
+
+    public void setsYEAR_NAME(String sYEAR_NAME) {
+        this.sYEAR_NAME = sYEAR_NAME;
+    }
 
     public String getsID_LEVEL() {
         return sID_LEVEL;

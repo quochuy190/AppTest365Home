@@ -7,13 +7,13 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:padding="@dimen/dp5"
-        android:src="@drawable/avatar_default"
         android:id="@+id/img_avata_children"
         android:layout_centerVertical="true"
         android:layout_width="@dimen/item_avata_children"
         android:layout_height="@dimen/item_avata_children" />
     <LinearLayout
-
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
         android:layout_toRightOf="@id/img_avata_children"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -25,44 +25,45 @@
             android:textSize="@dimen/text_16sp"
             android:padding="@dimen/dp3"
             android:maxLines="2"
-            android:text="Truong tieu hoc be van dan"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/txt_fullname"
             android:textStyle="bold"
             android:textColor="@color/red_test365"
-            android:textSize="@dimen/text_17sp"
+            android:textSize="@dimen/text_16sp"
             android:padding="@dimen/dp3"
             android:singleLine="true"
-            android:text="Ho ten: Nguyen Duc Anh"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/txt_class"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_17sp"
+            android:textSize="@dimen/text_16sp"
             android:padding="@dimen/dp3"
             android:maxLines="1"
-            android:text="Lop 1"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:visibility="gone"
             android:id="@+id/txt_user"
             android:textColor="@color/black"
             android:textSize="@dimen/text_17sp"
             android:padding="@dimen/dp3"
             android:maxLines="2"
-            android:text="UserNam: Ducanh126"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:visibility="gone"
             android:id="@+id/txt_pass"
             android:textColor="@color/black"
             android:textSize="@dimen/text_17sp"
             android:padding="@dimen/dp3"
             android:maxLines="2"
-            android:text="Mat khau: 123456"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/img_avata"
+        android:layout_width="@dimen/item_avata_bxh"
+        android:layout_height="@dimen/item_avata_bxh"
+        android:layout_toRightOf="@id/ll_stt"
+        android:padding="@dimen/dp2"
+        android:src="@drawable/avatar_default" />
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_avata">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:id="@+id/txt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp1"
+                android:text="Nguyễn Quốc Huy"
+                android:textColor="@color/red_test365"
+                android:textSize="@dimen/text_16sp" />
+
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/txt_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp1"
+                android:text="Họ tên"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp" />
+
+            <TextView
+                android:id="@+id/txt_school"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp1"
+                android:text="Họ tên"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14sp" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

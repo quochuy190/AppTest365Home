@@ -22,10 +22,12 @@ public class App extends Application {
     public static City mCity;
     public static Schools mSchools;
     public static String mKhoihoc;
+    public static String mNamhoc;
     public static List<District> mLisDistrict;
     public static List<City> mLisCity;
     public static List<Schools> mLisSchools;
     public static List<Childrens> mLisChildren;
+    public static Childrens mChilSetup;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,6 +37,7 @@ public class App extends Application {
         mLisCity = new ArrayList<>();
         mLisSchools = new ArrayList<>();
         mLisChildren = new ArrayList<>();
+
     }
 
     public Gson getGSon() {

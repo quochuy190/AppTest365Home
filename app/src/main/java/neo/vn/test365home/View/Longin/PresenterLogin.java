@@ -37,7 +37,7 @@ public class PresenterLogin implements ImpLogin.Presenter {
 
 
     @Override
-    public void api_login( String sUserName,String sPassWord, String sAppVersion,
+    public void api_login(String sUserName, String sPassWord, String sAppVersion,
                           String sDeviceModel, String sDeviceType, String sOsVersion, String sTokenkey) {
         Map<String, String> mMap = new LinkedHashMap<>();
         mMap.put("Service", "login");
@@ -76,25 +76,59 @@ public class PresenterLogin implements ImpLogin.Presenter {
     }
 
     @Override
-    public void api_register(String sUserName, String sPassWord) {
+    public void api_register(String sUserName, String sPassWord, String sCode, String sUUID) {
         Map<String, String> mMap = new LinkedHashMap<>();
         mMap.put("Service", "signup");
         mMap.put("Provider", "default");
-        mMap.put("ParamSize", "2");
+        mMap.put("ParamSize", "4");
         mMap.put("P1", sUserName);
         mMap.put("P2", sPassWord);
+        mMap.put("P3", sCode);
+        mMap.put("P4", sUUID);
         mApiService.getApiService(new CallbackData<String>() {
             @Override
             public void onGetDataErrorFault(Exception e) {
                 mView.show_error_api(null);
                 Log.i(TAG, "onGetDataErrorFault: " + e);
             }
+
             @Override
             public void onGetDataSuccess(String objT) {
                 Log.i(TAG, "onGetDataSuccess: " + objT);
                 try {
                     List<ErrorApi> mLisFlight = ErrorApi.getList(objT);
                     mView.show_api_register(mLisFlight);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
+    }
+
+    @Override
+    public void api_register_code(String sUserName, String sPassWord, String sCode) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "signup2");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "3");
+        mMap.put("P1", sUserName);
+        mMap.put("P2", sPassWord);
+        mMap.put("P3", sCode);
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<ErrorApi> mLisError = ErrorApi.getList(objT);
+                    mView.show_api_register(mLisError);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     mView.show_error_api(null);
@@ -112,7 +146,7 @@ public class PresenterLogin implements ImpLogin.Presenter {
         mMap.put("ParamSize", "5");
         mMap.put("P1", sUserName);
         mMap.put("P2", sFullname);
-        mMap.put("P3", sPhone );
+        mMap.put("P3", sPhone);
         mMap.put("P4", sEmail);
         mMap.put("P5", sAvata);
 
@@ -148,12 +182,12 @@ public class PresenterLogin implements ImpLogin.Presenter {
         mMap.put("ParamSize", "11");
         mMap.put("P1", sUserName);
         mMap.put("P2", sIdTinh);
-        mMap.put("P3", sIdQuan );
+        mMap.put("P3", sIdQuan);
         mMap.put("P4", sIdTruong);
         mMap.put("P5", sIdKhoi);
         mMap.put("P6", sIdNam);
         mMap.put("P7", sLop);
-        mMap.put("P8", sFullName );
+        mMap.put("P8", sFullName);
         mMap.put("P9", sAvata);
         mMap.put("P10", sUsernameChildren);
         mMap.put("P11", sPassChildren);
@@ -195,6 +229,7 @@ public class PresenterLogin implements ImpLogin.Presenter {
                 mView.show_error_api(null);
                 Log.i(TAG, "onGetDataErrorFault: " + e);
             }
+
             @Override
             public void onGetDataSuccess(String objT) {
                 Log.i(TAG, "onGetDataSuccess: " + objT);

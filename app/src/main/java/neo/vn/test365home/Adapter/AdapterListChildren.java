@@ -14,6 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.R;
@@ -53,16 +54,20 @@ public class AdapterListChildren extends RecyclerView.Adapter<AdapterListChildre
     public void onBindViewHolder(TopicViewHoder holder, int position) {
         Childrens airport = listChildren.get(position);
         holder.txt_name.setText(airport.getsUSERNAME());
+        if (airport.getsAVATAR() != null && airport.getsAVATAR().length() > 0)
+            Glide.with(context).load(Config.URL_IMAGE + airport.getsAVATAR()).into(holder.img_avata);
+        else
+            Glide.with(context).load(R.drawable.avatar_default).into(holder.img_avata);
         if (airport.isChecked()) {
             holder.img_backgrond.setVisibility(View.GONE);
         } else {
             holder.img_backgrond.setVisibility(View.VISIBLE);
         }
-        if (position==listChildren.size()-1){
-            Glide.with(context).load(R.drawable.add_avata).into(holder.img_backgrond);
+        if (airport.isAddSub()) {
+            Glide.with(context).load(R.drawable.add_avata).into(holder.img_avata);
             holder.txt_name.setVisibility(View.GONE);
-            holder.img_avata.setVisibility(View.GONE);
-        }else {
+
+        } else {
             holder.txt_name.setVisibility(View.VISIBLE);
             holder.img_avata.setVisibility(View.VISIBLE);
         }

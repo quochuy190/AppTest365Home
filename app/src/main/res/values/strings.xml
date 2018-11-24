@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test365.Home</string>
+    <string name="app_name">Home365</string>
     <string name="txt_loading_dialog">Đang tải. Vui lòng đợi...</string>
     <!--error-->
     <string name="error_network">Lỗi kết nối</string>
@@ -26,7 +26,7 @@
     <string name="txt_luuy">Lưu ý: <i>Vẫn còn bài tập các tuần khác ba mẹ chưa tải</i></string>
     <string name="txt_info">Thông tin cá nhân</string>
     <string name="txt_setup_notify">Cài đặt thông báo</string>
-    <string name="txt_setup_sub_user">Cài đặt cho con</string>
+    <string name="txt_setup_sub_user">Cấu hình tài khoản con</string>
     <string name="txt_change_pass">Đổi mật khẩu</string>
     <string name="txt_account">Quản lý tài khoản</string>
     <string name="txt_logout">Đăng xuất</string>
@@ -35,15 +35,101 @@
     <string name="lable_fullname">Họ tên: </string>
     <string name="lable_email">Email:</string>
     <string name="lable_phone">SĐT: </string>
-    <string name="lable_account_main">Tài khoản chính</string>
-    <string name="lable_account_bonus">Tài khoản thưởng</string>
+    <string name="lable_account_main">TÀI KHOẢN CHÍNH</string>
+    <string name="lable_account_bonus">TÀI KHOẢN THƯỞNG</string>
     <string name="lable_recharge">Nạp tiền</string>
     <!--Quản lý tài khoản, nạp tiền-->
-    <string name="lable_naptien_sms_8655">Nạp tiền bằng tin nhắn 8655</string>
+    <string name="lable_naptien_sms">Nạp tiền bằng tin nhắn</string>
+    <string name="lable_purchase_chuyenkhoan">Chuyển khoản ngân hàng</string>
+    <string name="lable_naptien_sms_8655">Nạp tiền bằng tin nhắn</string>
     <string name="lable_naptien_sms_9029">Nạp tiền bằng tin nhắn 9029</string>
     <string name="lable_naptien_tructuyen">Nạp tiền trực tuyến</string>
-    <string name="lable_naptien_the_test365">Nạp tiền bằng thẻ Test365</string>
+    <string name="lable_naptien_the_test365">Thẻ nạp Home365</string>
+    <string name="lable_naptien_macode">Nhập mã giới thiệu</string>
     <string name="lable_naptien_huybo">Hủy bỏ</string>
     <string name="lable_naptien_title">Chọn hình thức nạp tiền</string>
+    <string name="txt_web"><i><u>Đội ngũ Home365\nhttp://home365.online</u></i></string>
     <string name="lable_naptien_content">Bạn hãy chọn hình thức nạp tiền phù hợp nhất với mình</string>
+    <string name="lable_naptien_content_code">Hãy giới thiệu Home365 với bạn bè. Khi bạn bè cài đặt ứng dụng và nhập mã giới thiệu, cả 2 sẽ nhận được quà</string>
+    <string name="naptien_sms_content">
+Quý phụ huynh soạn tin nhắn theo cú <b><font color='#FF6600'>“Home365 NAP xyz”</font></b>(xyz là tên đăng nhập)
+gửi đến số 8655 Cước tin nhắn: 10.000 VND/SMS \n
+Số tiền được nạp vào TK chính: 4.000 VND. Số tiền được nạp vào TK thưởng: 6.000 VND
+</string>
+    <string name="naptien_chuyenkhoan_content">
+Quy phụ huynh chuyền tiền nạp vào tài khoản:
+\nSố tài khoản: <b>0021 0010 02252</b>
+\nTên chủ tài khoản: <b>Công ty cổ phần đầu tư phát triển công nghệ và truyền thông</b>
+\nChi nhánh: <b>Ngân hàng Vietcombank - CN Thành Công - Hà Nội</b>
+\nNội dung chuyển tiền (bắt buộc): <b>Home365 xyz</b>(xyz là tên đăng nhập)
+\nToàn bộ số tiền sẽ được nạp vào tài khoản chính trên Home365
+</string>
+    <string name="naptien_visa_content">
+Home365 chấp nhận nạp tiền trực tuyến bằng thẻ ATM ngân hàng nội địa hoặc thẻ tín dụng Visa, Master.
+Toàn bộ số tiền thanh toán sẽ được nạp vào tài khoản chính trên Home365
+</string>
+    <string name="naptien_card_content">
+Quý phụ huynh có thể tìm mua thẻ nạp Home365 tại các trường Tiểu học, các cửa hàng sách, và các đại lý uỷ quyền của Home365.
+\nHome365 cũng có dịch vụ giao thẻ nạp tại nhà cho Quý phụ huynh
+\nChi tiết liên hệ: 1900561548
+</string>
+    <!--Bảng xếp hạng-->
+
+    <string name="txt_bxh_notify">Bé chưa đủ điều kiện để xếp hạng. Hãy giúp bé làm đủ tất cả các bài tập trong tuần của các môn để được vào bảng xếp hạng</string>
+
+    <!--Cảm ơn-->
+    <string name="txt_thanks">Cảm ơn quý Phụ huynh đã dành tình thương và đồng hành cùng con trên con đường học tập khổ luyện.
+        \n\nCác bài học theo chương trình SGK được Home365 chuyển hoá thành các dạng bài tập từ cơ bản đến nâng cao với hình thức thể hiện sống động.
+        \n\nHome365 cũng có các trò chơi giúp các con bổ trợ kiến thức tự nhiên, xã hội, kỹ năng sống, phát triển Trí tuệ-IQ và Cảm xúc-EQ một cách toàn diện.
+Không phải là một cuộc thi, Home là tiện
+ích thông minh cùng các con xây dựng thói quen rèn
+luyện và học tập hàng ngày, nhẹ nhàng, đầy hứng
+khởi.
+        \n\nKính chúc quý Phụ huynh và các con có được những bài học bổ ích và say mê.</string>
+    <string name="txt_new_active">Phụ huynh vui lòng tạo ít nhất một tài khoản cho con để bắt đầu khám phá kho bài tập kỳ thú của Home365
+        \n\n
+        Thông tin nhập cho con thật chính xác để
+đảm bảo con nhận được các bài tập đúng trình độ và
+các thông tin phù hợp khác.
+    </string>
+
+    <string name="txt_create_subuser">*Thông tin cần chính xác để việc xếp hạng năng lực của học sinh và các khuyến nghị được chính xác.
+</string>
+
+    <string name="txt_canhbao">* Bạn nên nhập vào đầy đủ Email và SĐT để có thể khôi phục lại mật khẩu và tài khoản khi cần thiết</string>
+
+    <string name="txt_download_app_kid">Các con sẽ làm bài tập và chơi các trò chơi trên một App riêng có tên <b><u>Home365 Kid</u></b>.
+\n\nQuý phụ huynh vui lòng tìm kiếm theo từ khoá <b><u>Home365 Kid</u></b> trên Appstore/Google Play và cài đặt trên điện thoại hoặc máy tính bảng cho con.
+\n\nSau khi cài đặt, quý phụ huynh đăng nhập với tên đăng nhập của mình và tài khoản của con vừa được tạo để con bắt đầu gia nhập ngôi nhà chung Home365.
+</string>
+    <string name="app_lan">abcdefghijklmnopqrstuvwxyz0123456789</string>
+    <string name="title_activity_main_home_new">MainActivityHomeNew</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Detail Game-->
+    <string name="detail_game_tptt">Trò chơi mô phỏng Gameshow Ai là triệu phú trên truyền hình. Bao gồm các câu hỏi giúp các con thư giãn và rèn luyện kiến thức toàn diện về các môn Tự nhiên - Xã hội, Đạo đức,  m nhạc, Lịch sử, Địa lý, Kỹ năng sống, IQ, EQ,... Vượt qua các câu hỏi “xoắn não" các con sẽ nhận được giải thưởng của Home365.
+\nCác con có thể mời ba mẹ cùng chơi, tìm kiếm thông tin nhanh ngay trong SGK hoặc nhờ chị Google giúp sức.
+\nNhớ dùng các quyền trợ giúp một cách thật hiệu quả.
+\nMỗi tuần chỉ chơi một game vào bất kỳ ngày nào, chúc con vui hết cỡ và thu lượm được nhiều bài học bổ ích.
+</string>
+
+    <string name="detail_game_tnnl">Các cặp câu hỏi - câu trả lời được trộn lẫn với nhau và dấu trong các ô cửa bí mật. Nhiệm vụ của các con là chơi với Home365 để lần lượt tìm và ghép đôi chính xác câu hỏi với câu trả lời.
+\nAi ghép sai sẽ mất lượt và đến người khác. Các con phải tính thật nhanh và nhớ thật kỹ vị trí các ô đã mở để nhanh tay ghép được nhiều cặp hỏi - đáp.
+\nKết thúc game, ai ghép được nhiều đôi hơn sẽ dành chiến thắng, chỉ số phụ là bên nào ghép nhanh hơn.
+</string>
+    <string name="detail_game_sudoku">Trò chơi rèn luyện khả năng tính toán và tư duy có độ sâu nhiều “nước" của người Nhật phổ biến trên toàn thế giới.
+\nNhiệm vụ của các con là điền các con số từ 1 đến 9 vào một bảng gồm 9x9 ô vuông sao cho mỗi số chỉ xuất hiện một lần trong một hàng, một cột và một bảng con 3x3.
+\nCẩn thận nhé, trò chơi này đã “gây nghiện" cho rất nhiều bạn và trở thành “siêu nhân"
+</string>
+    <string name="detail_game_kow">Trò chơi dân gian ghép các ký tự để thành một từ có nghĩa trong tiếng Anh.
+\nCó thể ghép từ trái sang phải hoặc từ phải sang trái. Bên nào ghép ký tự cuối cùng để hoàn thành một từ sẽ dành chiến thắng.
+\nTrò chơi này giúp các con nâng cao vốn từ tiếng Anh một cách nhanh chóng.
+</string>
+    <string name="title_activity_fragment_navigation_baitap">FragmentNavigationBaitap</string>
+    <string name="or">HOẶC</string>
 </resources>

@@ -54,21 +54,33 @@ public class Login implements Serializable {
     private String sSTATE;
     @SerializedName("UPDATETIME")
     private String sUPDATETIME;
+    @SerializedName("PROMOTIONCODE")
+    private String sPROMOTIONCODE;
 
     public Login() {
     }
-    private static Login getObject (JSONObject jsonObject){
-        return new Gson().fromJson(jsonObject.toString(),Login.class);
+
+    private static Login getObject(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), Login.class);
     }
 
-    public  static ArrayList<Login> getList(String jsonArray) throws JSONException {
+    public static ArrayList<Login> getList(String jsonArray) throws JSONException {
         ArrayList<Login> arrayList = new ArrayList<>();
-        Type type = new TypeToken<List<Login>>(){}.getType();
+        Type type = new TypeToken<List<Login>>() {
+        }.getType();
 
-        Gson gson= new Gson();
-        arrayList = gson.fromJson(jsonArray,type);
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(jsonArray, type);
 
         return arrayList;
+    }
+
+    public String getsPROMOTIONCODE() {
+        return sPROMOTIONCODE;
+    }
+
+    public void setsPROMOTIONCODE(String sPROMOTIONCODE) {
+        this.sPROMOTIONCODE = sPROMOTIONCODE;
     }
 
     public String getsERROR() {

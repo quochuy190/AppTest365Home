@@ -21,7 +21,8 @@ public interface ImpLogin {
     interface Presenter{
         void api_login(String sPassWord, String sUserName, String sAppVersion, String sDeviceModel,
                        String sDeviceType, String sOsVersion, String sTokenkey);
-        void api_register(String sUserName, String sPassWord);
+        void api_register(String sUserName, String sPassWord, String sCode, String sUUID);
+        void api_register_code(String sUserName, String sPassWord, String sCode);
         void api_update_info(String sUserName, String sFullname, String sPhone, String sEmail, String sAvata);
         void api_create_children(String sUserName, String sIdTinh, String sIdQuan, String sIdTruong,
                                  String sIdKhoi, String sIdNam, String sLop, String sFullName, String sAvata,

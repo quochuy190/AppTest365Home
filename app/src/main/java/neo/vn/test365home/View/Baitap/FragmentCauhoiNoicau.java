@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.parceler.Parcels;
 
@@ -56,8 +59,12 @@ public class FragmentCauhoiNoicau extends BaseFragment {
     TextView txt_egg_result_4;
     @BindView(R.id.textView3)
     TextView txt_lable_result;
+    @BindView(R.id.txtCauhoi)
+    TextView txtCauhoi;
     @BindView(R.id.ll_traloi)
     LinearLayout ll_traloi;
+    @BindView(R.id.img_anwser_chil)
+    ImageView img_anwser_chil;
 
     public static FragmentCauhoiNoicau newInstance(CauhoiDetail restaurant) {
         FragmentCauhoiNoicau restaurantDetailFragment = new FragmentCauhoiNoicau();
@@ -91,7 +98,6 @@ public class FragmentCauhoiNoicau extends BaseFragment {
         adapterRight = new AdapterCauhoiNoicau(mLisRight, getContext());
        /* mLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL, false);*/
-
         mLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         list_cauhoi_left.setHasFixedSize(true);
         list_cauhoi_left.setLayoutManager(mLayoutManager);
@@ -107,79 +113,111 @@ public class FragmentCauhoiNoicau extends BaseFragment {
         adapterRight.notifyDataSetChanged();
     }
 
+    boolean isEgg1 = false, isEgg2 = false, isEgg3 = false, isEgg4 = false;
+    @BindView(R.id.txt_current)
+    TextView txt_current;
+
     private void initDataLeft() {
+      /*  if (mCauhoi.getsRESULT_CHILD()!=null&&mCauhoi.getsRESULT_CHILD().length() > 0) {
+            if (mCauhoi.getsRESULT_CHILD().equals("1")) {
+                Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
+            } else
+                Glide.with(getContext()).load(R.drawable.icon_anwser_false).into(img_anwser_chil);
+        } else {
+            Glide.with(getContext()).load(R.drawable.icon_anwser_unknow).into(img_anwser_chil);
+        }*/
+        txt_current.setText("Bài: " + mCauhoi.getsNumberDe() + " - Câu hỏi: " + mCauhoi.getsSubNumberCau());
+        txtCauhoi.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()));
         String[] egg1 = mCauhoi.getsHTML_A().split("::");
         String[] egg2 = mCauhoi.getsHTML_B().split("::");
         String[] egg3 = mCauhoi.getsHTML_C().split("::");
         String[] egg4 = mCauhoi.getsHTML_D().split("::");
-        if (mCauhoi.getsEGG_1_RESULT().length() > 0 && mCauhoi.getsEGG_1_RESULT().length() > 0
-                && mCauhoi.getsEGG_1_RESULT().length() > 0 && mCauhoi.getsEGG_1_RESULT().length() > 0) {
+        if (mCauhoi.getsEGG_1_RESULT().length() > 0 && mCauhoi.getsEGG_2_RESULT().length() > 0
+                && mCauhoi.getsEGG_3_RESULT().length() > 0 && mCauhoi.getsEGG_4_RESULT().length() > 0) {
             String[] egg_result_1 = mCauhoi.getsEGG_1_RESULT().split("::");
             String[] egg_result_2 = mCauhoi.getsEGG_2_RESULT().split("::");
             String[] egg_result_3 = mCauhoi.getsEGG_3_RESULT().split("::");
             String[] egg_result_4 = mCauhoi.getsEGG_4_RESULT().split("::");
 
             // So sanh trứng 1 và rổ còn lại
-            Log.i(TAG, "initDataLeft: " + egg1[1] + " " + egg_result_1[1]);
             if (egg_result_1[1].equals(egg1[1])) {
+                isEgg1 = true;
                 txt_egg_result_1.setText("1 - a");
                 txt_egg_result_1.setTextColor(getResources().getColor(R.color.blue));
             } else if (egg_result_1[1].equals(egg2[1])) {
+                isEgg1 = false;
                 txt_egg_result_1.setText("1 - b");
                 txt_egg_result_1.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_1[1].equals(egg3[1])) {
+                isEgg1 = false;
                 txt_egg_result_1.setText("1 - c");
                 txt_egg_result_1.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_1[1].equals(egg4[1])) {
+                isEgg1 = false;
                 txt_egg_result_1.setText("1 - d");
                 txt_egg_result_1.setTextColor(getResources().getColor(R.color.red));
             }
             // So sanh trứng 2 và rổ còn lại
-            Log.i(TAG, "initDataLeft: " + egg2[1] + " " + egg_result_2[1]);
             if (egg_result_2[1].equals(egg1[1])) {
+                isEgg2 = false;
                 txt_egg_result_2.setText("2 - a");
                 txt_egg_result_2.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_2[1].equals(egg2[1])) {
+                isEgg2 = true;
                 txt_egg_result_2.setText("2 - b");
                 txt_egg_result_2.setTextColor(getResources().getColor(R.color.blue));
             } else if (egg_result_2[1].equals(egg3[1])) {
+                isEgg2 = false;
                 txt_egg_result_2.setText("2 - c");
                 txt_egg_result_2.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_2[1].equals(egg4[1])) {
+                isEgg2 = false;
                 txt_egg_result_2.setText("2 - d");
                 txt_egg_result_2.setTextColor(getResources().getColor(R.color.red));
             }
 // So sanh trứng 2 và rổ còn lại
-            Log.i(TAG, "initDataLeft: " + egg3[1] + " " + egg_result_3[1]);
             if (egg_result_3[1].equals(egg1[1])) {
+                isEgg3 = false;
                 txt_egg_result_3.setText("3 - a");
                 txt_egg_result_3.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_3[1].equals(egg2[1])) {
+                isEgg3 = false;
                 txt_egg_result_3.setText("3 - b");
                 txt_egg_result_3.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_3[1].equals(egg3[1])) {
+                isEgg3 = true;
                 txt_egg_result_3.setText("3 - c");
                 txt_egg_result_3.setTextColor(getResources().getColor(R.color.blue));
             } else if (egg_result_3[1].equals(egg4[1])) {
+                isEgg3 = false;
                 txt_egg_result_3.setText("3 - d");
                 txt_egg_result_3.setTextColor(getResources().getColor(R.color.red));
             }
             // So sanh trứng 2 và rổ còn lại
-            Log.i(TAG, "initDataLeft: " + egg4[1] + " " + egg_result_4[1]);
+
             if (egg_result_4[1].equals(egg1[1])) {
+                isEgg4 = false;
                 txt_egg_result_4.setText("4 - a");
                 txt_egg_result_4.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_4[1].equals(egg2[1])) {
+                isEgg4 = false;
                 txt_egg_result_4.setText("4 - b");
                 txt_egg_result_4.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_4[1].equals(egg3[1])) {
+                isEgg4 = false;
                 txt_egg_result_4.setText("4 - c");
                 txt_egg_result_4.setTextColor(getResources().getColor(R.color.red));
             } else if (egg_result_4[1].equals(egg4[1])) {
+                isEgg4 = true;
                 txt_egg_result_4.setText("4 - d");
                 txt_egg_result_4.setTextColor(getResources().getColor(R.color.blue));
             }
+            if (isEgg1 && isEgg2 && isEgg3 && isEgg4)
+                Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
+            else
+                Glide.with(getContext()).load(R.drawable.icon_anwser_false).into(img_anwser_chil);
         } else {
+            Glide.with(getContext()).load(R.drawable.icon_anwser_unknow).into(img_anwser_chil);
             ll_traloi.setVisibility(View.GONE);
             txt_lable_result.setVisibility(View.GONE);
         }

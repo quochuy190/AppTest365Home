@@ -6,18 +6,23 @@
     <color name="white">#FFFFFF</color>
     <color name="red">#ff0000</color>
     <color name="blue">#0000FF</color>
+    <color name="blue_switch">#19caed</color>
     <color name="black">#060606</color>
     <color name="green">#90d437</color>
     <color name="black_mo">#6c6767</color>
     <color name="orange">#f4a609</color>
     <color name="background_login">#f2f6f9</color>
     <color name="red_test365">#c21b37</color>
+    <color name="red_test365_disible">#7c9a152b</color>
     <color name="gray">#bcbdbf</color>
+    <color name="button_not_click">#aab8bcc2</color>
     <color name="app_bar">#4a365e</color>
+    <color name="app_bar_new">#CA2038</color>
+    <color name="app_bar_notclick">#824a365e</color>
     <color name="hint_white">#6cf1efef</color>
     <color name="btn_back">#727d9f</color>
     <color name="click_item">#c8c2cf</color>
-    <color name="bottom_bar">#B3B4B4</color>
+    <color name="bottom_bar">#727D9D</color>
     <color name="tab_layout">#eddfa5af</color>
     <color name="background_item_children">#8adddadf</color>
     <color name="btn_danglam">#78a4e8</color>
@@ -31,4 +36,9 @@
     <color name="color_background">#f2f2f2</color>
     <color name="bg_config">#f2f6f9</color>
     <color name="bg_title_config">#747f9d</color>
+    <color name="bg_bxh">#ecf4f0f0</color>
+    <color name="bg_naptien">#EEF2F4</color>
+    <color name="bg_app">#EEF2F4</color>
+    <color name="btn_datai_item_kho">#727D9D</color>
+
 </resources>

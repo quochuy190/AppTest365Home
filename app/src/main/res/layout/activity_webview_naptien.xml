@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/include5"
-        layout="@layout/app_bar_main" />
+        layout="@layout/title_bar_main_new" />
 
     <WebView
         android:id="@+id/webview_naptien"

@@ -65,10 +65,12 @@
                     android:textSize="@dimen/text_15sp" />
 
                 <View
+                    android:id="@+id/view_anwser"
                     android:background="@color/red_test365"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
                 <TextView
+                    android:id="@+id/title_anwser"
                     android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

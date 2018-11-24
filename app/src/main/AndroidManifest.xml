@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="neo.vn.test365home">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,35 +18,43 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".ActivityHome"
-            android:screenOrientation="portrait">
-
-        </activity>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Setup.ActivityManageAccount">
-
-        </activity>
+            android:name=".View.Setup.ActivityManageAccount"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Setup.ActivityNaptienTructuyen">
-
-        </activity>
+            android:name=".View.Setup.ActivitySetupNotify"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Setup.ActivityWebviewNaptien">
-
-        </activity>
+            android:name=".View.Thongke.ActivityBXH_Home"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Setup.ActivitySetupSubUser">
-
-        </activity>
+            android:name=".View.Setup.ActivityChangePassWord"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Setup.ActivityConfigSubUser">
-
-        </activity>
+            android:name=".View.Setup.ActivityMenuNapPurchase"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityPurchaseCard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityNaptienTructuyen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityWebviewNaptien"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityPurchaseCode"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivitySetupSubUser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityConfigSubUser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityGameDetail"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".View.Longin.SplashScreen"
             android:screenOrientation="portrait">
@@ -55,63 +66,59 @@
         </activity>
         <activity
             android:name=".View.Longin.ActivityLogin"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Longin.ActivityNewActive"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Longin.ActivityThanksWelcome"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".View.Longin.ActivityRegister"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Longin.ActivityWebviewDieukhoan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".View.Longin.ActivityUpdateInfo"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".MenuSearch.ActivityListDistrict">
-
-        </activity>
+            android:name=".View.Setup.ActivityUpdateSubUser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MenuSearch.ActivityListDistrict"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MenuSearch.ActivityListCity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MenuSearch.ActivityListSchools"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MenuSearch.ActivityDanhsachNamhoc"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MenuSearch.ActivityDanhsachKhoihoc"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".View.Longin.ActivityAddSubUser"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Longin.ActivityDownloadAppKid"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".View.Longin.ActivityStart"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Baitap.ActivityKhobaitap">
-
-        </activity>
+            android:name=".View.Baitap.ActivityKhobaitap"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Baitap.ActivityBaitapDetail">
-        </activity>
+            android:name=".View.Baitap.ActivityBaitapDetail"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".View.Baitap.ActivityCauhoiDetail">
+            android:name=".View.Baitap.ActivityCauhoiDetail"
+            android:screenOrientation="portrait" />
 
-        </activity>
         <service android:name=".Service.MyFirebaseIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -122,6 +129,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".FragmentNavigationBaitap"
+            android:label="@string/title_activity_fragment_navigation_baitap"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

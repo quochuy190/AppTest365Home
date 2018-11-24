@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,8 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
+import neo.vn.test365home.Models.HistoryBalance;
 import neo.vn.test365home.Models.ObjTuanhoc;
-import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
 import neo.vn.test365home.Models.UserInfo;
@@ -67,6 +66,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
     @BindView(R.id.txt_price)
     TextView txt_price;
     int iCount = 0;
+    int iCount_adapter = 0;
     int iPrice = 0;
     TextView txt_title;
     PresenterSetup mPesenterSetup;
@@ -101,12 +101,14 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
     }
 
     String user;
+    boolean isChonAll = false;
 
     private void initEvent() {
         txt_chontatca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mLisBaitap.size() > 0) {
+                iCount_adapter = 0;
+                if (mLisBaitap.size() > 0 && !isChonAll) {
                     iCount = 0;
                     iPrice = 0;
                     for (int i = 0; i < mLisBaitap.size(); i++) {
@@ -115,11 +117,27 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
                             iPrice = iPrice + Integer.parseInt(mLisBaitap.get(i).getsPRICE());
                             mLisBaitap.get(i).setsSTATUS("4");
                         } else if (mLisBaitap.get(i).getsSTATUS().equals("4")) {
+                            // mLisBaitap.get(i).setsSTATUS("0");
+                            iCount = iCount + 1;
+                            iPrice = iPrice + Integer.parseInt(mLisBaitap.get(i).getsPRICE());
+                        }
+                    }
+                    isChonAll = true;
+                    txt_chontatca.setText("Bỏ chọn");
+                    txt_soluong.setText("" + iCount);
+                    txt_price.setText(StringUtil.formatNumber("" + iPrice));
+                    adapter.notifyDataSetChanged();
+                } else if (mLisBaitap.size() > 0 && isChonAll) {
+                    for (int i = 0; i < mLisBaitap.size(); i++) {
+                        if (mLisBaitap.get(i).getsSTATUS().equals("4")) {
                             mLisBaitap.get(i).setsSTATUS("0");
                         }
                     }
-                    txt_soluong.setText("" + iCount);
-                    txt_price.setText(StringUtil.formatNumber("" + iPrice));
+                    iCount = 0;
+                    isChonAll = false;
+                    txt_chontatca.setText("Chọn tất cả");
+                    txt_soluong.setText("0");
+                    txt_price.setText(StringUtil.formatNumber("0"));
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -246,6 +264,26 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
     }
 
     @Override
+    public void show_change_pass(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_info_chil(List<Childrens> mLis) {
+
+    }
+
+    @Override
+    public void show_update_info_chil(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_history_balance(List<HistoryBalance> mLis) {
+
+    }
+
+    @Override
     public void show_list_children(List<Childrens> mLis) {
         hideDialogLoading();
     }
@@ -267,7 +305,6 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
     public void show_list_buy_excercise(List<ErrorApi> mLis) {
         if (mLis != null) {
             if (mLis.get(0).getsERROR().equals("0000")) {
-                Toast.makeText(this, "Mua bài thành công", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK, new Intent());
                 finish();
             }
@@ -291,9 +328,10 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
     }
 
     @Override
-    public void show_list_report_excercise(List<ReportExcercise> mLis) {
+    public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
 
     }
+
 
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {

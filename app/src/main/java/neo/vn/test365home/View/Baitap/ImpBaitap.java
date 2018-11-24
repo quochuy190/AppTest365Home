@@ -7,7 +7,6 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
 import neo.vn.test365home.Models.ObjTuanhoc;
-import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
 
@@ -61,7 +60,7 @@ public interface ImpBaitap {
 
         void show_list_get_part(List<Cauhoi> mLis);
 
-        void show_list_report_excercise(List<ReportExcercise> mLis);
+        void show_list_report_excercise(List<ExcerciseDetail> mLis);
 
         void show_list_get_sticker(List<Sticker> mLis);
 

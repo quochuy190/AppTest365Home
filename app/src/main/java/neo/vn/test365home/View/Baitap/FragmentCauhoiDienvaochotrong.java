@@ -1,6 +1,5 @@
 package neo.vn.test365home.View.Baitap;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -41,6 +40,10 @@ public class FragmentCauhoiDienvaochotrong extends BaseFragment {
     private List<DapAn> mLisDapAn;
     @BindView(R.id.txtCauhoi)
     TextView txtCauhoi;
+    @BindView(R.id.title_anwser)
+    TextView title_anwser;
+    @BindView(R.id.view_anwser)
+    View view_anwser;
     @BindView(R.id.txtTraloi)
     TextView txtTraloi;
     @BindView(R.id.txtDapan)
@@ -79,37 +82,44 @@ public class FragmentCauhoiDienvaochotrong extends BaseFragment {
         return view;
     }
 
-    @SuppressLint("NewApi")
     private void initData() {
         //txtCauhoi.setText(mCauhoi.getsQUESTION());
         txt_current.setText("Bài: " + mCauhoi.getsNumberDe() + " - Câu hỏi: " + mCauhoi.getsSubNumberCau());
         txt_number_de.setText("Bài: " + mCauhoi.getsNumberDe());
         txtSubNumber.setText("Câu hỏi: " + mCauhoi.getsSubNumberCau());
-        Log.i(TAG, "initData: " + mCauhoi.getsQUESTION());
+        if (mCauhoi.getsHTML_CONTENT() != null && mCauhoi.getsHTML_CONTENT().length() > 0) {
+            String s = mCauhoi.getsHTML_CONTENT();
+            String s_new = replaceXML("<<", ">>", s);
+            txtCauhoi.setText(Html.fromHtml(s_new));
+        }
 
-        String s = mCauhoi.getsQUESTION();
-
-        //String s_new = replaceBetween(mCauhoi.getsQUESTION(), "<<", ">>", "....");
-        //txtCauhoi.setText(replaceXML("<<", ">>", mCauhoi.getsQUESTION()));
-        String s_new = replaceXML("<<", ">>", s);
-
-        Log.i(TAG, "initData: " + s_new);
-
-        txtCauhoi.setText(Html.fromHtml(s_new, Html.FROM_HTML_MODE_COMPACT));
-        txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan(),
-                Html.FROM_HTML_MODE_COMPACT));
-        String s_Traloi = mCauhoi.getsQUESTION().replaceAll("<<", "<u><b><font color='blue'>")
+        txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()
+        ));
+        String s_Traloi = mCauhoi.getsHTML_CONTENT().replaceAll("<<", "<u><b><font color='blue'>")
                 .replaceAll(">>", "</font></b></u>");
         //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
-       // txtDapan.setText(s_Traloi);
-        txtDapan.setText(Html.fromHtml(s_Traloi, Html.FROM_HTML_MODE_COMPACT));
-        txtTraloi.setText(Html.fromHtml(s_Traloi, Html.FROM_HTML_MODE_COMPACT));
+        // txtDapan.setText(s_Traloi);
+        txtDapan.setText(Html.fromHtml(s_Traloi));
+        if (mCauhoi.getsANSWER_CHILD() != null && mCauhoi.getsANSWER_CHILD().length() > 0) {
+            txtTraloi.setVisibility(View.VISIBLE);
+            title_anwser.setVisibility(View.VISIBLE);
+            view_anwser.setVisibility(View.VISIBLE);
+            String s_AnwserChil = mCauhoi.getsANSWER_CHILD().replaceAll("<<", "<u><b><font color='red'>")
+                    .replaceAll(">>", "</font></b></u>");
+            txtTraloi.setText(Html.fromHtml(s_AnwserChil));
+        } else {
+            txtTraloi.setVisibility(View.GONE);
+            title_anwser.setVisibility(View.GONE);
+            view_anwser.setVisibility(View.GONE);
+        }
+
         //txtTraloi.setText(s_Traloi);
     }
+
     public String replaceStringBuffer(int first, int last, String st) {
         String s = "";
         StringBuffer sbf = new StringBuffer(st);
-        s = String.valueOf(sbf.replace(first, last, "<font color='blue'>____</font>"));
+        s = String.valueOf(sbf.replace(first, last, "<font color='blue'>__</font>"));
         return s;
     }
 

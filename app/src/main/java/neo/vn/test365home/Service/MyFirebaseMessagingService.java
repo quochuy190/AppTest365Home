@@ -40,25 +40,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void hienThiThongBao(Map<String, String> mMap) {
         Intent intent = null;
-        String type = mMap.get("type");
-        String id = mMap.get("id");
         String content = mMap.get("content");
-        String flighttype = mMap.get("flighttype");
-        String flightdate  = mMap.get("flightdate");
-        if (type.equals("1")) {
-            intent = new Intent(this, ActivityHome.class);
-        } else {
-           // intent = new Intent(this, MainActivity.class);
-        }
-
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        String tab = mMap.get("tab");
+        String tabcon = mMap.get("tabcon");
+        String tabchau = mMap.get("tabchau");
+        intent = new Intent(this, ActivityHome.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle("NoibaiAirport")
+                .setContentTitle("Home.365")
                 .setAutoCancel(true)
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(""))
@@ -90,9 +83,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         .bigText(title))
 
 
-               /* .setSound(Uri.parse("android.resource://"
-                        + getApplicationContext().getPackageName() + "/"
-                        + R.raw.notifi))*/
+                /* .setSound(Uri.parse("android.resource://"
+                         + getApplicationContext().getPackageName() + "/"
+                         + R.raw.notifi))*/
                 .setNumber(++number_notifycation)
                 .setContentIntent(pendingIntent);
         NotificationManagerCompat manager = NotificationManagerCompat.from(this);

@@ -2,8 +2,10 @@ package neo.vn.test365home.View.Baitap;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +13,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +34,17 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
 import neo.vn.test365home.Models.ObjTuanhoc;
-import neo.vn.test365home.Models.ReportExcercise;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.View.Longin.ActivityAddSubUser;
 
+import static android.app.Activity.RESULT_OK;
 
-public class FragmentBaitap extends BaseFragment implements View.OnClickListener, ImpBaitap.View {
+
+public class FragmentBaitap extends BaseFragment implements View.OnClickListener, ImpBaitap.View ,
+        NavigationView.OnNavigationItemSelectedListener {
     public static FragmentBaitap fragment;
 
     public static synchronized FragmentBaitap getInstance() {
@@ -89,8 +95,7 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
     private void initLisChildren() {
         mLisChildren = new ArrayList<>();
         adapter = new AdapterListChildren(mLisChildren, getContext());
-        mLayoutManager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.HORIZONTAL, false);
+        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         //  mLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         recyleChildren.setHasFixedSize(true);
         recyleChildren.setLayoutManager(mLayoutManager);
@@ -101,7 +106,9 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
             @Override
             public void onClickItem(int position, Object item) {
                 if (position == mLisChildren.size() - 1) {
-                    startActivity(new Intent(getContext(), ActivityAddSubUser.class));
+                    Intent intent_class = new Intent(getContext(), ActivityAddSubUser.class);
+                    startActivityForResult(intent_class, Constants.RequestCode.GET_DOWNLOAD_APPKID);
+                    // startActivity(new Intent(getContext(), ActivityAddSubUser.class));
                 } else {
                     Childrens objChil = (Childrens) item;
                     SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, objChil);
@@ -149,7 +156,7 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
                 App.mLisChildren.addAll(mLis);
                 mLisChildren.addAll(mLis);
                 mLisChildren.get(0).setChecked(true);
-                mLisChildren.add(new Childrens());
+                mLisChildren.add(new Childrens(true));
                 adapter.notifyDataSetChanged();
                 if (mLisChildren.size() > 0) {
                     SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, mLisChildren.get(0));
@@ -186,9 +193,10 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void show_list_report_excercise(List<ReportExcercise> mLis) {
+    public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
 
     }
+
 
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {
@@ -213,6 +221,44 @@ public class FragmentBaitap extends BaseFragment implements View.OnClickListener
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapterViewpager);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.RequestCode.GET_DOWNLOAD_APPKID) {
+            if (resultCode == RESULT_OK){
+                initData();
+            }
+        }
+      /*  switch (requestCode) {
+            case Constants.RequestCode.GET_DOWNLOAD_APPKID:
+                String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                mPresenter.get_api_list_get_children(user);
+                break;
+        }*/
+    }
+    boolean isDoubleClick;
+
+    public void fragmentBackTack() {
+        if (isDoubleClick) {
+            getActivity().finish();
+            return;
+        }
+        this.isDoubleClick = true;
+        Toast.makeText(getContext(), "Chạm lần nữa để thoát", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isDoubleClick = false;
+            }
+        }, 2000);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        return false;
+    }
 }

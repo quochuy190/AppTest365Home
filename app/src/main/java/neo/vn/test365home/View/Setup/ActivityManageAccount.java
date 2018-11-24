@@ -1,36 +1,35 @@
 package neo.vn.test365home.View.Setup;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialog;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import neo.vn.test365home.Adapter.AdapterHistoryBalance;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
-import neo.vn.test365home.Listener.ClickDialog;
+import neo.vn.test365home.Listener.ItemClickListener;
+import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ConfigChildren;
 import neo.vn.test365home.Models.ErrorApi;
+import neo.vn.test365home.Models.HistoryBalance;
 import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
 
 public class ActivityManageAccount extends BaseActivity implements ImpSetup.View {
-    @BindView(R.id.txt_username)
-    TextView txt_username;
-    @BindView(R.id.txt_fullname)
-    TextView txt_fullname;
-    @BindView(R.id.txt_email)
-    TextView txt_email;
-    @BindView(R.id.txt_phone)
-    TextView txt_phone;
     @BindView(R.id.txt_account_main)
     TextView txt_main_account;
     @BindView(R.id.txt_bonus_account)
@@ -39,6 +38,14 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
     Button btn_naptien;
     PresenterSetup mPresenter;
     String sUserMe;
+    AdapterHistoryBalance adapter;
+    RecyclerView.LayoutManager mLayoutManager;
+    List<HistoryBalance> mLisHistory;
+    @BindView(R.id.recycle_history)
+    RecyclerView recyclerviewHistory;
+    @BindView(R.id.nestedScrollView)
+    NestedScrollView nestedScrollView;
+
 
     @Override
     public int setContentViewId() {
@@ -49,9 +56,32 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new PresenterSetup(this);
+        init();
+        initAppbar();
         initData();
         initEvent();
-        initAppbar();
+
+    }
+
+
+    private void init() {
+        mLisHistory = new ArrayList<>();
+        adapter = new AdapterHistoryBalance(mLisHistory, this);
+       /* mLayoutManager = new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL, false);*/
+        mLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+        recyclerviewHistory.setHasFixedSize(true);
+        recyclerviewHistory.setLayoutManager(mLayoutManager);
+        recyclerviewHistory.setNestedScrollingEnabled(false);
+        recyclerviewHistory.setItemAnimator(new DefaultItemAnimator());
+        recyclerviewHistory.setAdapter(adapter);
+        adapter.setOnIListener(new ItemClickListener() {
+            @Override
+            public void onClickItem(int position, Object item) {
+
+            }
+        });
+
     }
 
     TextView txt_title;
@@ -59,7 +89,7 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
         txt_title = findViewById(R.id.txt_title_main);
-        txt_title.setText("Quản lý tài khoản");
+        txt_title.setText("QUẢN LÝ TÀI KHOẢN");
         img_back.setVisibility(View.VISIBLE);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,10 +101,11 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
     }
 
     private void initEvent() {
+
         btn_naptien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final BottomSheetDialog dialog =
+               /* final BottomSheetDialog dialog =
                         new BottomSheetDialog(ActivityManageAccount.this);
                 dialog.setContentView(R.layout.dialog_botton_setup_account);
                 final TextView txt_naptien_tructuyen = dialog.findViewById(R.id.txt_naptien_tructuyen);
@@ -91,8 +122,8 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
                         if (sTkchinh.length() > 0 && sTkThuong.length() > 0) {
                             int iTkChinh = Integer.parseInt(sTkchinh);
                             int iTkThuong = Integer.parseInt(sTkThuong);
-                            int iTkTotal = iTkChinh+iTkThuong;
-                            intent.putExtra(Constants.KEY_SEND_TK_TOTAL_NAPTIEN, ""+iTkTotal);
+                            int iTkTotal = iTkChinh + iTkThuong;
+                            intent.putExtra(Constants.KEY_SEND_TK_TOTAL_NAPTIEN, "" + iTkTotal);
                         }
 
                         startActivity(intent);
@@ -146,7 +177,9 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
                         dialog.dismiss();
                     }
                 });
-                dialog.show();
+                dialog.show();*/
+                Intent intent = new Intent(ActivityManageAccount.this, ActivityMenuNapPurchase.class);
+                startActivityForResult(intent, Constants.RequestCode.GET_PURCHASE);
             }
         });
     }
@@ -156,6 +189,7 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
         showDialogLoading();
         sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
         mPresenter.api_get_user_info(sUserMe);
+        mPresenter.api_get_history_balance(sUserMe);
     }
 
     @Override
@@ -178,30 +212,57 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
                 sTkThuong = obj.getsPROMOTION_BALANCE();
                 txt_bonus_account.setText(StringUtil.formatNumber(obj.getsPROMOTION_BALANCE()));
             }
-            if (obj.getsFULLNAME() != null)
-                txt_fullname.setText(obj.getsFULLNAME());
-            if (obj.getsUSERNAME() != null)
-                txt_username.setText(obj.getsUSERNAME());
-            if (obj.getsEMAIL() != null)
-                txt_email.setText(obj.getsEMAIL());
-            if (obj.getsPHONENUMBER() != null)
-                txt_phone.setText(obj.getsPHONENUMBER());
         }
     }
 
     @Override
     public void show_config_to_children(List<ErrorApi> mLis) {
-
+        hideDialogLoading();
     }
 
     @Override
     public void show_get_config_children(List<ConfigChildren> mLis) {
-
+        hideDialogLoading();
     }
 
     @Override
     public void show_payment(List<ErrorApi> mLis) {
+        hideDialogLoading();
+    }
 
+    @Override
+    public void show_change_pass(List<ErrorApi> mLis) {
+        hideDialogLoading();
+    }
+
+    @Override
+    public void show_get_info_chil(List<Childrens> mLis) {
+        hideDialogLoading();
+    }
+
+    @Override
+    public void show_update_info_chil(List<ErrorApi> mLis) {
+        hideDialogLoading();
+    }
+
+    @Override
+    public void show_get_history_balance(List<HistoryBalance> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            mLisHistory.clear();
+            mLisHistory.addAll(mLis);
+            adapter.notifyDataSetChanged();
+            // nestedScrollView.fullScroll(View.FOCUS_UP);
+            nestedScrollView.scrollTo(0, 0);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.RequestCode.GET_PURCHASE && resultCode == RESULT_OK) {
+            initData();
+        }
     }
 
 

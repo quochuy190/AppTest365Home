@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.R;
@@ -50,21 +53,25 @@ public class AdapterListChildrenSetup extends RecyclerView.Adapter<AdapterListCh
     @Override
     public void onBindViewHolder(TopicViewHoder holder, int position) {
         Childrens obj = listChildren.get(position);
+        if (obj.getsAVATAR() != null && obj.getsAVATAR().length() > 0) {
+            Glide.with(context).load(Config.URL_IMAGE + obj.getsAVATAR()).into(holder.img_avata);
+        } else {
+            Glide.with(context).load(R.drawable.avatar_default).into(holder.img_avata);
+        }
+        if (obj.getsFULLNAME() != null)
+            holder.txt_fullname.setText("Họ tên: " + obj.getsFULLNAME());
 
-        if (obj.getsFULLNAME()!=null)
-            holder.txt_fullname.setText(obj.getsFULLNAME());
-
-        if (obj.getsUSERNAME()!=null)
+        if (obj.getsUSERNAME() != null)
             holder.txt_user.setText(obj.getsUSERNAME());
 
-        if (obj.getsID_LEVEL()!=null)
+        if (obj.getsID_LEVEL() != null)
             holder.txt_class.setText(obj.getsLEVEL_NAME());
 
-  /*      if (obj.getsFULLNAME()!=null)
-            holder.txt_fullname.setText(obj.getsFULLNAME());
+        if (obj.getsSCHOOL_NAME() != null)
+            holder.txt_school.setText(obj.getsSCHOOL_NAME());
 
-        if (obj.getsFULLNAME()!=null)
-            holder.txt_fullname.setText(obj.getsFULLNAME());*/
+        if (obj.getsPASS() != null)
+            holder.txt_pass.setText(obj.getsPASS());
 
     }
 
