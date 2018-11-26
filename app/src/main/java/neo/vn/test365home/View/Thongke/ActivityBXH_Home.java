@@ -170,9 +170,9 @@ public class ActivityBXH_Home extends BaseActivity implements View.OnClickListen
 
     private void setupViewPager() {
         adapterViewpager = new AdapterViewpager(getSupportFragmentManager());
-        adapterViewpager.addFragment(new FragmentWeekChart(), "BXH Tuần");
-        adapterViewpager.addFragment(new FragmentMonthChart(), "BXH Tháng");
-        adapterViewpager.addFragment(new FragmentYearChart(), "BXH Năm");
+        adapterViewpager.addFragment(new FragmentWeekChart(), "BXH TUẦN");
+        adapterViewpager.addFragment(new FragmentMonthChart(), "BXH THÁNG");
+        adapterViewpager.addFragment(new FragmentYearChart(), "BXH NĂM");
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapterViewpager);
         tabLayout.setupWithViewPager(viewPager);

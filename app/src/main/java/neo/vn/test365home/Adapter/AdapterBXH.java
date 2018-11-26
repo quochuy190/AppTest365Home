@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -42,7 +45,7 @@ public class AdapterBXH extends RecyclerView.Adapter<AdapterBXH.TopicViewHoder> 
     @Override
     public TopicViewHoder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_bxh, parent, false);
+                .inflate(R.layout.item_bangxephang, parent, false);
         return new TopicViewHoder(view);
     }
 
@@ -51,27 +54,38 @@ public class AdapterBXH extends RecyclerView.Adapter<AdapterBXH.TopicViewHoder> 
         BXH obj = mList.get(position);
         if (position == 0) {
             holder.txt_stt.setText("" + (position + 1));
-            holder.txt_stt.setTextColor(context.getResources().getColor(R.color.red));
+            Glide.with(context).load(R.drawable.icon_bxh_1).into(holder.img_bg_point);
         } else if (position == 1) {
             holder.txt_stt.setText("" + (position + 1));
-            holder.txt_stt.setTextColor(context.getResources().getColor(R.color.orange));
+            Glide.with(context).load(R.drawable.icon_bxh_2).into(holder.img_bg_point);
         } else if (position == 2) {
             holder.txt_stt.setText("" + (position + 1));
-            holder.txt_stt.setTextColor(context.getResources().getColor(R.color.green));
-        } else if (position > 2) {
+            Glide.with(context).load(R.drawable.icon_bxh_3).into(holder.img_bg_point);
+        } else if (position == 3) {
             holder.txt_stt.setText("" + (position + 1));
-            holder.txt_stt.setTextColor(context.getResources().getColor(R.color.blue));
+            Glide.with(context).load(R.drawable.icon_bxh_4).into(holder.img_bg_point);
+        } else if (position == 4) {
+            holder.txt_stt.setText("" + (position + 1));
+            Glide.with(context).load(R.drawable.icon_bxh_5).into(holder.img_bg_point);
+        } else if (position == 5) {
+            holder.txt_stt.setText("" + (position + 1));
+            Glide.with(context).load(R.drawable.icon_bxh_6).into(holder.img_bg_point);
+        } else if (position == 6) {
+            holder.txt_stt.setText("" + (position + 1));
+            Glide.with(context).load(R.drawable.icon_bxh_7).into(holder.img_bg_point);
+        } else if (position > 6) {
+            holder.txt_stt.setText("" + (position + 1));
+            Glide.with(context).load(R.drawable.icon_bxh_7).into(holder.img_bg_point);
         }
 
-
         if (obj.getsFULLNAME() != null)
-            holder.txt_name.setText("Họ tên: "+obj.getsFULLNAME());
+            holder.txt_name.setText(obj.getsFULLNAME());
         if (obj.getsLEVEL_NAME() != null)
             holder.txt_class.setText(obj.getsLEVEL_NAME());
         if (obj.getsSCHOOL_NAME() != null)
             holder.txt_school.setText(obj.getsSCHOOL_NAME());
         if (obj.getsSPEED() != null)
-            holder.txt_speed_time.setText("Tốc độ làm bài: " + obj.getsSPEED());
+            holder.txt_speed_time.setText(obj.getsSPEED());
         if (obj.getsDTB() != null)
             holder.txt_point.setText(StringUtil.format_point(Float.parseFloat(obj.getsDTB())));
 
@@ -90,12 +104,16 @@ public class AdapterBXH extends RecyclerView.Adapter<AdapterBXH.TopicViewHoder> 
         TextView txt_class;
         @BindView(R.id.txt_school)
         TextView txt_school;
-        @BindView(R.id.txt_speed_time)
+        @BindView(R.id.txt_speed)
         TextView txt_speed_time;
         @BindView(R.id.txt_point)
         TextView txt_point;
-        @BindView(R.id.txt_stt)
+        @BindView(R.id.txt_rank)
         TextView txt_stt;
+        @BindView(R.id.img_avata)
+        ImageView img_avata;
+        @BindView(R.id.img_bg_point)
+        ImageView img_bg_point;
 
 
         public TopicViewHoder(View itemView) {
