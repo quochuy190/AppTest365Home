@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -50,10 +52,26 @@ public class ActivityBXH_Home extends BaseActivity implements View.OnClickListen
         viewPager = findViewById(R.id.viewpage_bxh_home);
         tabLayout = findViewById(R.id.tab_layout_bxh_home);
         setupViewPager();
+        initAppbar();
         initData();
         initEvent();
     }
 
+    TextView txt_title;
+
+    public void initAppbar() {
+        ImageView img_back = findViewById(R.id.img_back);
+        txt_title = findViewById(R.id.txt_title_main);
+        txt_title.setText("Bảng xếp hạng");
+        img_back.setVisibility(View.VISIBLE);
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
     @Override
     public int setContentViewId() {
         return R.layout.fragment_bxh_home;
