@@ -77,7 +77,8 @@ public class ActivityBangXepHang extends BaseFragment implements ImpThongke.View
         mList = new ArrayList<>();
         mAdapter = new AdapterBXH(mList, getContext());
       //  mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        mLayoutManager = new GridLayoutManager(getContext(),1, GridLayoutManager.VERTICAL, false);
+        mLayoutManager = new GridLayoutManager(getContext(),1,
+                GridLayoutManager.VERTICAL, false);
         recycle_bangxephang.setNestedScrollingEnabled(false);
         recycle_bangxephang.setHasFixedSize(true);
         recycle_bangxephang.setLayoutManager(mLayoutManager);

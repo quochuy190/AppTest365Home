@@ -62,7 +62,7 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
     @BindView(R.id.btn_back_update)
     Button btnBack;
     @BindView(R.id.img_back)
-    Button btnBack_appbar;
+    ImageView btnBack_appbar;
     @BindView(R.id.btn_ok_update)
     Button btnOkie;
     PresenterLogin mPresenter;
@@ -70,8 +70,6 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
     boolean isStartLogin;
     @BindView(R.id.img_update_avata)
     ImageView img_update_avata;
-    @BindView(R.id.img_back)
-    ImageView img_back;
     PresenterUploadImage mPresenterUploadImage;
 
     @Override

@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/dp120"
-    android:layout_height="@dimen/dp100"
-
-   >
+    android:paddingTop="@dimen/dp5"
+    android:paddingBottom="@dimen/dp5"
+    android:paddingLeft="@dimen/dp10"
+    android:paddingRight="@dimen/dp10"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_margin="@dimen/dp2"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/app_bar"
-        android:layout_centerHorizontal="true"
         android:id="@+id/img_avata"
-        android:layout_width="@dimen/dp70"
-        android:layout_height="@dimen/dp70"
-        android:src="@drawable/avatar_default" />
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp60"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dp2"
+        android:src="@drawable/avatar_default"
+        app:civ_border_color="@color/app_bar"
+        app:civ_border_width="2dp" />
 
     <TextView
-        android:singleLine="true"
-        android:layout_below="@id/img_avata"
         android:id="@+id/txt_name_item_subuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/img_avata"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:singleLine="true"
         android:text="Đức anh"
         android:textColor="@color/app_bar"
-        android:textSize="@dimen/text_13sp" />
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:padding="@dimen/dp10"
-        android:id="@+id/img_backgrond"
-        android:visibility="visible"
-        android:background="@color/background_item_children"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </de.hdodenhof.circleimageview.CircleImageView>
+        android:textSize="@dimen/text_14sp" />
+
 </RelativeLayout>

@@ -40,8 +40,10 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
+import neo.vn.test365home.Untils.StringUtil;
 
-public class FragmentThongke extends BaseFragment implements View.OnClickListener, OnChartValueSelectedListener, ImpThongke.View {
+public class FragmentThongke extends BaseFragment implements View.OnClickListener,
+        OnChartValueSelectedListener, ImpThongke.View {
     public static FragmentThongke fragment;
     PresenterThongke mPresenter;
     @BindView(R.id.combinedChart)
@@ -102,6 +104,7 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
         leftAxis.setDrawGridLines(false);
         leftAxis.setAxisMinimum(0f);
         final List<String> xLabel = new ArrayList<>();
+        xLabel.add("Tuần");
         xLabel.add("Tuần 1");
         xLabel.add("Tuần 2");
         xLabel.add("Tuần 3");
@@ -140,6 +143,7 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
             lineDatas.addDataSet((ILineDataSet) dataChartToan(mLisPointToan));
         if (mListPointTA != null && mListPointTA.size() > 0)
             lineDatas.addDataSet((ILineDataSet) dataChartTiengAnh(mListPointTA));
+
         data.setData(lineDatas);
         xAxis.setAxisMaximum(data.getXMax() + 0.25f);
         mChart.setData(data);
@@ -184,19 +188,20 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
         for (int index = 0; index < mListData.size(); index++) {
-            if (mListData.get(index).length() > 0)
-                entries.add(new Entry(index, Float.parseFloat(mListData.get(index))));
+            if (mListData.get(index) != null && mListData.get(index).length() > 0)
+                entries.add(new Entry(index, Float.parseFloat(StringUtil.format_point(Float.parseFloat(mListData.get(index))))));
         }
         LineDataSet set = new LineDataSet(entries, "Tiếng Việt");
-        set.setColor(Color.GREEN);
-        set.setLineWidth(1.5f);
-        set.setCircleColor(Color.GREEN);
+        //  set.setColor(Color.GREEN);
+        set.setColor(Color.rgb(67, 145, 88));
+        set.setLineWidth(2.5f);
+        set.setCircleColor(Color.rgb(67, 145, 88));
         set.setCircleRadius(3f);
-        set.setFillColor(Color.GREEN);
+        set.setFillColor(Color.rgb(67, 145, 88));
         set.setMode(LineDataSet.Mode.LINEAR);
         set.setDrawValues(true);
-        set.setValueTextSize(8f);
-        set.setValueTextColor(Color.GREEN);
+        set.setValueTextSize(10f);
+        set.setValueTextColor(Color.rgb(67, 145, 88));
 
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         d.addDataSet(set);
@@ -211,19 +216,23 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
         for (int index = 0; index < mListData.size(); index++) {
-            if (mListData.get(index)!=null&&mListData.get(index).length() > 0)
-                entries.add(new Entry(index, Float.parseFloat(mListData.get(index))));
+            if (mListData.get(index) != null && mListData.get(index).length() > 0) {
+                float point = Float.parseFloat(mListData.get(index));
+                String sPoint = StringUtil.format_point(point);
+                entries.add(new Entry(index, Float.parseFloat(sPoint)));
+            }
+
         }
 
         LineDataSet set = new LineDataSet(entries, "Toán");
         set.setColor(Color.RED);
-        set.setLineWidth(1.5f);
+        set.setLineWidth(2.5f);
         set.setCircleColor(Color.RED);
         set.setCircleRadius(3f);
         set.setFillColor(Color.RED);
         set.setMode(LineDataSet.Mode.LINEAR);
         set.setDrawValues(true);
-        set.setValueTextSize(8f);
+        set.setValueTextSize(10f);
         set.setValueTextColor(Color.RED);
 
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
@@ -233,26 +242,24 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
     }
 
     private static DataSet dataChartTiengAnh(List<String> mListData) {
-
         LineData d = new LineData();
         // float[] data = new float[]{4, 7, 5, 10, 6, 9, 5, 4, 8, 8, 9, 10};
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
         for (int index = 0; index < mListData.size(); index++) {
-            if (mListData.get(index).length() > 0)
-                entries.add(new Entry(index, Float.parseFloat(mListData.get(index))));
+            if (mListData.get(index) != null && mListData.get(index).length() > 0)
+                entries.add(new Entry(index, Float.parseFloat(StringUtil.format_point(Float.parseFloat(mListData.get(index))))));
         }
-
         LineDataSet set = new LineDataSet(entries, "Tiếng Anh");
-        set.setColor(Color.CYAN);
-        set.setLineWidth(1.5f);
-        set.setCircleColor(Color.CYAN);
+        set.setColor(Color.rgb(15, 97, 225));
+        set.setLineWidth(2.5f);
+        set.setCircleColor(Color.rgb(15, 97, 225));
         set.setCircleRadius(3f);
-        set.setFillColor(Color.CYAN);
+        set.setFillColor(Color.rgb(15, 97, 225));
         set.setMode(LineDataSet.Mode.LINEAR);
         set.setDrawValues(true);
-        set.setValueTextSize(8f);
-        set.setValueTextColor(Color.CYAN);
+        set.setValueTextSize(10f);
+        set.setValueTextColor(Color.rgb(15, 97, 225));
 
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         d.addDataSet(set);
@@ -267,7 +274,7 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
 
     @Override
     public void show_chart_to_subject_all(List<Chart_To_Subject> mLis) {
-        hideDialogLoading();
+        /*hideDialogLoading();
         if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
             for (Chart_To_Subject obj : mLis) {
                 if (obj.getsSUBJECT_ID().equals("1")) {
@@ -289,6 +296,88 @@ public class FragmentThongke extends BaseFragment implements View.OnClickListene
             mListTiengAnh.add("6");
             mListTiengAnh.add("9");
             mListTiengAnh.add("8.5");
+            initChart(mListToan, mListTiengViet, mListTiengAnh);
+        }*/
+        hideDialogLoading();
+        List<Chart_To_Subject> mTiengViet = new ArrayList<>();
+        List<Chart_To_Subject> mToan = new ArrayList<>();
+        List<Chart_To_Subject> mTiengAnh = new ArrayList<>();
+        mListTiengAnh.clear();
+        mListToan.clear();
+        mListTiengViet.clear();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            int iWeekToanMax = 0, iWeekTVMax = 0, iWeekTAMax = 0;
+            for (Chart_To_Subject obj : mLis) {
+                if (obj.getsSUBJECT_ID().equals("1")) {
+                    int iWeekToan = Integer.parseInt(obj.getsWEEK_ID());
+                    if (iWeekToan > iWeekToanMax)
+                        iWeekToanMax = iWeekToan;
+                    mToan.add(obj);
+                }
+                if (obj.getsSUBJECT_ID().equals("2")) {
+                    int iWeekTV = Integer.parseInt(obj.getsWEEK_ID());
+                    if (iWeekTV > iWeekTVMax)
+                        iWeekTVMax = iWeekTV;
+                    mTiengViet.add(obj);
+                }
+                if (obj.getsSUBJECT_ID().equals("3")) {
+                    int iWeekTA = Integer.parseInt(obj.getsWEEK_ID());
+                    if (iWeekTA > iWeekTAMax)
+                        iWeekTAMax = iWeekTA;
+                    mTiengAnh.add(obj);
+                }
+            }
+            if (iWeekToanMax > 0) {
+                for (int k = 0; k < iWeekToanMax; k++) {
+                    mListToan.add(null);
+                }
+                if (mToan.size() > 0) {
+                    for (int i = 0; i < (mListToan.size()); i++) {
+                        for (int j = 0; j < mToan.size(); j++) {
+                            int week = Integer.parseInt(mToan.get(j).getsWEEK_ID());
+                            if ((i + 1) == week) {
+                                mListToan.set(i, mToan.get(j).getsPOINT());
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            if (iWeekTVMax > 0) {
+                for (int k = 0; k < iWeekTVMax; k++) {
+                    mListTiengViet.add(null);
+                }
+                if (mTiengViet.size() > 0) {
+                    for (int i = 0; i < mListTiengViet.size(); i++) {
+                        for (int j = 0; j < mTiengViet.size(); j++) {
+                            int week = Integer.parseInt(mTiengViet.get(j).getsWEEK_ID());
+                            if ((i + 1) == week) {
+                                mListTiengViet.set(i, mTiengViet.get(j).getsPOINT());
+                            }
+                        }
+                    }
+                }
+            }
+            if (iWeekTAMax > 0) {
+                for (int k = 0; k < iWeekTVMax; k++) {
+                    mListTiengAnh.add(null);
+                }
+                if (mTiengAnh.size() > 0) {
+
+                    for (int i = 0; i < mListTiengAnh.size(); i++) {
+                        for (int j = 0; j < mTiengAnh.size(); j++) {
+                            int week = Integer.parseInt(mTiengAnh.get(j).getsWEEK_ID());
+                            if (i == week) {
+                                mListTiengAnh.set(i, mTiengAnh.get(j).getsPOINT());
+                            }
+                        }
+                    }
+                }
+            }
+            mListToan.add(0, "0");
+            mListTiengViet.add(0, "0");
+            mListTiengAnh.add(0, "0");
             initChart(mListToan, mListTiengViet, mListTiengAnh);
         }
     }

@@ -55,22 +55,26 @@ public class AdapterListChildren extends RecyclerView.Adapter<AdapterListChildre
         Childrens airport = listChildren.get(position);
         holder.txt_name.setText(airport.getsUSERNAME());
         if (airport.getsAVATAR() != null && airport.getsAVATAR().length() > 0)
-            Glide.with(context).load(Config.URL_IMAGE + airport.getsAVATAR()).into(holder.img_avata);
+            Glide.with(context).load(Config.URL_IMAGE + airport.getsAVATAR())
+                    .placeholder(R.drawable.avatar_default)
+                    .into(holder.img_avata);
         else
             Glide.with(context).load(R.drawable.avatar_default).into(holder.img_avata);
         if (airport.isChecked()) {
-            holder.img_backgrond.setVisibility(View.GONE);
+            holder.img_avata.setBorderColor(context.getResources().getColor(R.color.app_bar_new));
+            // holder.img_backgrond.setVisibility(View.GONE);
         } else {
-            holder.img_backgrond.setVisibility(View.VISIBLE);
+            holder.img_avata.setBorderColor(context.getResources().getColor(R.color.bg_app));
+            // holder.img_backgrond.setVisibility(View.VISIBLE);
         }
-        if (airport.isAddSub()) {
+        /*if (airport.isAddSub()) {
             Glide.with(context).load(R.drawable.add_avata).into(holder.img_avata);
             holder.txt_name.setVisibility(View.GONE);
 
         } else {
             holder.txt_name.setVisibility(View.VISIBLE);
             holder.img_avata.setVisibility(View.VISIBLE);
-        }
+        }*/
     }
 
     @Override
@@ -82,8 +86,6 @@ public class AdapterListChildren extends RecyclerView.Adapter<AdapterListChildre
             View.OnClickListener, View.OnLongClickListener {
         @BindView(R.id.txt_name_item_subuser)
         TextView txt_name;
-        @BindView(R.id.img_backgrond)
-        CircleImageView img_backgrond;
         @BindView(R.id.img_avata)
         CircleImageView img_avata;
 

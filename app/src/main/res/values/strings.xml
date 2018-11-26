@@ -132,4 +132,5 @@ các thông tin phù hợp khác.
 </string>
     <string name="title_activity_fragment_navigation_baitap">FragmentNavigationBaitap</string>
     <string name="or">HOẶC</string>
+    <string name="title_chart">Biểu đồ học tập</string>
 </resources>

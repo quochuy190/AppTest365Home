@@ -78,7 +78,9 @@ public class ActivityHome extends BaseActivity {
         });
 
     }
+
     boolean isDoubleClick;
+
     @Override
     public void onBackPressed() {
         if (isDoubleClick) {
