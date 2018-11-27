@@ -135,7 +135,6 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
                                         "Ba mẹ nên cập nhật ảnh đại diện để hình ảnh gần gũi hơn.");
                         isThongbaoAvata = true;
                     }
-
                     return;
                 }
                 if (sFullName.length() > 0 || sPhone.length() > 0 || sEmail.length() > 0 || sAvata.length() > 0) {
@@ -163,7 +162,9 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
         });
     }
 
+
     private void initData() {
+        isStartLogin = getIntent().getBooleanExtra(Constants.KEY_IS_START_LOGIN, false);
         mLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
         if (mLogin != null) {
             if (mLogin.getsAVARTAR() != null && mLogin.getsAVARTAR().length() > 0) {

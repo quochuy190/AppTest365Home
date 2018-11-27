@@ -78,6 +78,13 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
     ImageView img_bxh;
     @BindView(R.id.txt_title_main)
     TextView txt_title;
+    private Childrens mChildren;
+    @BindView(R.id.txt_lable_toan)
+    TextView txt_lable_toan;
+    @BindView(R.id.txt_lable_tv)
+    TextView txt_lable_tv;
+    @BindView(R.id.txt_lable_ta)
+    TextView txt_lable_ta;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -142,6 +149,7 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
                 mListTiengAnh.clear();
                 mListTiengViet.clear();
                 initChart(mListToan, mListTiengViet, mListTiengAnh);
+                mChildren = objChil;
                 initDataChart(objChil);
                 /*SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, objChil);
                 setupViewPager(objChil);*/
@@ -164,14 +172,30 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ActivityBXH_Home.class);
+                if (mChildren != null)
+                    SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, mChildren);
                 startActivity(intent);
             }
         });
+        txt_lable_toan.setOnClickListener(this);
+        txt_lable_tv.setOnClickListener(this);
+        txt_lable_ta.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.txt_lable_toan:
+                show_chart_toan(mListToan, mListTiengViet, mListTiengAnh);
+                break;
+            case R.id.txt_lable_tv:
+                initChart(mListToan, mListTiengViet, mListTiengAnh);
+                break;
+            case R.id.txt_lable_ta:
+                show_chart_ta(mListToan, mListTiengViet, mListTiengAnh);
+                break;
+        }
 
     }
 
@@ -267,7 +291,7 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
             mListToan.add(0, "0");
             mListTiengViet.add(0, "0");
             mListTiengAnh.add(0, "0");
-            initChart(mListToan, mListTiengViet, mListTiengAnh);
+            show_chart_toan(mListToan, mListTiengViet, mListTiengAnh);
         }
     }
 
@@ -305,7 +329,7 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
                 if (mLisChildren.size() > 0) {
                    /* SharedPrefs.getInstance().put(Constants.KEY_SEND_CHILDREN_FRAGMENT, mLisChildren.get(0));
                     setupViewPager(mLisChildren.get(0));*/
-
+                    mChildren = mLisChildren.get(0);
                     initDataChart(mLisChildren.get(0));
                 }
 
@@ -367,6 +391,10 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
     }
 
     private void initChart(List<String> mLisPointToan, List<String> mListPointTV, List<String> mListPointTA) {
+        txt_lable_toan.setTextColor(getResources().getColor(R.color.black_mo));
+        txt_lable_ta.setTextColor(getResources().getColor(R.color.black_mo));
+        txt_lable_tv.setTextColor(getResources().getColor(R.color.red_test365));
+
         mChart.getDescription().setEnabled(false);
         mChart.setBackgroundColor(Color.WHITE);
         mChart.setDrawGridBackground(false);
@@ -415,8 +443,139 @@ public class FragmentThongkeHome extends BaseFragment implements View.OnClickLis
         LineData lineDatas = new LineData();
         if (mListPointTV != null && mListPointTV.size() > 0)
             lineDatas.addDataSet((ILineDataSet) dataChartTiengViet(mListPointTV));
+      /*  if (mLisPointToan != null && mLisPointToan.size() > 0)
+            lineDatas.addDataSet((ILineDataSet) dataChartToan(mLisPointToan));
+
+        if (mListPointTA != null && mListPointTA.size() > 0)
+            lineDatas.addDataSet((ILineDataSet) dataChartTiengAnh(mListPointTA));*/
+
+        data.setData(lineDatas);
+        xAxis.setAxisMaximum(data.getXMax() + 0.25f);
+        mChart.setData(data);
+        mChart.invalidate();
+    }
+
+    private void show_chart_toan(List<String> mLisPointToan, List<String> mListPointTV, List<String> mListPointTA) {
+        txt_lable_toan.setTextColor(getResources().getColor(R.color.red_test365));
+        txt_lable_ta.setTextColor(getResources().getColor(R.color.black_mo));
+        txt_lable_tv.setTextColor(getResources().getColor(R.color.black_mo));
+        mChart.getDescription().setEnabled(false);
+        mChart.setBackgroundColor(Color.WHITE);
+        mChart.setDrawGridBackground(false);
+        mChart.setDrawBarShadow(false);
+        mChart.setHighlightFullBarEnabled(false);
+        //   mChart.setOnChartValueSelectedListener(this);
+        YAxis rightAxis = mChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setAxisMinimum(0f);
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setAxisMinimum(0f);
+        final List<String> xLabel = new ArrayList<>();
+        xLabel.add("Tuần");
+        xLabel.add("Tuần 1");
+        xLabel.add("Tuần 2");
+        xLabel.add("Tuần 3");
+        xLabel.add("Tuần 4");
+        xLabel.add("Tuần 5");
+        xLabel.add("Tuần 6");
+        xLabel.add("Tuần 7");
+        xLabel.add("Tuần 8");
+        xLabel.add("Tuần 9");
+        xLabel.add("Tuần 10");
+        xLabel.add("Tuần 11");
+        xLabel.add("Tuần 12");
+        xLabel.add("Tuần 13");
+        xLabel.add("Tuần 14");
+        xLabel.add("Tuần 15");
+        xLabel.add("Tuần 16");
+        xLabel.add("Tuần 17");
+        xLabel.add("Tuần 18");
+        xLabel.add("Tuần 19");
+        xLabel.add("Tuần 20");
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMinimum(0f);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return xLabel.get((int) value % xLabel.size());
+            }
+        });
+        CombinedData data = new CombinedData();
+        LineData lineDatas = new LineData();
+
         if (mLisPointToan != null && mLisPointToan.size() > 0)
             lineDatas.addDataSet((ILineDataSet) dataChartToan(mLisPointToan));
+       /* if (mListPointTV != null && mListPointTV.size() > 0)
+            lineDatas.addDataSet((ILineDataSet) dataChartTiengViet(mListPointTV));
+        if (mListPointTA != null && mListPointTA.size() > 0)
+            lineDatas.addDataSet((ILineDataSet) dataChartTiengAnh(mListPointTA));*/
+
+        data.setData(lineDatas);
+        xAxis.setAxisMaximum(data.getXMax() + 0.25f);
+        mChart.setData(data);
+        mChart.invalidate();
+    }
+
+    private void show_chart_ta(List<String> mLisPointToan, List<String> mListPointTV, List<String> mListPointTA) {
+        txt_lable_toan.setTextColor(getResources().getColor(R.color.black_mo));
+        txt_lable_ta.setTextColor(getResources().getColor(R.color.red_test365));
+        txt_lable_tv.setTextColor(getResources().getColor(R.color.black_mo));
+        mChart.getDescription().setEnabled(false);
+        mChart.setBackgroundColor(Color.WHITE);
+        mChart.setDrawGridBackground(false);
+        mChart.setDrawBarShadow(false);
+        mChart.setHighlightFullBarEnabled(false);
+        //   mChart.setOnChartValueSelectedListener(this);
+        YAxis rightAxis = mChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setAxisMinimum(0f);
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setAxisMinimum(0f);
+        final List<String> xLabel = new ArrayList<>();
+        xLabel.add("Tuần");
+        xLabel.add("Tuần 1");
+        xLabel.add("Tuần 2");
+        xLabel.add("Tuần 3");
+        xLabel.add("Tuần 4");
+        xLabel.add("Tuần 5");
+        xLabel.add("Tuần 6");
+        xLabel.add("Tuần 7");
+        xLabel.add("Tuần 8");
+        xLabel.add("Tuần 9");
+        xLabel.add("Tuần 10");
+        xLabel.add("Tuần 11");
+        xLabel.add("Tuần 12");
+        xLabel.add("Tuần 13");
+        xLabel.add("Tuần 14");
+        xLabel.add("Tuần 15");
+        xLabel.add("Tuần 16");
+        xLabel.add("Tuần 17");
+        xLabel.add("Tuần 18");
+        xLabel.add("Tuần 19");
+        xLabel.add("Tuần 20");
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMinimum(0f);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return xLabel.get((int) value % xLabel.size());
+            }
+        });
+        CombinedData data = new CombinedData();
+        LineData lineDatas = new LineData();
+
+     /*   if (mLisPointToan != null && mLisPointToan.size() > 0)
+            lineDatas.addDataSet((ILineDataSet) dataChartToan(mLisPointToan));
+        if (mListPointTV != null && mListPointTV.size() > 0)
+            lineDatas.addDataSet((ILineDataSet) dataChartTiengViet(mListPointTV));*/
         if (mListPointTA != null && mListPointTA.size() > 0)
             lineDatas.addDataSet((ILineDataSet) dataChartTiengAnh(mListPointTA));
 

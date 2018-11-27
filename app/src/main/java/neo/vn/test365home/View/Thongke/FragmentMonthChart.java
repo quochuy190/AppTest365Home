@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
 
 
-public class FragmentMonthChart extends BaseFragment implements ImpThongke.View{
+public class FragmentMonthChart extends BaseFragment implements ImpThongke.View {
     public static FragmentMonthChart fragment;
     String sUserMe, sUserCon, sDate;
     @BindView(R.id.recycle_bangxephang)
@@ -39,29 +40,26 @@ public class FragmentMonthChart extends BaseFragment implements ImpThongke.View{
     List<BXH> mList;
     Childrens mChildren;
     PresenterThongke mPresenter;
-
     @BindView(R.id.txt_name)
     TextView txt_name;
-    @BindView(R.id.txt_class)
-    TextView txt_class;
-    @BindView(R.id.txt_school)
-    TextView txt_school;
     @BindView(R.id.txt_speed_time)
     TextView txt_speed_time;
     @BindView(R.id.txt_point)
     TextView txt_point;
-    @BindView(R.id.txt_stt)
+    @BindView(R.id.txt_rank)
     TextView txt_stt;
     @BindView(R.id.txt_bxh_notify)
     TextView txt_bxh_notify;
     boolean isNotChart = false;
+    @BindView(R.id.rl_myrank)
+    RelativeLayout rl_myrank;
+
     public static synchronized FragmentMonthChart getInstance() {
         if (fragment == null) {
             fragment = new FragmentMonthChart();
         }
         return (fragment);
     }
-
 
 
     @Override
@@ -95,7 +93,7 @@ public class FragmentMonthChart extends BaseFragment implements ImpThongke.View{
     private void init() {
         mList = new ArrayList<>();
         mAdapter = new AdapterBXH(mList, getContext());
-        mLayoutManager = new GridLayoutManager(getContext(),1, GridLayoutManager.VERTICAL, false);
+        mLayoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         recycle_bangxephang.setNestedScrollingEnabled(false);
         recycle_bangxephang.setHasFixedSize(true);
         recycle_bangxephang.setLayoutManager(mLayoutManager);
@@ -139,28 +137,34 @@ public class FragmentMonthChart extends BaseFragment implements ImpThongke.View{
                 BXH obj = mLis.get(i);
                 if (obj.getsUSERNAME().equals(sUserCon)) {
                     isNotChart = true;
-                    if (obj.getsUSERNAME() != null && obj.getsUSERNAME().length() > 0)
-                        txt_name.setText("Họ tên: " + obj.getsFULLNAME());
-                    if (obj.getsSCHOOL_NAME() != null && obj.getsSCHOOL_NAME().length() > 0)
+                    if (obj.getsFULLNAME() != null && obj.getsFULLNAME().length() > 0)
+                        txt_name.setText(obj.getsFULLNAME());
+                  /*  if (obj.getsSCHOOL_NAME() != null && obj.getsSCHOOL_NAME().length() > 0)
                         txt_school.setText(obj.getsSCHOOL_NAME());
                     if (obj.getsLEVEL_NAME() != null && obj.getsLEVEL_NAME().length() > 0)
-                        txt_class.setText(obj.getsLEVEL_NAME());
+                        txt_class.setText(obj.getsLEVEL_NAME());*/
                     if (obj.getsSPEED() != null && obj.getsSPEED().length() > 0)
-                        txt_speed_time.setText("Tốc độ làm bài: " + obj.getsSPEED());
+                        txt_speed_time.setText(obj.getsSPEED());
                     if (obj.getsDTB() != null && obj.getsDTB().length() > 0)
                         txt_point.setText(StringUtil.format_point(Float.parseFloat(obj.getsDTB())));
                     txt_stt.setText("" + (i + 1));
                 }
             }
             if (isNotChart) {
+                rl_myrank.setVisibility(View.VISIBLE);
                 txt_bxh_notify.setVisibility(View.GONE);
             } else {
+                rl_myrank.setVisibility(View.GONE);
                 txt_bxh_notify.setVisibility(View.VISIBLE);
             }
             mList.clear();
             mList.addAll(mLis);
             mAdapter.notifyDataSetChanged();
-        } else showDialogNotify("Thông báo", "Lấy dữ liệu không thành công");
+        } else if (mLis != null && mLis.get(0).getsERROR().equals("0001")) {
+            rl_myrank.setVisibility(View.GONE);
+            txt_bxh_notify.setVisibility(View.VISIBLE);
+            txt_bxh_notify.setText("Tháng mới chưa có bảng xếp hạng, bạn hãy làm đủ 3 bài tập trong tuần để có mặt trên bảng xếp hạng");
+        }
     }
 
     @Override

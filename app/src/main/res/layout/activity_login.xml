@@ -34,12 +34,13 @@
         android:src="@drawable/logo" />
 
     <RelativeLayout
+        android:padding="@dimen/dp5"
         android:id="@+id/rl_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_logo"
-        android:layout_marginLeft="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginLeft="@dimen/margin_left_right"
+        android:layout_marginRight="@dimen/margin_left_right"
 
         android:background="@drawable/spr_login_edt">
 
@@ -78,13 +79,14 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:padding="@dimen/dp5"
         android:id="@+id/rl_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_user"
-        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginLeft="@dimen/margin_left_right"
         android:layout_marginTop="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginRight="@dimen/margin_left_right"
         android:background="@drawable/spr_login_edt">
 
         <ImageView
@@ -128,7 +130,7 @@
             android:layout_centerVertical="true"
             android:background="@color/white"
             android:padding="@dimen/dp5"
-            android:src="@drawable/ic_eye_show"
+            android:src="@drawable/ic_eye_hide"
             android:tint="@color/gray" />
 
     </RelativeLayout>

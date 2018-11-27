@@ -1,7 +1,6 @@
 package neo.vn.test365home.View.Longin;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.method.HideReturnsTransformationMethod;
@@ -26,6 +25,7 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.Login;
 import neo.vn.test365home.R;
+import neo.vn.test365home.Untils.KeyboardUtil;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
 
@@ -107,7 +107,7 @@ public class ActivityRegister extends BaseActivity implements ImpLogin.View {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isDangky = cb_remember_login.isChecked();
-                if (isDangky) {
+               /* if (isDangky) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         btn_Register.setBackground(getResources().getDrawable(R.drawable.spr_click_button));
                         btn_Register.setTextColor(getResources().getColor(R.color.white));
@@ -117,7 +117,7 @@ public class ActivityRegister extends BaseActivity implements ImpLogin.View {
                         btn_Register.setBackground(getResources().getDrawable(R.drawable.spr_click_button_disible));
                         btn_Register.setTextColor(getResources().getColor(R.color.button_not_click));
                     }
-                }
+                }*/
             }
         });
         btn_Register.setOnClickListener(new View.OnClickListener() {
@@ -126,19 +126,39 @@ public class ActivityRegister extends BaseActivity implements ImpLogin.View {
                 if (isDangky) {
                     if (isNetwork()) {
                         sUserName = txtUsername.getText().toString().trim();
+                        if (sUserName.length() == 0) {
+                            txtUsername.requestFocus();
+                            KeyboardUtil.requestKeyboard(txtUsername);
+                            Toast.makeText(ActivityRegister.this, "Bạn chưa nhập vào tên đăng nhập", Toast.LENGTH_SHORT).show();
+                            // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
+                            return;
+                        }
                         if (!StringUtil.check_tiengviet(sUserName)) {
                             showDialogNotify("Lỗi", "Tên đăng nhập phải là tiếng việt không dấu," +
                                     " không chứa dấu cách và ký tự đặc biệt");
                             return;
                         }
                         sPassWord = txtPass.getText().toString().trim();
-                        sPassComfirm = txtPassConfirm.getText().toString().trim();
-                        if (!StringUtil.check_tiengviet(sPassWord)) {
-                            showDialogNotify("Lỗi", "Mật khẩu nhập vào là tiếng việt không dấu," +
-                                    " không chứa dấu cách và ký tự đặc biệt");
+                        if (sPassWord.length() == 0) {
+                            txtPass.requestFocus();
+                            KeyboardUtil.requestKeyboard(txtPass);
+                            Toast.makeText(ActivityRegister.this, "Bạn chưa nhập vào mật khẩu", Toast.LENGTH_SHORT).show();
+                            // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
                             return;
                         }
-                        if (sUserName.length() > 4 && sUserName.indexOf(" ") < 0) {
+                        sPassComfirm = txtPassConfirm.getText().toString().trim();
+                        if (sPassComfirm.length() == 0) {
+                            txtPassConfirm.requestFocus();
+                            KeyboardUtil.requestKeyboard(txtPassConfirm);
+                            Toast.makeText(ActivityRegister.this, "Bạn chưa nhập vào xác nhận mật khẩu", Toast.LENGTH_SHORT).show();
+                            // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
+                            return;
+                        }
+                        if (!StringUtil.check_tiengviet(sPassWord)) {
+                            showDialogNotify("Lỗi", "Mật khẩu nhập vào là tiếng việt không dấu");
+                            return;
+                        }
+                        if (sUserName.length() > 3 && sUserName.indexOf(" ") < 0) {
                             if (sPassWord.length() > 7 && sPassComfirm.length() > 7 && sPassWord.indexOf(" ") < 0) {
                                 if (sPassWord.equals(sPassComfirm)) {
                                     showDialogLoading();
@@ -149,17 +169,16 @@ public class ActivityRegister extends BaseActivity implements ImpLogin.View {
                                             "Mật khẩu xác nhận không trùng với mật khẩu");
                                 }
                             } else {
-                                showDialogNotify("Lỗi", "Mật khẩu phải trên 8 ký tự," +
-                                        " không chứa dấu cách và ký tự đặc biệt");
+                                showDialogNotify("Lỗi", "Mật khẩu phải nhiều hơn hoặc bằng 8 ký tự");
                             }
                         } else
-                            showDialogNotify("Lỗi", "Tên đăng nhập phải dài hơn 4 ký tự," +
+                            showDialogNotify("Lỗi", "Tên đăng nhập phải nhiều hơn hoặc bằng 4 ký tự," +
                                     " không chứa dấu cách và ký tự đặc biệt");
 
                     } else
                         showDialogNotify(getString(R.string.error_network), getString(R.string.error_network_message));
                 } else
-                    showDialogNotify("Lỗi", "Điều khoản sử dụng đảm bảo việc cung cấp và sử dụng Home365 đúng quy cách và hợp pháp." +
+                    showDialogNotify("Thông báo", "Điều khoản sử dụng đảm bảo việc cung cấp và sử dụng Home365 đúng quy cách và hợp pháp." +
                             " Quý Phụ huynh vui lòng đọc kỹ và bấm chọn Đồng ý.");
             }
         });

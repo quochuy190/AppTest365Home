@@ -8,6 +8,7 @@
         android:id="@+id/iclude_app_bar"
         layout="@layout/app_bar_main"
         android:visibility="gone" />
+
     <ImageView
         android:id="@+id/appbar_cong"
         android:layout_width="match_parent"
@@ -16,13 +17,14 @@
         android:src="@drawable/app_bar_cong" />
 
     <TextView
-        android:textSize="@dimen/txt_appbar_new"
         android:layout_width="match_parent"
         android:layout_height="@dimen/icon_back_appbar_new"
         android:gravity="center"
         android:text="ĐĂNG KÝ TÀI KHOẢN"
         android:textColor="@color/white"
+        android:textSize="@dimen/txt_appbar_new"
         android:textStyle="bold" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,19 +41,19 @@
                 android:id="@+id/img_logo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp80"
-                android:layout_margin="@dimen/dp35"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginBottom="@dimen/dp20"
                 android:adjustViewBounds="true"
-
                 android:padding="@dimen/dp5"
                 android:src="@drawable/logo" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp20"
-                android:background="@drawable/spr_login_edt">
+                android:layout_marginLeft="@dimen/margin_left_right"
+                android:layout_marginRight="@dimen/margin_left_right"
+                android:background="@drawable/spr_login_edt"
+                android:paddingRight="@dimen/dp7">
 
                 <ImageView
                     android:id="@+id/img_username"
@@ -88,10 +90,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginLeft="@dimen/margin_left_right"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp20"
-                android:background="@drawable/spr_login_edt">
+                android:layout_marginRight="@dimen/margin_left_right"
+                android:background="@drawable/spr_login_edt"
+                android:paddingRight="@dimen/dp7">
 
                 <ImageView
                     android:id="@+id/img_password"
@@ -139,10 +142,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginLeft="@dimen/margin_left_right"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp20"
-                android:background="@drawable/spr_login_edt">
+                android:layout_marginRight="@dimen/margin_left_right"
+                android:background="@drawable/spr_login_edt"
+                android:paddingRight="@dimen/dp7">
 
                 <ImageView
                     android:id="@+id/img_pass_comfirm"
@@ -190,9 +194,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp20"
+                android:layout_marginLeft="@dimen/margin_left_right"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginRight="@dimen/dp20"
+                android:layout_marginRight="@dimen/margin_left_right"
                 android:background="@drawable/spr_login_edt"
                 android:visibility="visible">
 
@@ -215,6 +219,7 @@
                         android:id="@+id/edt_gift_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp7"
                         android:background="@color/white"
                         android:backgroundTint="@color/white"
                         android:ems="10"
@@ -227,11 +232,13 @@
             </RelativeLayout>
 
             <RelativeLayout
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp20"
-                android:layout_marginTop="@dimen/dp10">
+                android:layout_marginLeft="@dimen/margin_left_right"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/margin_left_right"
+
+                >
 
                 <CheckBox
                     android:id="@+id/cb_remember_login"

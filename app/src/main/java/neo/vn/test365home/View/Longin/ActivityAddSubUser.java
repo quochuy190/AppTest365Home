@@ -37,6 +37,7 @@ import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.Login;
 import neo.vn.test365home.R;
+import neo.vn.test365home.Untils.KeyboardUtil;
 import neo.vn.test365home.Untils.ReadPathUtil;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
@@ -146,7 +147,7 @@ public class ActivityAddSubUser extends BaseActivity implements View.OnClickList
         edtCity.setOnClickListener(this);
         edtSchools.setOnClickListener(this);
         edtClass.setOnClickListener(this);
-        edt_year_addsub.setOnClickListener(this);
+       // edt_year_addsub.setOnClickListener(this);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,17 +168,26 @@ public class ActivityAddSubUser extends BaseActivity implements View.OnClickList
                     return;
                 }
                 if (edtClassName.getText().length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập vào tên lớp của bé");
+                    // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên lớp của bé");
+                    Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên lớp của bé", Toast.LENGTH_SHORT).show();
+                    edtClassName.requestFocus();
+                    KeyboardUtil.requestKeyboard(edtClassName);
                     return;
                 } else sLop = edtClassName.getText().toString();
                 sFullname = edtFullname.getText().toString().trim();
                 if (sFullname.length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập vào tên của bé");
+                    //  showDialogNotify("Thông báo", "Bạn chưa nhập vào tên của bé");
+                    Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên cho bé", Toast.LENGTH_SHORT).show();
+                    edtFullname.requestFocus();
+                    KeyboardUtil.requestKeyboard(edtFullname);
                     return;
                 }
                 sUser = edtUser.getText().toString().trim();
                 if (sUser.length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
+                    edtUser.requestFocus();
+                    KeyboardUtil.requestKeyboard(edtUser);
+                    Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
+                    // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
                     return;
                 }
                 if (!StringUtil.check_tiengviet(sUser)) {
@@ -187,7 +197,10 @@ public class ActivityAddSubUser extends BaseActivity implements View.OnClickList
                 }
                 sPass = edtPass.getText().toString().trim();
                 if (edtPass.getText().length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập mật khẩu");
+                    edtPass.requestFocus();
+                    KeyboardUtil.requestKeyboard(edtPass);
+                    //  showDialogNotify("Thông báo", "Bạn chưa nhập mật khẩu");
+                    Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào mật khẩu", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!StringUtil.check_tiengviet(sPass)) {
@@ -204,9 +217,9 @@ public class ActivityAddSubUser extends BaseActivity implements View.OnClickList
                                     App.mSchools.getsID(), App.mKhoihoc, "1", sLop, sFullname, sAvata, sUser, sPass);
                         } else
                             showDialogNotify("Thông báo",
-                                    "Mật khẩu phải lớn hơn 8 ký tự, không chứa dấu cách và ký tự đặc biệt");
+                                    "Mật khẩu phải lớn hơn 8 ký tự");
                     } else showDialogNotify("Thông báo",
-                            "Tên đăng nhập tài khoản con phải dài hơn 5 ký tự," +
+                            "Tên đăng nhập tài khoản con phải dài hơn 4 ký tự," +
                                     " không chứa dấu cách và ký tự đặc biệt");
                 }
 

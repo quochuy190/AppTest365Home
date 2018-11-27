@@ -21,11 +21,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include3">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/btn_capnhatthongtin"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp40"
@@ -365,6 +367,24 @@
 
             </RelativeLayout>
 
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btn_setup_cofig"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp40"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp10"
+                android:background="@drawable/spr_click_button"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/dp30"
+                android:text="cài đặt làm bài tập"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_listgame" />
+
+
             <RelativeLayout
                 android:id="@+id/rl_listgame"
                 android:layout_width="match_parent"
@@ -402,6 +422,7 @@
             </RelativeLayout>
 
             <Button
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/btn_update_config"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp40"
@@ -410,7 +431,7 @@
                 android:background="@drawable/spr_click_button"
                 android:paddingLeft="@dimen/dp30"
                 android:paddingRight="@dimen/dp30"
-                android:text="Cập nhật cài đặt"
+                android:text="cài đặt thông báo"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_17sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -428,7 +449,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_update_config" />
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 

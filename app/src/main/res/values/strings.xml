@@ -11,7 +11,7 @@
     </b>\n
     Tầng 2 toà nhà CT2 Tràng An Complex, \n Số 1 Phùng Chí Kiên, Nghĩa Đô, Cầu Giấy, Hà Nội</string>
 
-    <string name="txt_dieukhoan">Tôi hoàn toàn đồng ý với các <b><u>Điều khoản dịch vụ</u></b> của Test365.Home</string>
+    <string name="txt_dieukhoan">Tôi hoàn toàn đồng ý với các <b><u>Điều khoản dịch vụ</u></b> của Home365</string>
     <string name="notify">Thông báo</string>
     <string name="btn_no">Không</string>
     <string name="btn_yes">Đồng ý</string>
@@ -75,7 +75,8 @@ Quý phụ huynh có thể tìm mua thẻ nạp Home365 tại các trường Ti�
 </string>
     <!--Bảng xếp hạng-->
 
-    <string name="txt_bxh_notify">Bé chưa đủ điều kiện để xếp hạng. Hãy giúp bé làm đủ tất cả các bài tập trong tuần của các môn để được vào bảng xếp hạng</string>
+    <string name="txt_bxh_notify">Bạn chưa lọt vào bảng xếp hạng tuần này do chưa hoàn thành đủ bài tập cả 3 môn.
+        Hãy cố gắng hoàn thành bài tập của cả 3 môn học tuần này nhé</string>
 
     <!--Cảm ơn-->
     <string name="txt_thanks">Cảm ơn quý Phụ huynh đã dành tình thương và đồng hành cùng con trên con đường học tập khổ luyện.

@@ -18,24 +18,63 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp55">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@id/img_bxh_home"
-            android:padding="@dimen/dp10"
-            android:text="@string/title_chart"
-            android:textColor="@color/red_test365"
-            android:textSize="@dimen/text_17sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@color/red_test365" />
+
+            <TextView
+                android:id="@+id/txt_lable_toan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:text="Toán"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@color/green" />
+
+            <TextView
+                android:id="@+id/txt_lable_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:text="Tiếng Việt"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp5"
+                android:background="@color/blue" />
+
+            <TextView
+                android:id="@+id/txt_lable_ta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:text="Tiếng Anh"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <ImageView
-            android:src="@drawable/icon_bxh"
             android:id="@+id/img_bxh_home"
             android:layout_width="@dimen/dp55"
             android:layout_height="@dimen/dp55"
             android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/dp5" />
+            android:layout_margin="@dimen/dp5"
+            android:src="@drawable/icon_bxh" />
     </RelativeLayout>
 
     <com.github.mikephil.charting.charts.CombinedChart

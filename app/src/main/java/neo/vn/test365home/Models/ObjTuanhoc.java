@@ -2,6 +2,7 @@ package neo.vn.test365home.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +15,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObjTuanhoc implements Parcelable{
+public class ObjTuanhoc implements Parcelable, Comparable<ObjTuanhoc> {
     @SerializedName("ERROR")
     String sERROR;
     @SerializedName("MESSAGE")
@@ -116,15 +117,16 @@ public class ObjTuanhoc implements Parcelable{
         }
     };
 
-    private static ObjTuanhoc getObject (JSONObject jsonObject){
-        return new Gson().fromJson(jsonObject.toString(),ObjTuanhoc.class);
+    private static ObjTuanhoc getObject(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), ObjTuanhoc.class);
     }
 
-    public  static ArrayList<ObjTuanhoc> getList(String jsonArray) throws JSONException {
+    public static ArrayList<ObjTuanhoc> getList(String jsonArray) throws JSONException {
         ArrayList<ObjTuanhoc> arrayList = new ArrayList<>();
-        Type type = new TypeToken<List<ObjTuanhoc>>(){}.getType();
-        Gson gson= new Gson();
-        arrayList = gson.fromJson(jsonArray,type);
+        Type type = new TypeToken<List<ObjTuanhoc>>() {
+        }.getType();
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
     }
 
@@ -306,6 +308,17 @@ public class ObjTuanhoc implements Parcelable{
         parcel.writeString(sEDITOR);
         parcel.writeString(sPRICE);
         parcel.writeString(sTOTAL_BUY);
+    }
+
+    @Override
+    public int compareTo(@NonNull ObjTuanhoc o) {
+
+        if (Integer.parseInt(sWEEK_ID) == Integer.parseInt(o.getsWEEK_ID()))
+            return 0;
+        else if (Integer.parseInt(sWEEK_ID) > Integer.parseInt(o.getsWEEK_ID()))
+            return 1;
+        else
+            return -1;
     }
 }
 

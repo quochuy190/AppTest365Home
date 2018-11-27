@@ -72,6 +72,8 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     Button btn_update;
     @BindView(R.id.btn_capnhatthongtin)
     Button btn_capnhatthongtin;
+    @BindView(R.id.btn_setup_cofig)
+    Button btn_setup_cofig;
     PresenterSetup mPresenter;
     String pmath_taken_time = "20:00:00", pvietnam_taken_time = "20:00:00", peng_taken_time = "20:00:00",
             pmath_notify = "1", pvietnam_notify = "1", peng_notify = "1",
@@ -223,7 +225,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 });
             }
         });
-        btn_update.setOnClickListener(new View.OnClickListener() {
+        btn_setup_cofig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pvietnam_dy = get_week_day(txt_weekday_tv.getText().toString());
@@ -258,6 +260,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
 
     String sUserMe, SUserCon;
     TextView txt_title;
+
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
         txt_title = findViewById(R.id.txt_title_main);

@@ -7,19 +7,11 @@
     android:background="@color/background_login">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp120"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_ground_login" />
-
-
     <TextView
-        android:background="@color/app_bar_new"
         android:id="@+id/txt_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/app_bar_new"
         android:gravity="center"
         android:padding="@dimen/dp10"
         android:text="TẠO TÀI KHOẢN CON"
@@ -41,16 +33,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <RelativeLayout
-                android:layout_width="@dimen/dp120"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp120"
                 android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp80"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/back_ground_login" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_avata_update"
                     android:layout_width="@dimen/dp120"
                     android:layout_height="@dimen/dp120"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/avatar_default" />
 
@@ -58,7 +58,7 @@
                     android:id="@+id/img_get_image"
                     android:layout_width="@dimen/dp30"
                     android:layout_height="@dimen/dp30"
-                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/img_avata_update"
                     android:layout_alignParentBottom="true"
                     android:src="@drawable/camera" />
 
@@ -249,20 +249,13 @@
                         android:backgroundTint="@color/white"
                         android:ems="10"
                         android:focusable="false"
-                        android:hint="Năm học"
+                        android:hint="2018-2019"
                         android:inputType="text"
                         android:padding="@dimen/dp7"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray" />
                 </android.support.design.widget.TextInputLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_arrow_down"
-                    android:tint="@color/red_test365" />
 
             </RelativeLayout>
             <!--Chọn khối-->
@@ -295,7 +288,6 @@
                         android:textColorHint="@color/gray" />
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
-
 
 
             <RelativeLayout
@@ -396,21 +388,21 @@
             </RelativeLayout>
 
             <TextView
-                android:gravity="center"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/text_12sp"
-                android:text="@string/txt_create_subuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp20"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:gravity="center"
+                android:text="@string/txt_create_subuser"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text_12sp" />
 
             <LinearLayout
-                android:layout_marginTop="@dimen/dp10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
                 android:layout_marginRight="@dimen/dp10">
 
                 <Button

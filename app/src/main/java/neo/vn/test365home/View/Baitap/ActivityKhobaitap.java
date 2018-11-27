@@ -1,16 +1,22 @@
 package neo.vn.test365home.View.Baitap;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -18,6 +24,7 @@ import neo.vn.test365home.Adapter.AdapterListKhobaitap;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ButtonItemClickListener;
+import neo.vn.test365home.Listener.ClickDialog;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Cauhoi;
 import neo.vn.test365home.Models.Childrens;
@@ -32,6 +39,7 @@ import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
+import neo.vn.test365home.View.Setup.ActivityManageAccount;
 import neo.vn.test365home.View.Setup.ImpSetup;
 import neo.vn.test365home.View.Setup.PresenterSetup;
 
@@ -157,10 +165,27 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
                         }
                     }
                 }
-                showDialogLoading();
-                String sObjective = getIntent().getStringExtra(Constants.KEY_SEND_OBJECTIVE);
-                user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                mPresenter.get_api_buy_excercise(user, mChildren.getsUSERNAME(), sChuoimade, sObjective);
+                if (sChuoimade.length() > 0) {
+                    if (iPrice > iTkTotal) {
+                        showDialogComfirm("Thông báo", "Tài khoản của bạn không đủ để thực hiện giao dich",
+                                false, new ClickDialog() {
+                                    @Override
+                                    public void onClickYesDialog() {
+                                        startActivity(new Intent(ActivityKhobaitap.this, ActivityManageAccount.class));
+                                    }
+
+                                    @Override
+                                    public void onClickNoDialog() {
+
+                                    }
+                                });
+                    }
+                    showDialogLoading();
+                    String sObjective = getIntent().getStringExtra(Constants.KEY_SEND_OBJECTIVE);
+                    user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                    mPresenter.get_api_buy_excercise(user, mChildren.getsUSERNAME(), sChuoimade, sObjective);
+                } else showDialogNotify("Thông báo", "Bạn chưa chọn bài tập nào để mua");
+
 
             }
         });
@@ -236,6 +261,8 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         hideDialogLoading();
     }
 
+    int iTkTotal;
+
     @Override
     public void show_user_info(List<UserInfo> mLis) {
         hideDialogLoading();
@@ -243,7 +270,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
             UserInfo obj = mLis.get(0);
             int iTkChinh = Integer.parseInt(obj.getsCORE_BALANCE());
             int iTkThuong = Integer.parseInt(obj.getsPROMOTION_BALANCE());
-            int iTkTotal = iTkChinh + iTkThuong;
+            iTkTotal = iTkChinh + iTkThuong;
             txt_taikhoan.setText(StringUtil.formatNumber("" + iTkTotal));
         }
     }
@@ -294,7 +321,21 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         if (mList != null) {
             if (mList.get(0).getsERROR().equals("0000")) {
                 mLisBaitap.addAll(mList);
+                Collections.sort(mLisBaitap);
                 adapter.notifyDataSetChanged();
+                boolean isCheck = false;
+                if (mLisBaitap.size() > 0) {
+                    for (ObjTuanhoc obj : mLisBaitap) {
+                        if (obj.getsSTATUS().equals("0")) {
+                            isCheck = true;
+                        }
+                    }
+                }
+                if (isCheck) {
+                    txt_chontatca.setVisibility(View.VISIBLE);
+                } else {
+                    txt_chontatca.setVisibility(View.INVISIBLE);
+                }
             }
         }
 
@@ -345,6 +386,48 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
 
     @Override
     public void show_list_mt_comment(List<ErrorApi> mLis) {
+
+    }
+
+    public void showDialogComfirm(String title, String message, boolean is_hide_cancel,
+                                  final ClickDialog clickDialog) {
+        final Dialog dialog_yes = new Dialog(this);
+        dialog_yes.setCancelable(false);
+        dialog_yes.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog_yes.setContentView(R.layout.dialog_warning);
+        dialog_yes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        TextView txt_title = (TextView) dialog_yes.findViewById(R.id.txt_warning_title);
+        TextView txt_message = (TextView) dialog_yes.findViewById(R.id.txt_warning_message);
+        TextView btn_ok = (TextView) dialog_yes.findViewById(R.id.btn_warning_ok);
+        TextView btn_cancel = (TextView) dialog_yes.findViewById(R.id.btn_warning_cancel);
+        View view_warning = (View) dialog_yes.findViewById(R.id.view_warning);
+        btn_ok.setText("Nạp tiền");
+        txt_title.setText(title);
+        txt_message.setText(Html.fromHtml(message));
+        // txt_buysongs.setText(Html.fromHtml("Để hoàn tất đăng ký dịch vụ RingTunes, Quý khách vui lòng thực hiện thao tác soạn tin nhắn <font color='#060606'>\"Y2 gửi 9194\"</font> từ số điện thoại giá cước: 3.000Đ/7 ngày. Cảm ơn Quý khách!"));
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_yes.dismiss();
+                clickDialog.onClickYesDialog();
+            }
+        });
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_yes.dismiss();
+                clickDialog.onClickNoDialog();
+            }
+        });
+        if (is_hide_cancel) {
+            view_warning.setVisibility(View.GONE);
+            btn_cancel.setVisibility(View.GONE);
+        } else {
+            view_warning.setVisibility(View.VISIBLE);
+            btn_cancel.setVisibility(View.VISIBLE);
+        }
+        dialog_yes.show();
 
     }
 }

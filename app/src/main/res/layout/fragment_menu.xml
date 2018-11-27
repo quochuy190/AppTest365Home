@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_naptien"
-
     android:orientation="vertical">
 
     <ImageView
@@ -18,41 +17,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginTop="@dimen/dp50"
-        android:padding="@dimen/dp5"
         android:id="@+id/img_avata_update"
-        android:src="@drawable/avatar_default"
         android:layout_width="@dimen/hight_avata"
         android:layout_height="@dimen/hight_avata"
+        android:layout_marginTop="@dimen/dp50"
+        android:padding="@dimen/dp5"
+        android:src="@drawable/avatar_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:visibility="gone"
-        android:text="Nguyễn Quốc Huy"
-        android:gravity="center"
-        android:padding="@dimen/dp5"
         android:id="@+id/txt_fullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="@dimen/dp10"
+        android:text="Cài đặt"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_16sp"
-        android:textColor="@color/red_test365"
+        android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_avata_update" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
 
-        android:layout_margin="@dimen/dp10"
         android:id="@+id/recycle_setup"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="@dimen/dp10"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fullname">
+        app:layout_constraintTop_toBottomOf="@+id/img_avata_update">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -60,11 +60,11 @@
         android:id="@+id/button"
         android:layout_width="@dimen/dp200"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/spr_click_button"
         android:text="@string/txt_logout"
         android:textAllCaps="false"

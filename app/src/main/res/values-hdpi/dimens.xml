@@ -57,4 +57,6 @@
     <!--view welcom thanks-->
     <dimen name="height_logo">50dp</dimen>
     <dimen name="width_logo">200dp</dimen>
+    <!--Đăng nhập-->
+    <dimen name="margin_left_right">20dp</dimen>
 </resources>
