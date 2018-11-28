@@ -139,36 +139,38 @@ public class ActivityUpdateSubUser extends BaseActivity implements View.OnClickL
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!(sIdTruong != null && sIdTruong.length() > 0)) {
-                    showDialogNotify("Thông báo", "Bạn chưa chọn trường của bé");
-                    return;
-                }
-                if (!(sIdTinh != null && sIdTinh.length() > 0)) {
-                    showDialogNotify("Thông báo", "Bạn chưa chọn tỉnh thành phố");
-                    return;
-                }
-                if (!(sIdQuan != null && sIdQuan.length() > 0)) {
-                    showDialogNotify("Thông báo", "Bạn chưa chọn quận huyện");
-                    return;
-                }
+                if (isNetwork()){
+                    if (!(sIdTruong != null && sIdTruong.length() > 0)) {
+                        showDialogNotify("Thông báo", "Bạn chưa chọn trường của bé");
+                        return;
+                    }
+                    if (!(sIdTinh != null && sIdTinh.length() > 0)) {
+                        showDialogNotify("Thông báo", "Bạn chưa chọn tỉnh thành phố");
+                        return;
+                    }
+                    if (!(sIdQuan != null && sIdQuan.length() > 0)) {
+                        showDialogNotify("Thông báo", "Bạn chưa chọn quận huyện");
+                        return;
+                    }
 
-                if (edtClassName.getText().length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập vào tên lớp của bé");
-                    return;
-                } else sLop = edtClassName.getText().toString();
-                if (edtFullname.getText().length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập vào tên của bé");
-                    return;
-                } else sFullname = edtFullname.getText().toString();
-                if (edtPass.getText().length() == 0) {
-                    showDialogNotify("Thông báo", "Bạn chưa nhập mật khẩu");
-                    return;
-                } else sPass = edtPass.getText().toString();
-                showDialogLoading();
-                String sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                mPresenterSetup.api_update_info_children(sUserMe, mChildren.getsUSERNAME(), sIdTinh, sIdQuan, sIdTruong
-                        , sIdKhoi, edtClassName.getText().toString(), sIdNam, edtFullname.getText().toString(), edtPass.getText().toString(), sAvata);
+                    if (edtClassName.getText().length() == 0) {
+                        showDialogNotify("Thông báo", "Bạn chưa nhập vào tên lớp của bé");
+                        return;
+                    } else sLop = edtClassName.getText().toString();
+                    if (edtFullname.getText().length() == 0) {
+                        showDialogNotify("Thông báo", "Bạn chưa nhập vào tên của bé");
+                        return;
+                    } else sFullname = edtFullname.getText().toString();
+                    if (edtPass.getText().length() == 0) {
+                        showDialogNotify("Thông báo", "Bạn chưa nhập mật khẩu");
+                        return;
+                    } else sPass = edtPass.getText().toString();
+                    showDialogLoading();
+                    String sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                    mPresenterSetup.api_update_info_children(sUserMe, mChildren.getsUSERNAME(), sIdTinh, sIdQuan, sIdTruong
+                            , sIdKhoi, edtClassName.getText().toString(), sIdNam, edtFullname.getText().toString(), edtPass.getText().toString(), sAvata);
 
+                }
 
             }
         });
@@ -324,16 +326,6 @@ public class ActivityUpdateSubUser extends BaseActivity implements View.OnClickL
             case Constants.RequestCode.GET_IMAGE:
                 if (resultCode == RESULT_OK) {
                     try {
-
-                    /*    final List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                        if (path != null && path.size() > 0) {
-                            IMAGE_PATH ="content:"+ path.get(0);
-                        }*/
-
-                      /*  BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inSampleSize = 2;
-                        Bitmap bitmap = BitmapFactory.decodeFile(path.get(0), options);*/
-                        //img_avata_update.setImageBitmap(bitmap);
                         IMAGE_PATH = ReadPathUtil.getPath(ActivityUpdateSubUser.this, data.getData());
                         File file = new File(IMAGE_PATH);
                         final Uri imageUri = data.getData();

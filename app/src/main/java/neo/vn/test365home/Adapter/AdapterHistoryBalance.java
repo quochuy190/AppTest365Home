@@ -73,7 +73,7 @@ public class AdapterHistoryBalance extends RecyclerView.Adapter<AdapterHistoryBa
         if (obj.getsTRANSACTION_TIME() != null) {
             holder.txt_date_history.setText("Ngày giao dịch: "+TimeUtils.
                     convent_date(obj.getsTRANSACTION_TIME(), "yyy-MM-dd HH:mm:ss",
-                            "dd-MM-yyyy"));
+                            "dd-MM-yyyy - HH:mm"));
         }
     }
 

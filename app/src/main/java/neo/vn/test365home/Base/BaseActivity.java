@@ -171,10 +171,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
                 .isConnectedOrConnecting();
         if (!is3g && !isWifi) {
+            showAlertDialog(getString(R.string.error_network), getString(R.string.error_network_message));
             return false;
         } else return true;
     }
-
 
     public void showDialogComfirm(String title, String message, boolean is_hide_cancel,
                                   final ClickDialog clickDialog){

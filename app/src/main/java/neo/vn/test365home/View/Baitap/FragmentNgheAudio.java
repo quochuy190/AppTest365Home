@@ -1,7 +1,11 @@
 package neo.vn.test365home.View.Baitap;
 
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -12,22 +16,30 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import neo.vn.test365home.Adapter.AdapterDapAn;
 import neo.vn.test365home.Base.BaseFragment;
+import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Models.CauhoiDetail;
 import neo.vn.test365home.Models.DapAn;
+import neo.vn.test365home.Models.MessageEvent;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.StringUtil;
+import neo.vn.test365home.Untils.TimeUtils;
 
 /**
  * @author Quốc Huy
@@ -40,7 +52,8 @@ import neo.vn.test365home.Untils.StringUtil;
  * @updated on 8/6/2018
  * @since 1.0
  */
-public class FragmentCauhoi extends BaseFragment {
+public class FragmentNgheAudio extends BaseFragment implements
+        MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener{
     private static final String TAG = "FragmentCauhoi";
     private CauhoiDetail mCauhoi;
     AdapterDapAn adapter;
@@ -89,8 +102,8 @@ public class FragmentCauhoi extends BaseFragment {
     @BindView(R.id.img_anwser_chil)
     ImageView img_anwser_chil;
 
-    public static FragmentCauhoi newInstance(CauhoiDetail restaurant) {
-        FragmentCauhoi restaurantDetailFragment = new FragmentCauhoi();
+    public static FragmentNgheAudio newInstance(CauhoiDetail restaurant) {
+        FragmentNgheAudio restaurantDetailFragment = new FragmentNgheAudio();
         Bundle args = new Bundle();
         //args.putSerializable("cauhoi",restaurant);
         args.putParcelable("cauhoi", Parcels.wrap(restaurant));
@@ -99,21 +112,96 @@ public class FragmentCauhoi extends BaseFragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals("Audio")) {
+            Log.i(TAG, "onMessageEvent: Audio");
+            if (mPlayer.isPlaying()) {
+                Log.i(TAG, "onMessageEvent: Audio play");
+                btnPlay.setImageResource(R.drawable.btn_play);
+                mPlayer.pause();
+            }
+        }
+    }
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCauhoi = Parcels.unwrap(getArguments().getParcelable("cauhoi"));
+        mPlayer = new MediaPlayer();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cauhoi_chondapan, container, false);
+        View view = inflater.inflate(R.layout.fragment_nghevatraloi, container, false);
         ButterKnife.bind(this, view);
         Log.i(TAG, "onCreateView: " + mCauhoi.getsQUESTION());
         initData();
+        initEvent();
         return view;
     }
+    private void initEvent() {
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPlayer != null) {
+                    if (mPlayer.isPlaying()) {
+                        btnPlay.setImageResource(R.drawable.btn_play);
+                        mPlayer.pause();
+                    } else {
+                        btnPlay.setImageResource(R.drawable.btn_pause);
+                        mPlayer.start();
+                    }
+                }
+            }
+        });
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mPlayer.seekTo(getDuration(seekBar.getProgress()));
+                if (mPlayer.isPlaying()) {
+                    mHandler.removeCallbacks(mProgressCallback);
+                    mHandler.post(mProgressCallback);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                mHandler.removeCallbacks(mProgressCallback);
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    updateProgressTextWithDuration(progress);
+                }
+            }
+        });
+    }
     private void initData() {
+        try {
+            mPlayer.reset();
+            String url = Config.URL_VIDEO + mCauhoi.getsAudioPath();
+            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mPlayer.setDataSource(url);
+            mPlayer.setOnPreparedListener(this);
+            mPlayer.setOnErrorListener(this);
+            mPlayer.prepareAsync();
+            mHandler.postDelayed(mProgressCallback, 0);
+        } catch (IOException e) {
+            Log.e(TAG, "play: ", e);
+        }
         //txtCauhoi.setText(mCauhoi.getsQUESTION());
         txt_current.setText("Bài: " + mCauhoi.getsNumberDe() + " - Câu hỏi: " + mCauhoi.getsSubNumberCau());
         txt_number_de.setText("Bài: " + mCauhoi.getsNumberDe());
@@ -197,11 +285,62 @@ public class FragmentCauhoi extends BaseFragment {
         webSettings.setTextSize(WebSettings.TextSize.NORMAL);
         webSettings.setDefaultFontSize(16);
         /* <html><body  align='center'>You scored <b>192</b> points.</body></html>*/
-        String pish = "<html><body  align='center'>";
+        String pish = "<html><body >";
         String pas = "</body></html>";
 
         webview_debai.loadDataWithBaseURL("", pish + link_web + pas,
                 "text/html", "UTF-8", "");
 
+    }
+    private MediaPlayer mPlayer;
+    @BindView(R.id.btnPlay)
+    ImageView btnPlay;
+    @BindView(R.id.player_progressbar)
+    SeekBar seekBar;
+    @BindView(R.id.songCurrentDurationLabel)
+    TextView txtDuration;
+    private Handler mHandler = new Handler();
+    //Make sure you update Seekbar on UI thread
+    private Runnable mProgressCallback = new Runnable() {
+        @Override
+        public void run() {
+//            if (isDetached()) return;
+            if (mPlayer.isPlaying()) {
+                int progress = (int) (seekBar.getMax() * ((float) mPlayer.getCurrentPosition() / mPlayer.getDuration()));
+                updateProgressTextWithDuration(mPlayer.getCurrentPosition());
+                updateProgres(progress);
+            }
+            mHandler.postDelayed(this, 100);
+        }
+    };
+
+    public void updateProgres(int progress) {
+        if (progress >= 0 && progress <= seekBar.getMax()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                seekBar.setProgress(progress, true);
+            } else {
+                seekBar.setProgress(progress);
+            }
+        } else mHandler.removeCallbacks(mProgressCallback);
+    }
+
+    private int getDuration(int progress) {
+        int duration = (int) (mPlayer.getDuration() * ((float) progress / seekBar.getMax()));
+        return duration;
+    }
+
+    private void updateProgressTextWithDuration(int duration) {
+        txtDuration.setText(TimeUtils.formatDuration(duration));
+
+    }
+
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        return false;
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mp) {
+        Log.i(TAG, "onPrepared: succec");
     }
 }

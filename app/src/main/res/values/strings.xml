@@ -30,6 +30,7 @@
     <string name="txt_change_pass">Đổi mật khẩu</string>
     <string name="txt_account">Quản lý tài khoản</string>
     <string name="txt_logout">Đăng xuất</string>
+    <string name="txt_guild_app">Hướng dẫn sử dụng ứng dụng</string>
     <!--Thông tin tài khoản-->
     <string name="lable_user">Tên đăng nhập: </string>
     <string name="lable_fullname">Họ tên: </string>
@@ -52,12 +53,11 @@
     <string name="lable_naptien_content">Bạn hãy chọn hình thức nạp tiền phù hợp nhất với mình</string>
     <string name="lable_naptien_content_code">Hãy giới thiệu Home365 với bạn bè. Khi bạn bè cài đặt ứng dụng và nhập mã giới thiệu, cả 2 sẽ nhận được quà</string>
     <string name="naptien_sms_content">
-Quý phụ huynh soạn tin nhắn theo cú <b><font color='#FF6600'>“Home365 NAP xyz”</font></b>(xyz là tên đăng nhập)
-gửi đến số 8655 Cước tin nhắn: 10.000 VND/SMS \n
-Số tiền được nạp vào TK chính: 4.000 VND. Số tiền được nạp vào TK thưởng: 6.000 VND
+Quý phụ huynh soạn tin nhắn theo cú pháp<b>“Home365 xyz”</b>(xyz là tên đăng nhập)
+gửi đến số 8655 Cước tin nhắn: 10.000 VND/SMS \nSố tiền được nạp vào TK chính: 4.000 VND \nSố tiền được nạp vào TK thưởng: 6.000 VND
 </string>
     <string name="naptien_chuyenkhoan_content">
-Quy phụ huynh chuyền tiền nạp vào tài khoản:
+Quý phụ huynh chuyển tiền nạp vào tài khoản:
 \nSố tài khoản: <b>0021 0010 02252</b>
 \nTên chủ tài khoản: <b>Công ty cổ phần đầu tư phát triển công nghệ và truyền thông</b>
 \nChi nhánh: <b>Ngân hàng Vietcombank - CN Thành Công - Hà Nội</b>
@@ -134,4 +134,7 @@ các thông tin phù hợp khác.
     <string name="title_activity_fragment_navigation_baitap">FragmentNavigationBaitap</string>
     <string name="or">HOẶC</string>
     <string name="title_chart">Biểu đồ học tập</string>
+    <string name="txt_notify_addchil">Bạn chưa tạo tài khoản con </string>
+    <string name="txt_download_appcon">Các con sẽ làm bài tập và chơi các trò chơi trên một App riêng có tên <b><u>Home365 Kid</u></b>.
+        \n\nQuý phụ huynh vui lòng tìm kiếm và tải app trên Google Play </string>
 </resources>

@@ -35,6 +35,21 @@ public class ConfigNotify {
     @SerializedName("BUY_EXE_NOTIFY")
     String sBUY_EXE_NOTIFY;
 
+    @SerializedName("CHILD_ID")
+    String sCHILD_ID;
+    @SerializedName("CHILD_NAME")
+    String sCHILD_NAME;
+    @SerializedName("ALERT_TAKEN")
+    String sALERT_TAKEN;
+    @SerializedName("ALERT_LATE")
+    String sALERT_LATE;
+    @SerializedName("ALERT_STICKER")
+    String sALERT_STICKER;
+    @SerializedName("ALERT_MOTHER_BUY")
+    String sALERT_MOTHER_BUY;
+
+
+
     public ConfigNotify() {
     }
 
@@ -137,6 +152,54 @@ public class ConfigNotify {
 
     public void setsBUY_EXE_NOTIFY(String sBUY_EXE_NOTIFY) {
         this.sBUY_EXE_NOTIFY = sBUY_EXE_NOTIFY;
+    }
+
+    public String getsCHILD_ID() {
+        return sCHILD_ID;
+    }
+
+    public void setsCHILD_ID(String sCHILD_ID) {
+        this.sCHILD_ID = sCHILD_ID;
+    }
+
+    public String getsCHILD_NAME() {
+        return sCHILD_NAME;
+    }
+
+    public void setsCHILD_NAME(String sCHILD_NAME) {
+        this.sCHILD_NAME = sCHILD_NAME;
+    }
+
+    public String getsALERT_TAKEN() {
+        return sALERT_TAKEN;
+    }
+
+    public void setsALERT_TAKEN(String sALERT_TAKEN) {
+        this.sALERT_TAKEN = sALERT_TAKEN;
+    }
+
+    public String getsALERT_LATE() {
+        return sALERT_LATE;
+    }
+
+    public void setsALERT_LATE(String sALERT_LATE) {
+        this.sALERT_LATE = sALERT_LATE;
+    }
+
+    public String getsALERT_STICKER() {
+        return sALERT_STICKER;
+    }
+
+    public void setsALERT_STICKER(String sALERT_STICKER) {
+        this.sALERT_STICKER = sALERT_STICKER;
+    }
+
+    public String getsALERT_MOTHER_BUY() {
+        return sALERT_MOTHER_BUY;
+    }
+
+    public void setsALERT_MOTHER_BUY(String sALERT_MOTHER_BUY) {
+        this.sALERT_MOTHER_BUY = sALERT_MOTHER_BUY;
     }
 }
 

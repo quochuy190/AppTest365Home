@@ -1,5 +1,7 @@
 package neo.vn.test365home.Models;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
@@ -12,7 +14,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TuanDamua implements Serializable {
+public class TuanDamua implements Serializable, Comparable<TuanDamua> {
     @SerializedName("ERROR")
     String sERROR;
     @SerializedName("MESSAGE")
@@ -43,6 +45,8 @@ public class TuanDamua implements Serializable {
     String sWEEK_TEST_ID;
     @SerializedName("WEEK_NAME")
     String sWEEK_NAME;
+    @SerializedName("WEEK_ID")
+    String sWEEK_ID;
     @SerializedName("REQUIREMENT")
     String sREQUIREMENT;
     @SerializedName("POINT")
@@ -64,6 +68,14 @@ public class TuanDamua implements Serializable {
         Gson gson = new Gson();
         arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
+    }
+
+    public String getsWEEK_ID() {
+        return sWEEK_ID;
+    }
+
+    public void setsWEEK_ID(String sWEEK_ID) {
+        this.sWEEK_ID = sWEEK_ID;
     }
 
     public String getsPOINT() {
@@ -216,6 +228,16 @@ public class TuanDamua implements Serializable {
 
     public void setsHeaderId(String sHeaderId) {
         this.sHeaderId = sHeaderId;
+    }
+
+    @Override
+    public int compareTo(@NonNull TuanDamua o) {
+        if (Integer.parseInt(sWEEK_ID) == Integer.parseInt(o.getsWEEK_ID()))
+            return 0;
+        else if (Integer.parseInt(sWEEK_ID) > Integer.parseInt(o.getsWEEK_ID()))
+            return 1;
+        else
+            return -1;
     }
 }
 

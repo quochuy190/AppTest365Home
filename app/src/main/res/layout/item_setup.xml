@@ -4,8 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_setup"
-    android:layout_marginBottom="@dimen/dp1"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dp7"
+    android:paddingBottom="@dimen/dp7"
+    android:paddingTop="@dimen/dp5"
     android:background="@drawable/spr_item_recycle"
     android:gravity="center_vertical"
     android:orientation="horizontal">
@@ -38,18 +40,9 @@
         app:layout_constraintStart_toEndOf="@+id/img_setup_avata"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/bg_naptien"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="@dimen/dp25"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/dp45"
         android:src="@drawable/ic_next"
         android:tint="@color/red_test365"

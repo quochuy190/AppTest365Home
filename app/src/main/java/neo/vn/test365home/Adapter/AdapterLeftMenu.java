@@ -54,6 +54,9 @@ public class AdapterLeftMenu extends BaseAdapter implements StickyListHeadersAda
         TextView txt_class = rowView.findViewById(R.id.txt_class);
         TextView txt_school = rowView.findViewById(R.id.txt_school);
         Childrens obj = mLis.get(position);
+        if (obj.getsAVATAR()!=null&&obj.getsAVATAR().length()>0){
+
+        }
         if (obj.getsFULLNAME() != null)
             txt_name.setText(obj.getsFULLNAME());
         if (obj.getsSCHOOL_NAME() != null)

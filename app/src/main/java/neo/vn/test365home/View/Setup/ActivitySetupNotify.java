@@ -20,6 +20,7 @@ import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Listener.SwitchChangeListenner;
+import neo.vn.test365home.Models.ConfigGame;
 import neo.vn.test365home.Models.ConfigNotify;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ItemSetupNotify;
@@ -60,31 +61,33 @@ public class ActivitySetupNotify extends BaseActivity implements ImpSetupNotify.
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mLisMother.get(0).isOnOff()) {
-                    ptaken_notify = "1";
-                } else ptaken_notify = "0";
-                if (mLisMother.get(1).isOnOff()) {
-                    plate_notify = "1";
-                } else plate_notify = "0";
-                if (mLisMother.get(2).isOnOff()) {
-                    pstart_notify = "1";
-                } else pstart_notify = "0";
-                if (mLisMother.get(3).isOnOff()) {
-                    pend_notify = "1";
-                } else pend_notify = "0";
-                if (mLisMother.get(4).isOnOff()) {
-                    pstart_game_notify = "1";
-                } else pstart_game_notify = "0";
-                if (mLisMother.get(5).isOnOff()) {
-                    pend_game_notify = "1";
-                } else pend_game_notify = "0";
-                if (mLisMother.get(6).isOnOff()) {
-                    pbuy_exe_notify = "1";
-                } else pbuy_exe_notify = "0";
+                if (isNetwork()) {
+                    if (mLisMother.get(0).isOnOff()) {
+                        ptaken_notify = "1";
+                    } else ptaken_notify = "0";
+                    if (mLisMother.get(1).isOnOff()) {
+                        plate_notify = "1";
+                    } else plate_notify = "0";
+                    if (mLisMother.get(2).isOnOff()) {
+                        pstart_notify = "1";
+                    } else pstart_notify = "0";
+                    if (mLisMother.get(3).isOnOff()) {
+                        pend_notify = "1";
+                    } else pend_notify = "0";
+                    if (mLisMother.get(4).isOnOff()) {
+                        pstart_game_notify = "1";
+                    } else pstart_game_notify = "0";
+                    if (mLisMother.get(5).isOnOff()) {
+                        pend_game_notify = "1";
+                    } else pend_game_notify = "0";
+                    if (mLisMother.get(6).isOnOff()) {
+                        pbuy_exe_notify = "1";
+                    } else pbuy_exe_notify = "0";
+                    showDialogLoading();
+                    mPresenter.api_update_cf_notify(sUserMe, ptaken_notify, plate_notify, pstart_notify, pend_notify,
+                            pstart_game_notify, pend_game_notify, pbuy_exe_notify);
+                }
 
-                showDialogLoading();
-                mPresenter.api_update_cf_notify(sUserMe, ptaken_notify, plate_notify, pstart_notify, pend_notify,
-                        pstart_game_notify, pend_game_notify, pbuy_exe_notify);
             }
         });
     }
@@ -130,29 +133,26 @@ public class ActivitySetupNotify extends BaseActivity implements ImpSetupNotify.
                 "Gửi thông báo khi mẹ gửi sticker cho con", true));
         mLisChil.add(new ItemSetupNotify("Thông báo mẹ đã tải bài tập",
                 "Gửi thông báo khi mẹ thông báo mẹ mua bài tập cho con", true));
-        showDialogLoading();
-        sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-        mPresenter.api_get_get_cf_notify(sUserMe);
+        if (isNetwork()) {
+            showDialogLoading();
+            sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+            mPresenter.api_get_get_cf_notify(sUserMe);
+        }
     }
 
     private void init() {
-
         mLayoutMother = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
         adapterMother = new AdapterSetupNotify(mLisMother, this, new SwitchChangeListenner() {
             @Override
             public void onListennerSwitchChange(int position, boolean isChecked) {
                 mLisMother.get(position).setOnOff(isChecked);
             }
         });
-
-
         recycle_setup_mother.setNestedScrollingEnabled(false);
         recycle_setup_mother.setHasFixedSize(true);
         recycle_setup_mother.setLayoutManager(mLayoutMother);
         recycle_setup_mother.setItemAnimator(new DefaultItemAnimator());
         recycle_setup_mother.setAdapter(adapterMother);
-
         adapterMother.setOnIListener(new ItemClickListener() {
             @Override
             public void onClickItem(int position, Object item) {
@@ -161,8 +161,6 @@ public class ActivitySetupNotify extends BaseActivity implements ImpSetupNotify.
                 adapterMother.notifyDataSetChanged();*/
             }
         });
-
-
     }
 
     @Override
@@ -223,6 +221,26 @@ public class ActivitySetupNotify extends BaseActivity implements ImpSetupNotify.
             mPresenter.api_get_get_cf_notify(sUserMe);
             Toast.makeText(this, mLis.get(0).getsRESULT(), Toast.LENGTH_SHORT).show();
         } else Toast.makeText(this, mLis.get(0).getsRESULT(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void show_get_cf_notify_chil(List<ConfigNotify> mLis) {
+
+    }
+
+    @Override
+    public void show_update_cf_notify_chil(List<ErrorApi> mLis) {
+
+    }
+
+    @Override
+    public void show_get_game_children(List<ConfigGame> mLis) {
+
+    }
+
+    @Override
+    public void show_cf_game_children(List<ErrorApi> mLis) {
+
     }
 
 }

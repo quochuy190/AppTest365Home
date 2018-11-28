@@ -118,14 +118,6 @@ public class FragmentCauhoiNoicau extends BaseFragment {
     TextView txt_current;
 
     private void initDataLeft() {
-      /*  if (mCauhoi.getsRESULT_CHILD()!=null&&mCauhoi.getsRESULT_CHILD().length() > 0) {
-            if (mCauhoi.getsRESULT_CHILD().equals("1")) {
-                Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
-            } else
-                Glide.with(getContext()).load(R.drawable.icon_anwser_false).into(img_anwser_chil);
-        } else {
-            Glide.with(getContext()).load(R.drawable.icon_anwser_unknow).into(img_anwser_chil);
-        }*/
         txt_current.setText("Bài: " + mCauhoi.getsNumberDe() + " - Câu hỏi: " + mCauhoi.getsSubNumberCau());
         txtCauhoi.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()));
         String[] egg1 = mCauhoi.getsHTML_A().split("::");

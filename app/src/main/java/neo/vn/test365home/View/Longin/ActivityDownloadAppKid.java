@@ -37,6 +37,7 @@ public class ActivityDownloadAppKid extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityDownloadAppKid.this, ActivityHome.class);
                 startActivity(intent);
+                finish();
             }
         });
         btn_download.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +60,6 @@ public class ActivityDownloadAppKid extends BaseActivity {
         } catch ( final Exception e ) {
             url = "https://play.google.com/store/apps/details?id=" + my_package_name;
         }
-
-
 //Open the app page in Google Play store:
         final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);

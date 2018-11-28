@@ -69,9 +69,11 @@ public class ActivitySetupSubUser extends BaseActivity implements ImpBaitap.View
     }
 
     private void initData() {
-        showDialogLoading();
-        String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-        mPresenter.get_api_list_get_children(user);
+        if (isNetwork()){
+            showDialogLoading();
+            String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+            mPresenter.get_api_list_get_children(user);
+        }
     }
 
     TextView txt_title;

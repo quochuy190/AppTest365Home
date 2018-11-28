@@ -8,6 +8,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -23,22 +24,27 @@ import java.util.List;
 import butterknife.BindView;
 import hotchemi.stringpicker.StringPicker;
 import neo.vn.test365home.Adapter.AdapterGame;
+import neo.vn.test365home.Adapter.AdapterSetupNotify;
 import neo.vn.test365home.App;
 import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ClickDialogPicker;
 import neo.vn.test365home.Listener.ItemClickListener;
+import neo.vn.test365home.Listener.SwitchChangeListenner;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ConfigChildren;
+import neo.vn.test365home.Models.ConfigGame;
+import neo.vn.test365home.Models.ConfigNotify;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.Game;
 import neo.vn.test365home.Models.HistoryBalance;
+import neo.vn.test365home.Models.ItemSetupNotify;
 import neo.vn.test365home.Models.UserInfo;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.TimeUtils;
 
-public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View {
+public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View, ImpSetupNotify.View {
     RecyclerView.LayoutManager mLayoutManager;
     private List<Game> mLisGame;
     @BindView(R.id.recycle_listgame)
@@ -74,7 +80,12 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     Button btn_capnhatthongtin;
     @BindView(R.id.btn_setup_cofig)
     Button btn_setup_cofig;
+    @BindView(R.id.btn_update_config_game)
+    Button btn_update_config_game;
+    @BindView(R.id.recycle_listnotify)
+    RecyclerView recycle_listnotify;
     PresenterSetup mPresenter;
+    PresenterSetupNotify mPresenterNotify;
     String pmath_taken_time = "20:00:00", pvietnam_taken_time = "20:00:00", peng_taken_time = "20:00:00",
             pmath_notify = "1", pvietnam_notify = "1", peng_notify = "1",
             pmath_taken_duration = "900", pvietnam_taken_duration = "900", peng_taken_duration = "900", pmath_dy = "MON", pvietnam_dy = "TUE", peng_dy = "WED";
@@ -89,14 +100,59 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
         super.onCreate(savedInstanceState);
         cal = Calendar.getInstance();
         mPresenter = new PresenterSetup(this);
+        mPresenterNotify = new PresenterSetupNotify(this);
         initAppbar();
         init();
         initEvent();
         initData();
+        initDataNotify();
+        initNotify();
+    }
+
+    AdapterSetupNotify adapterMother;
+    RecyclerView.LayoutManager mLayoutMother;
+    List<ItemSetupNotify> mLisChil;
+
+    private void initNotify() {
+        mLayoutMother = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        adapterMother = new AdapterSetupNotify(mLisChil, this, new SwitchChangeListenner() {
+            @Override
+            public void onListennerSwitchChange(int position, boolean isChecked) {
+                mLisChil.get(position).setOnOff(isChecked);
+            }
+        });
+        recycle_listnotify.setNestedScrollingEnabled(false);
+        recycle_listnotify.setHasFixedSize(true);
+        recycle_listnotify.setLayoutManager(mLayoutMother);
+        recycle_listnotify.setItemAnimator(new DefaultItemAnimator());
+        recycle_listnotify.setAdapter(adapterMother);
+        adapterMother.setOnIListener(new ItemClickListener() {
+            @Override
+            public void onClickItem(int position, Object item) {
+               /* boolean isClick = mLisMother.get(position).isOnOff();
+                mLisMother.get(position).setOnOff(!isClick);
+                adapterMother.notifyDataSetChanged();*/
+            }
+        });
+    }
+
+    private void initDataNotify() {
+        mLisChil = new ArrayList<>();
+        mLisChil.add(new ItemSetupNotify("Thông báo nhắc làm bài tập",
+                "Gửi thông báo khi đếm giờ làm bài tập của con mà bài tập đó chưa làm", false));
+        mLisChil.add(new ItemSetupNotify("Thông báo nhắc làm bài tập muộn",
+                "Gửi thông báo khi có bài tập muộn mà con chưa làm", true));
+        mLisChil.add(new ItemSetupNotify("Thông báo mẹ tặng sticker",
+                "Gửi thông báo khi mẹ gửi sticker cho con", false));
+        mLisChil.add(new ItemSetupNotify("Thông báo mẹ đã tải bài tập",
+                "Gửi thông báo khi mẹ thông báo mẹ mua bài tập cho con", true));
+        sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+        //   mPresenter.api_get_get_cf_notify(sUserMe);
     }
 
     private Childrens objChildren;
     private boolean isAddSubUser = false;
+    String sUserCon = "";
 
     private void initData() {
         mLisWeek.add("Thứ hai");
@@ -117,22 +173,27 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
 
         sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
         isAddSubUser = getIntent().getBooleanExtra(Constants.KEY_SEND_ADD_ADDSUBUSER, false);
-        if (isAddSubUser) {
-            String sUserCon = getIntent().getStringExtra(Constants.KEY_SEND_USERCON_ADD_ADDSUBUSER);
-            showDialogLoading();
-            if (sUserCon != null && sUserCon.length() > 0) {
-                mPresenter.api_get_config_children(sUserMe, sUserCon);
-                mPresenter.api_get_info_children(sUserMe, sUserCon);
-            }
-        } else {
-            showDialogLoading();
-            if (objChildren != null && objChildren.getsUSERNAME() != null) {
-                mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
-                mPresenter.api_get_info_children(sUserMe, objChildren.getsUSERNAME());
+        if (isNetwork()){
+            if (isAddSubUser) {
+                sUserCon = getIntent().getStringExtra(Constants.KEY_SEND_USERCON_ADD_ADDSUBUSER);
+                showDialogLoading();
+                if (sUserCon != null && sUserCon.length() > 0) {
+                    mPresenter.api_get_config_children(sUserMe, sUserCon);
+                    mPresenter.api_get_info_children(sUserMe, sUserCon);
+                    mPresenterNotify.api_get_no_children(sUserMe, sUserCon);
+                    mPresenterNotify.api_get_game_children(sUserMe, sUserCon);
+                }
+            } else {
+                showDialogLoading();
+                if (objChildren != null && objChildren.getsUSERNAME() != null) {
+                    sUserCon = objChildren.getsUSERNAME();
+                    mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
+                    mPresenter.api_get_info_children(sUserMe, objChildren.getsUSERNAME());
+                    mPresenterNotify.api_get_no_children(sUserMe, objChildren.getsUSERNAME());
+                    mPresenterNotify.api_get_game_children(sUserMe, objChildren.getsUSERNAME());
+                }
             }
         }
-
-
         //txt_time_tv.setText("dfskd;fs");
     }
 
@@ -198,7 +259,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 show_pickerdialog(mLisTime, new ClickDialogPicker() {
                     @Override
                     public void onClickYesDialog(String sResult) {
-                        txt_setuptime_toan.setText(sResult);
+                        txt_setuptime_toan.setText(sResult + " phút");
                     }
                 });
             }
@@ -209,7 +270,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 show_pickerdialog(mLisTime, new ClickDialogPicker() {
                     @Override
                     public void onClickYesDialog(String sResult) {
-                        txt_setuptime_ta.setText(sResult);
+                        txt_setuptime_ta.setText(sResult + " phút");
                     }
                 });
             }
@@ -220,7 +281,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 show_pickerdialog(mLisTime, new ClickDialogPicker() {
                     @Override
                     public void onClickYesDialog(String sResult) {
-                        txt_setuptime_tv.setText(sResult);
+                        txt_setuptime_tv.setText(sResult + " phút");
                     }
                 });
             }
@@ -228,23 +289,26 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
         btn_setup_cofig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pvietnam_dy = get_week_day(txt_weekday_tv.getText().toString());
-                peng_dy = get_week_day(txt_weekday_ta.getText().toString());
-                pmath_dy = get_week_day(txt_weekday.getText().toString());
-                pmath_taken_time = txt_time.getText().toString().substring(0, 5) + ":00";
-                pvietnam_taken_time = txt_time_tv.getText().toString().substring(0, 5) + ":00";
-                peng_taken_time = txt_time_ta.getText().toString().substring(0, 5) + ":00";
+                if (isNetwork()){
+                    pvietnam_dy = get_week_day(txt_weekday_tv.getText().toString());
+                    peng_dy = get_week_day(txt_weekday_ta.getText().toString());
+                    pmath_dy = get_week_day(txt_weekday.getText().toString());
+                    pmath_taken_time = txt_time.getText().toString().substring(0, 5) + ":00";
+                    pvietnam_taken_time = txt_time_tv.getText().toString().substring(0, 5) + ":00";
+                    peng_taken_time = txt_time_ta.getText().toString().substring(0, 5) + ":00";
 
-                pmath_taken_duration = "" + (Integer.parseInt(txt_setuptime_toan.getText().toString()) * 60);
-                pvietnam_taken_duration = "" + (Integer.parseInt(txt_setuptime_tv.getText().toString()) * 60);
-                peng_taken_duration = "" + (Integer.parseInt(txt_setuptime_ta.getText().toString()) * 60);
-                showDialogLoading();
-                sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                if (objChildren.getsUSERNAME() != null)
-                    mPresenter.api_config_to_children(sUserMe, objChildren.getsUSERNAME(), pmath_taken_time, "1",
-                            pmath_taken_duration, pvietnam_taken_time, "1", pvietnam_taken_duration,
-                            peng_taken_time, "1", peng_taken_duration,
-                            pmath_dy, pvietnam_dy, peng_dy);
+                    pmath_taken_duration = "" + (Integer.parseInt(txt_setuptime_toan.getText().toString()) * 60);
+                    pvietnam_taken_duration = "" + (Integer.parseInt(txt_setuptime_tv.getText().toString()) * 60);
+                    peng_taken_duration = "" + (Integer.parseInt(txt_setuptime_ta.getText().toString()) * 60);
+                    showDialogLoading();
+                    sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                    if (objChildren.getsUSERNAME() != null)
+                        mPresenter.api_config_to_children(sUserMe, objChildren.getsUSERNAME(), pmath_taken_time, "1",
+                                pmath_taken_duration, pvietnam_taken_time, "1", pvietnam_taken_duration,
+                                peng_taken_time, "1", peng_taken_duration,
+                                pmath_dy, pvietnam_dy, peng_dy);
+                }
+
             }
         });
         btn_capnhatthongtin.setOnClickListener(new View.OnClickListener() {
@@ -253,6 +317,62 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 Intent intent = new Intent(ActivityConfigSubUser.this, ActivityUpdateSubUser.class);
                 startActivityForResult(intent, Constants.RequestCode.GET_UPDATE_USER_CON);
                 //  startActivityForResult(intent, );
+            }
+        });
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNetwork()) {
+                    showDialogLoading();
+                    String sAlertTaken = "", sAlertLate = "", sAlertSticker = "", sAlert_Mother_Buy = "";
+                    if (mLisChil.get(0).isOnOff()) {
+                        sAlertTaken = "1";
+                    } else
+                        sAlertTaken = "0";
+                    if (mLisChil.get(1).isOnOff()) {
+                        sAlertLate = "1";
+                    } else
+                        sAlertLate = "0";
+                    if (mLisChil.get(2).isOnOff()) {
+                        sAlertSticker = "1";
+                    } else
+                        sAlertSticker = "0";
+                    if (mLisChil.get(3).isOnOff()) {
+                        sAlert_Mother_Buy = "1";
+                    } else
+                        sAlert_Mother_Buy = "0";
+                    mPresenterNotify.api_cf_notify_children(sUserMe, sUserCon, sAlertTaken, sAlertLate,
+                            sAlertSticker, sAlert_Mother_Buy);
+                }
+
+            }
+        });
+        btn_update_config_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNetwork()) {
+                    showDialogLoading();
+                    String sGameTPTT = "", sGameSuDoKu = "", sGameKOW = "", sGameTNNL = "";
+                    if (mLisGame.get(0).isOff()) {
+                        sGameTPTT = "1";
+                    } else
+                        sGameTPTT = "0";
+                    if (mLisGame.get(1).isOff()) {
+                        sGameSuDoKu = "1";
+                    } else
+                        sGameSuDoKu = "0";
+                    if (mLisGame.get(2).isOff()) {
+                        sGameKOW = "1";
+                    } else
+                        sGameKOW = "0";
+                    if (mLisGame.get(3).isOff()) {
+                        sGameTNNL = "1";
+                    } else
+                        sGameTNNL = "0";
+                    mPresenterNotify.api_cf_game_children(sUserMe, sUserCon, sGameTPTT, sGameSuDoKu,
+                            sGameKOW, sGameTNNL);
+                }
+
             }
         });
     }
@@ -277,10 +397,14 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
 
     private void init() {
         mLisGame = new ArrayList<>();
-        mLisGame.add(new Game("Triệu phú tri thức", "", true, R.drawable.icon_game_tptt, R.string.detail_game_tptt));
-        mLisGame.add(new Game("King of Word", "", true, R.drawable.icon_game_kigofword, R.string.detail_game_kow));
-        mLisGame.add(new Game("Sudoku", "", true, R.drawable.icon_game_sudoku, R.string.detail_game_sudoku));
-        mLisGame.add(new Game("Tính nhanh nhớ lâu", "", true, R.drawable.icon_game_tinhnhanh, R.string.detail_game_tnnl));
+        mLisGame.add(new Game("Triệu phú tri thức", "", true,
+                R.drawable.icon_game_tptt, R.string.detail_game_tptt));
+        mLisGame.add(new Game("Sudoku", "", true,
+                R.drawable.icon_game_sudoku, R.string.detail_game_sudoku));
+        mLisGame.add(new Game("King of Word", "", false,
+                R.drawable.icon_game_kigofword, R.string.detail_game_kow));
+        mLisGame.add(new Game("Tính nhanh nhớ lâu", "", false,
+                R.drawable.icon_game_tinhnhanh, R.string.detail_game_tnnl));
         adapter = new AdapterGame(mLisGame, this);
      /*   mLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false);*/
@@ -297,6 +421,12 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 Intent intent = new Intent(ActivityConfigSubUser.this, ActivityGameDetail.class);
                 intent.putExtra(Constants.KEY_SEND_GAME_DETAIL, obj);
                 startActivity(intent);
+            }
+        });
+        adapter.setOnSwitchChangeListenner(new SwitchChangeListenner() {
+            @Override
+            public void onListennerSwitchChange(int position, boolean isChecked) {
+                mLisGame.get(position).setOff(isChecked);
             }
         });
     }
@@ -373,6 +503,87 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     }
 
     @Override
+    public void show_get_cf_notify(List<ConfigNotify> mLis) {
+        hideDialogLoading();
+    }
+
+    @Override
+    public void show_update_cf_notify(List<ErrorApi> mLis) {
+      /*  hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            mPresenterNotify.api_get_no_children(sUserMe, sUserCon);
+            showDialogNotify("Thông báo", "Cập nhật thông báo app con thành công");
+        }*/
+    }
+
+    @Override
+    public void show_get_cf_notify_chil(List<ConfigNotify> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            if (mLis.get(0).getsALERT_LATE().equals("1")) {
+                mLisChil.get(1).setOnOff(true);
+            } else
+                mLisChil.get(1).setOnOff(false);
+            if (mLis.get(0).getsALERT_TAKEN().equals("1")) {
+                mLisChil.get(0).setOnOff(true);
+            } else
+                mLisChil.get(0).setOnOff(false);
+            if (mLis.get(0).getsALERT_STICKER().equals("1")) {
+                mLisChil.get(2).setOnOff(true);
+            } else
+                mLisChil.get(2).setOnOff(false);
+            if (mLis.get(0).getsALERT_MOTHER_BUY().equals("1")) {
+                mLisChil.get(3).setOnOff(true);
+            } else
+                mLisChil.get(3).setOnOff(false);
+
+            adapterMother.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void show_update_cf_notify_chil(List<ErrorApi> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            mPresenterNotify.api_get_no_children(sUserMe, sUserCon);
+            showDialogNotify("Thông báo", "Cập nhật thông báo app con thành công");
+        } else showDialogNotify("Lỗi", mLis.get(0).getsRESULT());
+    }
+
+    @Override
+    public void show_get_game_children(List<ConfigGame> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            if (mLis.get(0).getsGAME_TPTT().equals("1")) {
+                mLisGame.get(0).setOff(true);
+            } else
+                mLisGame.get(0).setOff(false);
+            if (mLis.get(0).getsGAME_SUDOKU().equals("1")) {
+                mLisGame.get(1).setOff(true);
+            } else
+                mLisGame.get(1).setOff(false);
+            if (mLis.get(0).getsGAME_KOW().equals("1")) {
+                mLisGame.get(2).setOff(true);
+            } else
+                mLisGame.get(2).setOff(false);
+            if (mLis.get(0).getsGAME_TNNL().equals("1")) {
+                mLisGame.get(3).setOff(true);
+            } else
+                mLisGame.get(3).setOff(false);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void show_cf_game_children(List<ErrorApi> mLis) {
+        hideDialogLoading();
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            mPresenterNotify.api_get_game_children(sUserMe, sUserCon);
+            showDialogNotify("Thông báo", "Cập nhật cài đặt trò chơi thành công");
+        } else showDialogNotify("Lỗi", mLis.get(0).getsRESULT());
+    }
+
+    @Override
     public void show_user_info(List<UserInfo> mLis) {
         hideDialogLoading();
     }
@@ -385,7 +596,7 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
             if (objChildren != null && objChildren.getsUSERNAME() != null)
                 mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
         } else {
-            showDialogNotify("Thông báo", "Cài đặt lỗi");
+            showDialogNotify("Lỗi", mLis.get(0).getsRESULT());
         }
     }
 
@@ -404,13 +615,13 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                 txt_weekday_tv.setText(get_week_day_vi(obj.getsVIETNAMESE_DY()));
             }
             if (obj.getsENGLISH_TAKEN_DURATION() != null) {
-                txt_setuptime_ta.setText("" + (Integer.parseInt(obj.getsENGLISH_TAKEN_DURATION()) / 60));
+                txt_setuptime_ta.setText("" + (Integer.parseInt(obj.getsENGLISH_TAKEN_DURATION()) / 60) + " phút");
             }
             if (obj.getsVIETNAMESE_TAKEN_DURATION() != null) {
-                txt_setuptime_tv.setText("" + (Integer.parseInt(obj.getsVIETNAMESE_TAKEN_DURATION()) / 60));
+                txt_setuptime_tv.setText("" + (Integer.parseInt(obj.getsVIETNAMESE_TAKEN_DURATION()) / 60) + " phút");
             }
             if (obj.getsMATH_TAKEN_DURATION() != null) {
-                txt_setuptime_toan.setText("" + (Integer.parseInt(obj.getsMATH_TAKEN_DURATION()) / 60));
+                txt_setuptime_toan.setText("" + (Integer.parseInt(obj.getsMATH_TAKEN_DURATION()) / 60) + " phút");
             }
             if (obj.getsMATH_TAKEN_TIME() != null) {
                 txt_time.setText(obj.getsMATH_TAKEN_TIME().substring(0, 5));

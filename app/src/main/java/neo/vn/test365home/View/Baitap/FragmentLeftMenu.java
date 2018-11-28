@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,7 @@ public class FragmentLeftMenu extends BaseFragment implements View.OnClickListen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_left_menu, container, false);
         ButterKnife.bind(this, view);
+        EventBus.getDefault().register(this);
         mPresenter = new PresenterBaitap(this);
         init();
         initData();
@@ -67,11 +70,28 @@ public class FragmentLeftMenu extends BaseFragment implements View.OnClickListen
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals(Constants.KEY_SEND_LEFT_MENU)) {
+            initData();
+        }
+    }
+
     String sUserMe;
 
     private void initData() {
-        sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-        mPresenter.get_api_list_get_children(sUserMe);
+        if (isNetwork()) {
+            showDialogLoading();
+            sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+            mPresenter.get_api_list_get_children(sUserMe);
+        }
+
         /*mLisChil.add(new Childrens("Quốc Huy", "a"));
         mLisChil.add(new Childrens("Quốc Huy", "b"));
         mLisChil.add(new Childrens("Quốc Huy", "c"));
@@ -181,9 +201,18 @@ public class FragmentLeftMenu extends BaseFragment implements View.OnClickListen
                 }
                 EventBus.getDefault().post(new MessageEvent(Constants.KEY_SEND_EVENT_CHIL, 1,
                         0, mLisChil.get(0)));
+                if (!App.isFirstLoadData) {
+                    App.isFirstLoadData = true;
+                }
                 adapter.notifyDataSetChanged();
+            } else if (mLis.get(0).getsERROR().equals("0001")) {
+                EventBus.getDefault().post(new MessageEvent(Constants.KEY_SEND_EVENT_CHIL, 2,
+                        0, null));
+            } else {
+
             }
         }
+
     }
 
     @Override

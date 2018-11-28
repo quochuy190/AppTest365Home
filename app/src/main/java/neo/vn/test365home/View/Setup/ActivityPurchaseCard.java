@@ -96,11 +96,12 @@ public class ActivityPurchaseCard extends BaseActivity implements ImpPayCard.Vie
         btn_purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sCodeNumber = edt_card_input.getText().toString().trim().replaceAll(" ", "");
-                String sUserMe  = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                showDialogLoading();
-                mPresenter.api_pay_card(sUserMe, sCodeNumber);
-
+                if (isNetwork()){
+                    String sCodeNumber = edt_card_input.getText().toString().trim().replaceAll(" ", "");
+                    String sUserMe  = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                    showDialogLoading();
+                    mPresenter.api_pay_card(sUserMe, sCodeNumber);
+                }
             }
         });
     }

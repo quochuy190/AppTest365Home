@@ -22,15 +22,15 @@
         app:layout_constraintTop_toBottomOf="@id/include3">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <Button
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/btn_capnhatthongtin"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp40"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/spr_click_button"
                 android:paddingLeft="@dimen/dp30"
@@ -83,33 +83,85 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_17sp" />
 
-                    <TextView
-                        android:id="@+id/txt_setup_cal_time"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="20:00"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp3">
 
-                    <TextView
-                        android:id="@+id/txt_setup_cal_dayweek"
+                        <TextView
+                            android:id="@+id/txt_setup_cal_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+                    <!-- <TextView
+
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_margin="@dimen/dp3"
+                         android:layout_weight="1"
+                         android:background="@drawable/spr_config_subuser"
+                         android:clickable="false"
+                         android:gravity="center"
+                         android:padding="@dimen/dp5"
+                         android:text="20:00"
+                         android:textColor="@color/black"
+                         android:textSize="@dimen/text_16sp" />-->
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="Thứ Hai"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp5">
+
+                        <TextView
+                            android:id="@+id/txt_setup_cal_dayweek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+                    <!-- <TextView
+
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_margin="@dimen/dp3"
+                         android:layout_weight="1"
+                         android:background="@drawable/spr_config_subuser"
+                         android:clickable="false"
+                         android:gravity="center"
+                         android:padding="@dimen/dp5"
+                         android:text="Thứ Hai"
+                         android:textColor="@color/black"
+                         android:textSize="@dimen/text_16sp" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,33 +181,86 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_17sp" />
 
-                    <TextView
-                        android:id="@+id/txt_setup_cal_time_tv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="20:00"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp3">
 
-                    <TextView
-                        android:id="@+id/txt_setup_cal_week_tv"
+                        <TextView
+                            android:id="@+id/txt_setup_cal_time_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="Thứ Hai"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp3">
+
+                        <TextView
+                            android:id="@+id/txt_setup_cal_week_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+                    <!--   <TextView
+                           android:id="@+id/txt_setup_cal_time_tv"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_margin="@dimen/dp3"
+                           android:layout_weight="1"
+                           android:background="@drawable/spr_config_subuser"
+                           android:clickable="false"
+                           android:gravity="center"
+                           android:padding="@dimen/dp5"
+                           android:text="20:00"
+                           android:textColor="@color/black"
+                           android:textSize="@dimen/text_16sp" />-->
+
+                    <!--  <TextView
+                          android:id="@+id/txt_setup_cal_week_tv"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_margin="@dimen/dp3"
+                          android:layout_weight="1"
+                          android:background="@drawable/spr_config_subuser"
+                          android:clickable="false"
+                          android:gravity="center"
+                          android:padding="@dimen/dp5"
+                          android:text="Thứ Hai"
+                          android:textColor="@color/black"
+                          android:textSize="@dimen/text_16sp" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -175,21 +280,72 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_17sp" />
 
-                    <TextView
-                        android:id="@+id/txt_setup_cal_time_ta"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="20:00"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp3">
 
-                    <TextView
+                        <TextView
+                            android:id="@+id/txt_setup_cal_time_ta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+                    <!-- <TextView
+                         android:id="@+id/txt_setup_cal_time_ta"
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_margin="@dimen/dp3"
+                         android:layout_weight="1"
+                         android:background="@drawable/spr_config_subuser"
+                         android:clickable="false"
+                         android:gravity="center"
+                         android:padding="@dimen/dp5"
+                         android:text="20:00"
+                         android:textColor="@color/black"
+                         android:textSize="@dimen/text_16sp" />-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp3"
+                        android:layout_weight="1"
+                        android:background="@drawable/spr_config_subuser"
+                        android:padding="@dimen/dp3">
+
+                        <TextView
+                            android:id="@+id/txt_setup_cal_week_ta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+                    <!--<TextView
                         android:id="@+id/txt_setup_cal_week_ta"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -201,7 +357,7 @@
                         android:padding="@dimen/dp5"
                         android:text="Thứ Hai"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:textSize="@dimen/text_16sp" />-->
                 </LinearLayout>
             </RelativeLayout>
 
@@ -249,29 +405,34 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_17sp" />
 
-                    <TextView
-                        android:id="@+id/txt_setuptime_toan"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="30"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp5">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp3"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="phút"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/text_16sp" />
+                        <TextView
+                            android:id="@+id/txt_setuptime_toan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -294,30 +455,34 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_17sp" />
 
-                    <TextView
-                        android:id="@+id/txt_setuptime_tv"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="30"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp5">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp3"
+                        <TextView
+                            android:id="@+id/txt_setuptime_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
 
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="phút"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/text_16sp" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -340,40 +505,47 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_17sp" />
 
-                    <TextView
-                        android:id="@+id/txt_setuptime_ta"
+                    <RelativeLayout
+
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp3"
                         android:layout_weight="1"
                         android:background="@drawable/spr_config_subuser"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="30"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:padding="@dimen/dp5">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dp3"
-                        android:gravity="center"
-                        android:padding="@dimen/dp5"
-                        android:text="phút"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/text_16sp" />
+                        <TextView
+                            android:id="@+id/txt_setuptime_ta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:clickable="false"
+                            android:padding="@dimen/dp3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/ic_keyboard_arrow_down"
+                            android:tint="@color/red_test365" />
+                    </RelativeLayout>
+
+
                 </LinearLayout>
 
             </RelativeLayout>
 
             <Button
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/btn_setup_cofig"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp40"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp10"
-                android:layout_marginBottom="@dimen/dp10"
+
                 android:background="@drawable/spr_click_button"
                 android:paddingLeft="@dimen/dp30"
                 android:paddingRight="@dimen/dp30"
@@ -384,6 +556,56 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rl_listgame" />
 
+            <RelativeLayout
+                android:id="@+id/rl_listnotify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_time_lambai">
+
+                <TextView
+                    android:id="@+id/title_setup_notyfy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bg_title_config"
+                    android:padding="@dimen/dp10"
+                    android:text="Cài đặt thông báo app con"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_17sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycle_listnotify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_setup_notyfy"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:background="@color/bg_naptien">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+            <Button
+                android:id="@+id/btn_update_config"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@drawable/spr_click_button"
+                android:paddingLeft="@dimen/dp30"
+                android:paddingRight="@dimen/dp30"
+                android:text="cài đặt thông báo"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_listgame" />
 
             <RelativeLayout
                 android:id="@+id/rl_listgame"
@@ -403,35 +625,35 @@
                     android:layout_height="wrap_content"
                     android:background="@color/bg_title_config"
                     android:padding="@dimen/dp10"
-                    android:text="Cài đặt thời gian cho bé"
+                    android:text="Cài đặt chơi game"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_17sp" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:background="@color/bg_naptien"
                     android:id="@+id/recycle_listgame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_setup_game"
                     android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginRight="@dimen/dp5">
+                    android:layout_marginRight="@dimen/dp5"
+                    android:background="@color/bg_naptien">
 
                 </android.support.v7.widget.RecyclerView>
 
             </RelativeLayout>
 
             <Button
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/btn_update_config"
+                android:id="@+id/btn_update_config_game"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp40"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_marginBottom="@dimen/dp10"
                 android:background="@drawable/spr_click_button"
                 android:paddingLeft="@dimen/dp30"
                 android:paddingRight="@dimen/dp30"
-                android:text="cài đặt thông báo"
+                android:text="cài đặt trò chơi"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_17sp"
                 app:layout_constraintEnd_toEndOf="parent"

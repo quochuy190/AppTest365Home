@@ -30,10 +30,10 @@ public class Cauhoi implements Parcelable {
     String sEXCERCISE_ID;
     @SerializedName("QUESTION_NUMBER")
     String sQUESTION_NUMBER;
-   /* 1 là chon đáp án đúng
-   *  2
-   *  3
-   * */
+    /* 1 là chon đáp án đúng
+     *  2
+     *  3
+     * */
     @SerializedName("KIEU")
     String sKIEU;
     @SerializedName("HUONGDAN")
@@ -46,6 +46,10 @@ public class Cauhoi implements Parcelable {
     String sAUDIO_ID;
     @SerializedName("UPDATETIME")
     String sUPDATETIME;
+    @SerializedName("PATH_IMAGE")
+    String sPATH_IMAGE;
+    @SerializedName("PATH_AUDIO")
+    String sPATH_AUDIO;
 
     String mOption;
 
@@ -88,6 +92,22 @@ public class Cauhoi implements Parcelable {
         Gson gson = new Gson();
         arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
+    }
+
+    public String getsPATH_IMAGE() {
+        return sPATH_IMAGE;
+    }
+
+    public void setsPATH_IMAGE(String sPATH_IMAGE) {
+        this.sPATH_IMAGE = sPATH_IMAGE;
+    }
+
+    public String getsPATH_AUDIO() {
+        return sPATH_AUDIO;
+    }
+
+    public void setsPATH_AUDIO(String sPATH_AUDIO) {
+        this.sPATH_AUDIO = sPATH_AUDIO;
     }
 
     public String getmOption() {

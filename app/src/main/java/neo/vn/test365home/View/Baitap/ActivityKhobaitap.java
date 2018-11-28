@@ -110,7 +110,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
 
     String user;
     boolean isChonAll = false;
-
+    String sChuoimade = "";
     private void initEvent() {
         txt_chontatca.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +142,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
                         }
                     }
                     iCount = 0;
+                    iPrice = 0;
                     isChonAll = false;
                     txt_chontatca.setText("Chọn tất cả");
                     txt_soluong.setText("0");
@@ -153,7 +154,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         btn_taichocon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sChuoimade = "";
+                sChuoimade="";
                 if (mLisBaitap.size() > 0) {
                     for (int i = 0; i < mLisBaitap.size(); i++) {
                         if (mLisBaitap.get(i).getsSTATUS().equals("4")) {
@@ -167,7 +168,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
                 }
                 if (sChuoimade.length() > 0) {
                     if (iPrice > iTkTotal) {
-                        showDialogComfirm("Thông báo", "Tài khoản của bạn không đủ để thực hiện giao dich",
+                        showDialogComfirm_Khobaitap("Thông báo", "Tài khoản của bạn không đủ để thực hiện giao dich",
                                 false, new ClickDialog() {
                                     @Override
                                     public void onClickYesDialog() {
@@ -179,14 +180,26 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
 
                                     }
                                 });
+                        return;
                     }
-                    showDialogLoading();
-                    String sObjective = getIntent().getStringExtra(Constants.KEY_SEND_OBJECTIVE);
-                    user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                    mPresenter.get_api_buy_excercise(user, mChildren.getsUSERNAME(), sChuoimade, sObjective);
+                    showDialogComfirm("Thông báo", "Chi phí tải bài sẽ được trừ vào tài khoản của ba mẹ trên" +
+                                    " Home365. Ba mẹ có chắc chắn muốn tải các bài tập này cho con?",
+                            false, new ClickDialog() {
+                                @Override
+                                public void onClickYesDialog() {
+                                    showDialogLoading();
+                                    String sObjective = getIntent().getStringExtra(Constants.KEY_SEND_OBJECTIVE);
+                                    user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                                    mPresenter.get_api_buy_excercise(user, mChildren.getsUSERNAME(), sChuoimade, sObjective);
+                                }
+
+                                @Override
+                                public void onClickNoDialog() {
+
+                                }
+                            });
+
                 } else showDialogNotify("Thông báo", "Bạn chưa chọn bài tập nào để mua");
-
-
             }
         });
     }
@@ -389,7 +402,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
 
     }
 
-    public void showDialogComfirm(String title, String message, boolean is_hide_cancel,
+    public void showDialogComfirm_Khobaitap(String title, String message, boolean is_hide_cancel,
                                   final ClickDialog clickDialog) {
         final Dialog dialog_yes = new Dialog(this);
         dialog_yes.setCancelable(false);

@@ -66,19 +66,21 @@ public class ActivityChangePassWord extends BaseActivity implements ImpSetup.Vie
         btn_change_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sPassOld = edt_pass_old.getText().toString();
-                sPassNew = edt_password_new.getText().toString();
-                sPassComfirm = edt_pass_comfirm.getText().toString();
-                sPassword = SharedPrefs.getInstance().get(Constants.KEY_PASSWORD, String.class);
-                sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                if (sPassOld.length() > 0 && sPassNew.length() > 0 && sPassComfirm.length() > 0) {
-                    if (sPassword.equals(sPassOld)) {
-                        if (sPassNew.equals(sPassComfirm)) {
-                            showDialogLoading();
-                            mPresenter.api_get_change_pass(sUserMe, sPassOld, sPassNew);
-                        } else showDialogNotify("Thông báo", "Mời nhập lại mật khẩu mới");
-                    } else showDialogNotify("Thông báo", "Sai mật khẩu, mời nhập lại");
-                } else showDialogNotify("Thông báo", "Mời bạn nhập vào đầy đủ thông tin");
+                if (isNetwork()) {
+                    sPassOld = edt_pass_old.getText().toString();
+                    sPassNew = edt_password_new.getText().toString();
+                    sPassComfirm = edt_pass_comfirm.getText().toString();
+                    sPassword = SharedPrefs.getInstance().get(Constants.KEY_PASSWORD, String.class);
+                    sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                    if (sPassOld.length() > 0 && sPassNew.length() > 0 && sPassComfirm.length() > 0) {
+                        if (sPassword.equals(sPassOld)) {
+                            if (sPassNew.equals(sPassComfirm)) {
+                                showDialogLoading();
+                                mPresenter.api_get_change_pass(sUserMe, sPassOld, sPassNew);
+                            } else showDialogNotify("Thông báo", "Mời nhập lại mật khẩu mới");
+                        } else showDialogNotify("Thông báo", "Sai mật khẩu, mời nhập lại");
+                    } else showDialogNotify("Thông báo", "Mời bạn nhập vào đầy đủ thông tin");
+                }
             }
         });
     }

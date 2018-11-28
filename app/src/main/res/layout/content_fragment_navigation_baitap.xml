@@ -47,5 +47,36 @@
         app:layout_constraintTop_toBottomOf="@+id/tab_layout">
 
     </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_add_newchil"
+        android:orientation="vertical"
+        android:padding="@dimen/dp20"
+        android:background="@color/bg_app"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:gravity="center"
+            android:textSize="@dimen/text_16sp"
+            android:textColor="@color/app_bar"
+            android:text="@string/txt_new_active"
+            android:textStyle="bold|italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
+        <Button
+
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:id="@+id/btn_add_chil"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp40"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dp10"
+            android:background="@drawable/spr_click_button"
+            android:text="Tạo tài khoản con"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_18sp" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

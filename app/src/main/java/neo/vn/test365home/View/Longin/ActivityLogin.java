@@ -129,8 +129,8 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
             @Override
             public void onClick(View v) {
                 if (!isNetwork()) {
-                    showDialogNotify("Thông báo",
-                            "Mất kết nối, vui long kiểm tra lại mạng để tiếp tục");
+                 /*   showDialogNotify("Thông báo",
+                            "Mất kết nối, vui lòng kiểm tra lại mạng để tiếp tục");*/
                     return;
                 }
                 sUserName = edt_taikhoan_Login.getText().toString().trim();
@@ -200,6 +200,7 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
         hideDialogLoading();
         if (mLis != null) {
             if (mLis.get(0).getsERROR().equals("0000")) {
+                SharedPrefs.getInstance().put(Constants.KEY_ISLOGIN, true);
                 SharedPrefs.getInstance().put(Constants.KEY_USERNAME, sUserName);
                 SharedPrefs.getInstance().put(Constants.KEY_PASSWORD, sPassWord);
                 SharedPrefs.getInstance().put(Constants.KEY_LOGININFO, mLis.get(0));
@@ -241,7 +242,6 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
             SharedPrefs.getInstance().put(Constants.KEY_ISLOGIN, true);
             Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
             intent.putExtra(Constants.KEY_SEND_LOGIN_INFO, mLis.get(0));
-            intent.putExtra(Constants.KEY_IS_START_LOGIN, true);
             startActivity(intent);
             finish();
         } else {

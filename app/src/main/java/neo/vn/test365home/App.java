@@ -15,9 +15,11 @@ import neo.vn.test365home.Models.Schools;
 public class App extends Application {
     private static App sInstance;
     private Gson mGSon;
+
     public static App self() {
         return sInstance;
     }
+
     public static District mDistrict;
     public static City mCity;
     public static Schools mSchools;
@@ -28,6 +30,9 @@ public class App extends Application {
     public static List<Schools> mLisSchools;
     public static List<Childrens> mLisChildren;
     public static Childrens mChilSetup;
+    public static boolean isOpenApp = false;
+    public static boolean isShowDownloadapp = false;
+    public static boolean isFirstLoadData = false;
     @Override
     public void onCreate() {
         super.onCreate();

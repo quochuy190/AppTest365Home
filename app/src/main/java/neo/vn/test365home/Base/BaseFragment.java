@@ -11,11 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import neo.vn.test365home.Listener.ClickDialog;
 import neo.vn.test365home.R;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
@@ -214,22 +216,23 @@ public class BaseFragment extends Fragment {
     }
 
 
-   /* public void showDialogComfirm(String title, String message, boolean is_hide_cancel,
-                                  final ClickDialog clickDialog){
+    public void showDialogComfirm_download_app(String title, String message,
+                                               final ClickDialog clickDialog) {
         final Dialog dialog_yes = new Dialog(getContext());
         dialog_yes.setCancelable(false);
         dialog_yes.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog_yes.setContentView(R.layout.dialog_warning);
         dialog_yes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         TextView txt_title = (TextView) dialog_yes.findViewById(R.id.txt_warning_title);
-        ImageView img_warning = (ImageView) dialog_yes.findViewById(R.id.img_warning);
         TextView txt_message = (TextView) dialog_yes.findViewById(R.id.txt_warning_message);
         TextView btn_ok = (TextView) dialog_yes.findViewById(R.id.btn_warning_ok);
         TextView btn_cancel = (TextView) dialog_yes.findViewById(R.id.btn_warning_cancel);
         View view_warning = (View) dialog_yes.findViewById(R.id.view_warning);
         txt_title.setText(title);
-        txt_message.setText(message);
-        img_warning.setVisibility(View.GONE);
+        txt_message.setText(Html.fromHtml(message));
+        view_warning.setVisibility(View.VISIBLE);
+        btn_cancel.setVisibility(View.VISIBLE);
+        btn_ok.setText("Tải ứng dụng");
         // txt_buysongs.setText(Html.fromHtml("Để hoàn tất đăng ký dịch vụ RingTunes, Quý khách vui lòng thực hiện thao tác soạn tin nhắn <font color='#060606'>\"Y2 gửi 9194\"</font> từ số điện thoại giá cước: 3.000Đ/7 ngày. Cảm ơn Quý khách!"));
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,18 +248,12 @@ public class BaseFragment extends Fragment {
                 clickDialog.onClickNoDialog();
             }
         });
-        if (is_hide_cancel){
-            view_warning.setVisibility(View.GONE);
-            btn_cancel.setVisibility(View.GONE);
-        }else{
-            view_warning.setVisibility(View.VISIBLE);
-            btn_cancel.setVisibility(View.VISIBLE);
-        }
+
         dialog_yes.show();
 
-    }*/
+    }
 
-    public void showDialogNotify(String title, String message){
+    public void showDialogNotify(String title, String message) {
         final Dialog dialog_yes = new Dialog(getContext());
         dialog_yes.setCancelable(false);
         dialog_yes.requestWindowFeature(Window.FEATURE_NO_TITLE);

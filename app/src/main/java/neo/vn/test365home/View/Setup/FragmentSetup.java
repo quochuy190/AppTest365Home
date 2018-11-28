@@ -76,10 +76,7 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
 
     private void initData() {
         objLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
-        if (objLogin != null && objLogin.getsFULLNAME() != null)
-            txt_fullname.setText(objLogin.getsFULLNAME());
-        else
-            txt_fullname.setText("No Name");
+
         if (objLogin != null && objLogin.getsAVARTAR() != null && objLogin.getsAVARTAR().length() > 0)
             Glide.with(this)
                     .load(Config.URL_IMAGE + objLogin.getsAVARTAR())
@@ -94,7 +91,7 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
         lisMenuSetup.add(new ObjMenu(getString(R.string.txt_setup_sub_user), R.drawable.icon_setup_sub, ""));
         lisMenuSetup.add(new ObjMenu(getString(R.string.txt_account), R.drawable.icon_wallet, ""));
         lisMenuSetup.add(new ObjMenu(getString(R.string.txt_change_pass), R.drawable.icon_change_pass, ""));
-
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_guild_app), R.drawable.icon_change_pass, ""));
     }
 
     private void init() {

@@ -19,6 +19,7 @@ import neo.vn.test365home.Base.BaseActivity;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.HistoryBalance;
+import neo.vn.test365home.Models.Login;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 
@@ -31,6 +32,7 @@ public class ActivityPurchaseCode extends BaseActivity implements ImpPayCard.Vie
     EditText edt_card_input;
     String id;
     PresenterPayCard mPresenter;
+    Login mLogin;
 
     @Override
     public int setContentViewId() {
@@ -41,6 +43,7 @@ public class ActivityPurchaseCode extends BaseActivity implements ImpPayCard.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new PresenterPayCard(this);
+
         id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         btn_purchase.getBackground().setAlpha(50);
         btn_purchase.setEnabled(false);
@@ -91,31 +94,39 @@ public class ActivityPurchaseCode extends BaseActivity implements ImpPayCard.Vie
         btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String my_package_name = "neo.vn.test365children";  // <- HERE YOUR PACKAGE NAME!!
+                String url = "";
+                mLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
                 try {
-                    /*Intent i = new Intent(Intent.ACTION_SEND);
+                    Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("text/plain");
                     i.putExtra(Intent.EXTRA_SUBJECT, "Home365");
-                    String sAux = "\nTải Home365 ngay nhập mã để nhận đc 100k vào tài khoản\n\n";
-                    sAux = sAux + "https://play.google.com/store/apps/details?id=neo.vn.test365home \n\n";
+                    String sAux = "\nTải Home365 ngay nhập mã " + mLogin.getsPROMOTIONCODE()
+                            + " để nhận đc 100k vào tài khoản\n\n";
+                    url = "https://play.google.com/store/apps/details?id=" + my_package_name;
+                    sAux = sAux + url + "\n\n";
                     i.putExtra(Intent.EXTRA_TEXT, sAux);
-                    startActivity(Intent.createChooser(i, "choose one"));*/
-                    String message = "Home365 ngay nhập mã để nhận đc 100k vào tài khoản.";
+                    startActivity(Intent.createChooser(i, "Home365"));
+                  /*  String message = "Home365 ngay nhập mã để nhận đc 100k vào tài khoản.";
                     Intent share = new Intent(Intent.ACTION_SEND);
                     share.setType("text/plain");
                     share.putExtra(Intent.EXTRA_TEXT, message);
-                    startActivity(Intent.createChooser(share, "Home365"));
+                    startActivity(Intent.createChooser(share, "Home365"));*/
                 } catch (Exception e) {
-                    //e.toString();
+                    e.toString();
                 }
             }
         });
         btn_purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sCodeNumber = edt_card_input.getText().toString().trim().replaceAll(" ", "");
-                String sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                showDialogLoading();
-                mPresenter.api_refcode(sUserMe, sCodeNumber, id);
+                if (isNetwork()) {
+                    String sCodeNumber = edt_card_input.getText().toString().trim().replaceAll(" ", "");
+                    String sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                    showDialogLoading();
+                    mPresenter.api_refcode(sUserMe, sCodeNumber, id);
+                }
+
             }
         });
     }

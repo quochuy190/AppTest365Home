@@ -21,6 +21,7 @@ import retrofit2.Response;
 public class ApiServiceIml {
     ApiSevice apiService;
     public void getApiService(final CallbackData<String> callbackData, Map<String, String> mData) {
+
         apiService = ApiSevice.retrofit.create(ApiSevice.class);
         Call<ResponseBody> getApiservice = apiService.getApiService( mData);
         getApiservice.enqueue(new Callback<ResponseBody>() {

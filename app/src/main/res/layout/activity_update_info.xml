@@ -47,6 +47,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:padding="@dimen/dp5"
             android:id="@+id/img_back"
             android:tint="@color/white"
             android:src="@drawable/ic_back"

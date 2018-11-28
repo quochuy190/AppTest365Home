@@ -186,10 +186,12 @@ public class ActivityManageAccount extends BaseActivity implements ImpSetup.View
 
 
     private void initData() {
-        showDialogLoading();
-        sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-        mPresenter.api_get_user_info(sUserMe);
-        mPresenter.api_get_history_balance(sUserMe);
+        if (isNetwork()){
+            showDialogLoading();
+            sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+            mPresenter.api_get_user_info(sUserMe);
+            mPresenter.api_get_history_balance(sUserMe);
+        }
     }
 
     @Override

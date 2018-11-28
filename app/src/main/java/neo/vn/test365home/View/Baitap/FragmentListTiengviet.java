@@ -1,6 +1,7 @@
 package neo.vn.test365home.View.Baitap;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,13 +16,16 @@ import android.widget.AdapterView;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import neo.vn.test365home.Adapter.AdapterHeader;
+import neo.vn.test365home.App;
 import neo.vn.test365home.Base.BaseFragment;
 import neo.vn.test365home.Config.Constants;
+import neo.vn.test365home.Listener.ClickDialog;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Cauhoi;
 import neo.vn.test365home.Models.Childrens;
@@ -82,7 +86,7 @@ public class FragmentListTiengviet extends BaseFragment implements View.OnClickL
 
     private void initData() {
         String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-        mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(),"2", mChildren.getsID_LEVEL());
+        mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(), "2", mChildren.getsID_LEVEL());
 
     }
 
@@ -174,7 +178,7 @@ public class FragmentListTiengviet extends BaseFragment implements View.OnClickL
                                 break;
                             case "2":
                                 obj.setsHeaderId("c");
-                                mLisDalam.add(obj);
+                                mLisChualam.add(obj);
                                 break;
                             case "3":
                                 obj.setsHeaderId("b");
@@ -185,12 +189,50 @@ public class FragmentListTiengviet extends BaseFragment implements View.OnClickL
                                 mLisDanglam.add(obj);
                                 break;
                             case "5":
+                                if (!App.isShowDownloadapp)
+                                    App.isShowDownloadapp = true;
                                 obj.setsHeaderId("d");
-                                mLisChualam.add(obj);
+                                mLisDalam.add(obj);
                                 break;
                         }
                     }
                 }
+                if (!App.isOpenApp) {
+                    if (!App.isShowDownloadapp) {
+                        showDialogComfirm_download_app("Thông báo", getString(R.string.txt_download_appcon), new ClickDialog() {
+                            @Override
+                            public void onClickYesDialog() {
+                                final String my_package_name = "neo.vn.test365children";  // <- HERE YOUR PACKAGE NAME!!
+                                String url = "";
+
+                                try {
+                                    //Check whether Google Play store is installed or not:
+                                    getActivity().getPackageManager().getPackageInfo("com.android.vending", 0);
+
+                                    url = "market://details?id=" + my_package_name;
+                                } catch ( final Exception e ) {
+                                    url = "https://play.google.com/store/apps/details?id=" + my_package_name;
+                                }
+//Open the app page in Google Play store:
+                                final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onClickNoDialog() {
+
+                            }
+                        });
+                        App.isOpenApp = true;
+                    }
+                }
+                Collections.sort(mLisDanglam);
+                Collections.sort(mLisQuahan);
+                Collections.sort(mLisChualam);
+                Collections.sort(mLisChuaco);
+                Collections.sort(mLisDalam);
+                Collections.reverse(mLisDalam);
                 if (mLisDanglam.size() > 0) {
                     mLisTuanDamuaTV.addAll(mLisDanglam);
                 }
@@ -251,9 +293,9 @@ public class FragmentListTiengviet extends BaseFragment implements View.OnClickL
         switch (requestCode) {
             case Constants.RequestCode.GET_KHO_BAITAP:
                 if (resultCode == RESULT_OK) {
-                   showDialogLoading();
+                    showDialogLoading();
                     String user = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                    mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(),"2", mChildren.getsID_LEVEL());
+                    mPresenter.get_api_list_buy(user, mChildren.getsUSERNAME(), "2", mChildren.getsID_LEVEL());
                 }
                 break;
 

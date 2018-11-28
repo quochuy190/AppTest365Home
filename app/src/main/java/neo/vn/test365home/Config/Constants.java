@@ -24,6 +24,7 @@ public class Constants {
         public static final int GET_UPDATE_INFO_USER = 10009;
         public static final int GET_UPDATE_USER_CON = 10010;
         public static final int GET_PURCHASE= 10011;
+        public static final int ADD_NEW_CHIL= 10012;
     }
 
     public static final String KEY_TOKEN = "KEY_TOKEN";
@@ -52,4 +53,5 @@ public class Constants {
     public static final String KEY_SEND_USERCON_ADD_ADDSUBUSER = "KEY_SEND_USERCON_ADD_ADDSUBUSER";
     public static final String KEY_SEND_GAME_DETAIL = "KEY_SEND_GAME_DETAIL";
     public static final String KEY_SEND_EVENT_CHIL = "KEY_SEND_EVENT_CHIL";
+    public static final String KEY_SEND_LEFT_MENU = "KEY_SEND_LEFT_MENU";
 }

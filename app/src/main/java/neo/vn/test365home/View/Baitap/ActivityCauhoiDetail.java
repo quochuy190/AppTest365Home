@@ -10,6 +10,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import neo.vn.test365home.Models.CauhoiDetail;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.Models.ErrorApi;
 import neo.vn.test365home.Models.ExcerciseDetail;
+import neo.vn.test365home.Models.MessageEvent;
 import neo.vn.test365home.Models.ObjTuanhoc;
 import neo.vn.test365home.Models.Sticker;
 import neo.vn.test365home.Models.TuanDamua;
@@ -79,11 +82,13 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
 
         //    setupViewPager(mLisCauhoi.get(iCurrentCauhoi));
     }
+
     TextView txt_title;
+
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
         txt_title = findViewById(R.id.txt_title_main);
-       // txt_title.setText("Xem lại bài tập");
+        // txt_title.setText("Xem lại bài tập");
         img_back.setVisibility(View.VISIBLE);
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,21 +105,39 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
         sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
         mChildren = SharedPrefs.getInstance().get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
         if (mExcercise != null && mExcercise.getsID() != null) {
-            txt_title.setText(mExcercise.getsSUBJECT_NAME()+  " - "+mExcercise.getsWEEK_NAME());
+            txt_title.setText(mExcercise.getsSUBJECT_NAME() + " - " + mExcercise.getsWEEK_NAME());
             showDialogLoadingtime(10000);
             mPresenter.get_api_get_part(sUserMe, mChildren.getsUSERNAME(), mExcercise.getsWEEK_TEST_ID());
         }
     }
 
     private void initEvent() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
 
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                EventBus.getDefault().post(new MessageEvent("Audio", 1, 0, null));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         img_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int current = viewPager.getCurrentItem();
                 if (maxPage > 0)
-                    if (current < (maxPage))
+                    if (current < (maxPage)) {
+                        EventBus.getDefault().post(new MessageEvent("Audio", 1, 0, null));
                         viewPager.setCurrentItem((current + 1));
+                    }
+
 
             }
         });
@@ -122,8 +145,11 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
             @Override
             public void onClick(View view) {
                 int current = viewPager.getCurrentItem();
-                if (current > 0)
+                if (current > 0) {
+                    EventBus.getDefault().post(new MessageEvent("Audio", 1, 0, null));
                     viewPager.setCurrentItem((current - 1));
+                }
+
             }
         });
       /*  img_show_question.setOnClickListener(new View.OnClickListener() {
@@ -205,7 +231,7 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
 
     @Override
     public void show_list_get_part(List<Cauhoi> mLis) {
-        if (mLis != null&&mLis.get(0).getsERROR().equals("0000")) {
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
             adapterViewpager = new AdapterViewpager(getSupportFragmentManager());
             maxPage = 0;
             for (int j = 0; j < mLis.size(); j++) {
@@ -216,11 +242,16 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
                         obj.getLisInfo().get(i).setsNumberDe("" + (j + 1));
                         obj.getLisInfo().get(i).setsSubNumberCau("" + (i + 1));
                         obj.getLisInfo().get(i).setsCauhoi_huongdan(obj.getsHUONGDAN());
+                        obj.getLisInfo().get(i).setsTextDebai(obj.getsTEXT());
+                        obj.getLisInfo().get(i).setsImagePath(obj.getsPATH_IMAGE());
+                        obj.getLisInfo().get(i).setsAudioPath(obj.getsPATH_AUDIO());
                         if (obj.getsKIEU().equals("1") || obj.getsKIEU().equals("10"))
                             adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         else if (obj.getsKIEU().equals("2"))
                             adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         else if (obj.getsKIEU().equals("3"))
+                            adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
+                        else if (obj.getsKIEU().equals("10"))
                             adapterViewpager.addFragment(FragmentCauhoi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         else if (obj.getsKIEU().equals("4")) {
                             adapterViewpager.addFragment(FragmentCauhoiSapxep.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
@@ -228,6 +259,10 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
                             adapterViewpager.addFragment(FragmentCauhoiNoicau.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         } else if (obj.getsKIEU().equals("6")) {
                             adapterViewpager.addFragment(FragmentCauhoiDienvaochotrong.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
+                        } else if (obj.getsKIEU().equals("7")) {
+                            adapterViewpager.addFragment(FragmentDocvatraloi.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
+                        } else if (obj.getsKIEU().equals("9")) {
+                            adapterViewpager.addFragment(FragmentNgheAudio.newInstance(obj.getLisInfo().get(i)), obj.getsERROR());
                         }
                     }
                 }
@@ -259,7 +294,6 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
     public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
 
     }
-
 
 
     @Override

@@ -134,8 +134,8 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
                                 "Hình ảnh của quý Phụ huynh sẽ xuất hiện để động viên con mỗi khi gặp khó khăn. " +
                                         "Ba mẹ nên cập nhật ảnh đại diện để hình ảnh gần gũi hơn.");
                         isThongbaoAvata = true;
+                        return;
                     }
-                    return;
                 }
                 if (sFullName.length() > 0 || sPhone.length() > 0 || sEmail.length() > 0 || sAvata.length() > 0) {
                     sUserName = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
@@ -195,17 +195,17 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
 
     @Override
     public void show_api_register(List<ErrorApi> mLis) {
-
+        hideDialogLoading();
     }
 
     @Override
     public void create_sub_user(List<ErrorApi> mLis) {
-
+        hideDialogLoading();
     }
 
     @Override
     public void show_api_login(List<Login> mLis) {
-
+        hideDialogLoading();
     }
 
     @Override
@@ -221,6 +221,7 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
                 Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                 if (isStartLogin) {
                     Intent intent = new Intent(ActivityUpdateInfo.this, ActivityAddSubUser.class);
+                    intent.putExtra(Constants.KEY_IS_START_LOGIN, true);
                     startActivity(intent);
                 }
                 Intent intent = new Intent();
@@ -234,11 +235,12 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
 
     @Override
     public void show_error_api(List<ErrorApi> mLis) {
-
+        hideDialogLoading();
     }
 
     @Override
     public void show_upload_image(String sUrlImage) {
+        hideDialogLoading();
         if (sUrlImage != null && sUrlImage.length() > 0) {
             sAvata = sUrlImage;
         }
@@ -278,6 +280,7 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 imgAvata.setImageBitmap(selectedImage);
+                showDialogLoading();
                 mPresenterUploadImage.api_upload_image(IMAGE_PATH);
             } catch (Exception e) {
                 e.printStackTrace();

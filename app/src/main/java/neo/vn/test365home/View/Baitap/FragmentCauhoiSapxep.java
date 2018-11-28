@@ -89,7 +89,16 @@ public class FragmentCauhoiSapxep extends BaseFragment {
         txt_current.setText("Bài: "+mCauhoi.getsNumberDe()+" - Câu hỏi: "+mCauhoi.getsSubNumberCau());
         txt_number_de.setText("Bài: "+mCauhoi.getsNumberDe());
         txtSubNumber.setText("Câu hỏi: "+mCauhoi.getsSubNumberCau());
+        if (mCauhoi.getsRESULT_CHILD() != null && mCauhoi.getsRESULT_CHILD().length() > 0) {
+            if (mCauhoi.getsRESULT_CHILD().equals("1")) {
+                Glide.with(getContext()).load(R.drawable.icon_anwser_true).into(img_anwser_chil);
+            } else if (mCauhoi.getsANSWER_CHILD() != null && mCauhoi.getsANSWER_CHILD().length() > 0) {
+                Glide.with(getContext()).load(R.drawable.icon_anwser_false).into(img_anwser_chil);
+            } else {
+                Glide.with(getContext()).load(R.drawable.icon_anwser_unknow).into(img_anwser_chil);
+            }
 
+        }
         txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()));
      //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
 
@@ -115,6 +124,7 @@ public class FragmentCauhoiSapxep extends BaseFragment {
         if (mCauhoi.getsANSWER_CHILD()!=null&&mCauhoi.getsANSWER_CHILD().length()>0){
             String sAnwser[] = mCauhoi.getsANSWER_CHILD().split("::");
             for (int i = 0;i<sAnwser.length;i++){
+
                 s = s+sAnwser[i].trim()+" ";
             }
             txtCauhoi.setText(s);

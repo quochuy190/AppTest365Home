@@ -175,8 +175,8 @@ public class ActivityRegister extends BaseActivity implements ImpLogin.View {
                             showDialogNotify("Lỗi", "Tên đăng nhập phải nhiều hơn hoặc bằng 4 ký tự," +
                                     " không chứa dấu cách và ký tự đặc biệt");
 
-                    } else
-                        showDialogNotify(getString(R.string.error_network), getString(R.string.error_network_message));
+                    } /*else
+                        showDialogNotify(getString(R.string.error_network), getString(R.string.error_network_message));*/
                 } else
                     showDialogNotify("Thông báo", "Điều khoản sử dụng đảm bảo việc cung cấp và sử dụng Home365 đúng quy cách và hợp pháp." +
                             " Quý Phụ huynh vui lòng đọc kỹ và bấm chọn Đồng ý.");

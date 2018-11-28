@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -26,6 +28,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import neo.vn.test365home.Adapter.AdapterViewpager;
+import neo.vn.test365home.App;
 import neo.vn.test365home.Base.BaseFragment;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Models.Childrens;
@@ -33,6 +36,7 @@ import neo.vn.test365home.Models.MessageEvent;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.FragmentUtil;
 import neo.vn.test365home.Untils.SharedPrefs;
+import neo.vn.test365home.View.Longin.ActivityAddSubUser;
 
 public class FragmentBaitapNew extends BaseFragment implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "FragmentListTiengViet";
@@ -42,6 +46,10 @@ public class FragmentBaitapNew extends BaseFragment implements View.OnClickListe
     public TabLayout tabLayout;
     @BindView(R.id.txt_title_main)
     TextView txt_title_main;
+    @BindView(R.id.btn_add_chil)
+    Button btn_add_chil;
+    @BindView(R.id.ll_add_newchil)
+    LinearLayout ll_add_newchil;
     DrawerLayout drawer;
 
     public static synchronized FragmentBaitapNew getInstance() {
@@ -69,7 +77,6 @@ public class FragmentBaitapNew extends BaseFragment implements View.OnClickListe
         toolbar.setTitle("");
         /*   getActivity().setSupportActionBar(toolbar);*/
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
         drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -77,8 +84,9 @@ public class FragmentBaitapNew extends BaseFragment implements View.OnClickListe
         toggle.syncState();
         NavigationView navigationView = (NavigationView) view.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        initEvent();
         initLeftMenu();
+
+        initEvent();
         return view;
     }
 
@@ -105,16 +113,28 @@ public class FragmentBaitapNew extends BaseFragment implements View.OnClickListe
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event.message.equals(Constants.KEY_SEND_EVENT_CHIL)) {
-            Log.i(TAG, "onMessageEvent: " + event.obj.getsID_LEVEL());
-            setupViewPager(event.obj);
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
+            if (event.point == 2) {
+                ll_add_newchil.setVisibility(View.VISIBLE);
+            } else {
+                ll_add_newchil.setVisibility(View.GONE);
+                Log.i(TAG, "onMessageEvent: " + event.obj.getsID_LEVEL());
+                setupViewPager(event.obj);
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
             }
+
         }
     }
 
     private void initEvent() {
-
+        btn_add_chil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ActivityAddSubUser.class);
+                startActivityForResult(intent, Constants.RequestCode.ADD_NEW_CHIL);
+            }
+        });
     }
 
     private void initLeftMenu() {
@@ -135,5 +155,15 @@ public class FragmentBaitapNew extends BaseFragment implements View.OnClickListe
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         return false;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "onActivityResult: ");
+        if (requestCode == Constants.RequestCode.ADD_NEW_CHIL && resultCode == getActivity().RESULT_OK) {
+            EventBus.getDefault().post(new MessageEvent(Constants.KEY_SEND_LEFT_MENU, 1,
+                    0, null));
+        }
     }
 }

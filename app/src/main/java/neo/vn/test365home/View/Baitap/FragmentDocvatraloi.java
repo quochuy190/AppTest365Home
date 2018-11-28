@@ -40,7 +40,7 @@ import neo.vn.test365home.Untils.StringUtil;
  * @updated on 8/6/2018
  * @since 1.0
  */
-public class FragmentCauhoi extends BaseFragment {
+public class FragmentDocvatraloi extends BaseFragment {
     private static final String TAG = "FragmentCauhoi";
     private CauhoiDetail mCauhoi;
     AdapterDapAn adapter;
@@ -48,6 +48,8 @@ public class FragmentCauhoi extends BaseFragment {
     private List<DapAn> mLisDapAn;
     @BindView(R.id.webview_cauhoi)
     WebView webview_cauhoi;
+    @BindView(R.id.webview_doanvan)
+    WebView webview_doanvan;
     @BindView(R.id.txt_debai_huongdan)
     TextView txt_debai_huongdan;
 
@@ -89,8 +91,8 @@ public class FragmentCauhoi extends BaseFragment {
     @BindView(R.id.img_anwser_chil)
     ImageView img_anwser_chil;
 
-    public static FragmentCauhoi newInstance(CauhoiDetail restaurant) {
-        FragmentCauhoi restaurantDetailFragment = new FragmentCauhoi();
+    public static FragmentDocvatraloi newInstance(CauhoiDetail restaurant) {
+        FragmentDocvatraloi restaurantDetailFragment = new FragmentDocvatraloi();
         Bundle args = new Bundle();
         //args.putSerializable("cauhoi",restaurant);
         args.putParcelable("cauhoi", Parcels.wrap(restaurant));
@@ -106,7 +108,7 @@ public class FragmentCauhoi extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cauhoi_chondapan, container, false);
+        View view = inflater.inflate(R.layout.fragment_cauhoi_docvatraloi, container, false);
         ButterKnife.bind(this, view);
         Log.i(TAG, "onCreateView: " + mCauhoi.getsQUESTION());
         initData();
@@ -130,6 +132,7 @@ public class FragmentCauhoi extends BaseFragment {
         }
         // txtCauhoi.setText(Html.fromHtml(mCauhoi.getsQUESTION(), Html.FROM_HTML_MODE_COMPACT));
         initWebview(webview_cauhoi, StringUtil.convert_html(mCauhoi.getsHTML_CONTENT()));
+        initWebview(webview_doanvan, StringUtil.convert_html(mCauhoi.getsTextDebai()));
         txt_debai_huongdan.setText(Html.fromHtml(mCauhoi.getsCauhoi_huongdan()));
         //   txt_debai_huongdan.setText(mCauhoi.getsCauhoi_huongdan());
         if (mCauhoi.getsANSWER_CHILD() != null && mCauhoi.getsANSWER_CHILD().length() > 0) {
@@ -197,7 +200,7 @@ public class FragmentCauhoi extends BaseFragment {
         webSettings.setTextSize(WebSettings.TextSize.NORMAL);
         webSettings.setDefaultFontSize(16);
         /* <html><body  align='center'>You scored <b>192</b> points.</body></html>*/
-        String pish = "<html><body  align='center'>";
+        String pish = "<html><body  >";
         String pas = "</body></html>";
 
         webview_debai.loadDataWithBaseURL("", pish + link_web + pas,

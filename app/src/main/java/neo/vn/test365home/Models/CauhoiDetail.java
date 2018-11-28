@@ -77,6 +77,9 @@ public class CauhoiDetail implements Parcelable {
     String sSubNumberCau;
     boolean mLeft;
     boolean mRight;
+    String sImagePath;
+    String sAudioPath;
+    String sTextDebai;
 
     public CauhoiDetail(String sERROR, String sMESSAGE, String sRESULT) {
         this.sERROR = sERROR;
@@ -140,6 +143,30 @@ public class CauhoiDetail implements Parcelable {
 
     public void setsCauhoi_huongdan(String sCauhoi_huongdan) {
         this.sCauhoi_huongdan = sCauhoi_huongdan;
+    }
+
+    public String getsImagePath() {
+        return sImagePath;
+    }
+
+    public void setsImagePath(String sImagePath) {
+        this.sImagePath = sImagePath;
+    }
+
+    public String getsAudioPath() {
+        return sAudioPath;
+    }
+
+    public void setsAudioPath(String sAudioPath) {
+        this.sAudioPath = sAudioPath;
+    }
+
+    public String getsTextDebai() {
+        return sTextDebai;
+    }
+
+    public void setsTextDebai(String sTextDebai) {
+        this.sTextDebai = sTextDebai;
     }
 
     public boolean ismLeft() {
