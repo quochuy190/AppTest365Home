@@ -84,8 +84,11 @@ public class AdapterBXH extends RecyclerView.Adapter<AdapterBXH.TopicViewHoder> 
             holder.txt_class.setText(obj.getsLEVEL_NAME());
         if (obj.getsSCHOOL_NAME() != null)
             holder.txt_school.setText(obj.getsSCHOOL_NAME());
-        if (obj.getsSPEED() != null)
-            holder.txt_speed_time.setText(obj.getsSPEED());
+        if (obj.getsSPEED() != null) {
+            float fSpeed = Float.parseFloat(obj.getsSPEED());
+            holder.txt_speed_time.setText("" + fSpeed);
+        }
+
         if (obj.getsDTB() != null)
             holder.txt_point.setText(StringUtil.format_point(Float.parseFloat(obj.getsDTB())));
 

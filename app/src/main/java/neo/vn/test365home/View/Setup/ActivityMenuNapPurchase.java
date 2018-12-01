@@ -73,7 +73,7 @@ public class ActivityMenuNapPurchase extends BaseActivity implements View.OnClic
                 Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
                 smsIntent.setType("vnd.android-dir/mms-sms");
                 smsIntent.putExtra("address", "8655");
-                smsIntent.putExtra("sms_body", "Home365 NAP " + sUserMe);
+                smsIntent.putExtra("sms_body", "Home365 " + sUserMe);
                 try {
                     startActivity(smsIntent);
                 } catch (ActivityNotFoundException e) {

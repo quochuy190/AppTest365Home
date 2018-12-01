@@ -306,7 +306,35 @@ public class PresenterBaitap implements ImpBaitap.Presenter {
 
     @Override
     public void get_api_gift_sticker(String sUserMe, String sUserCon, String sIdDebai, String sIdSticker) {
+        Map<String, String> mMap = new LinkedHashMap<>();
+        mMap.put("Service", "gift_sticker");
+        mMap.put("Provider", "default");
+        mMap.put("ParamSize", "4");
+        mMap.put("P1", sUserMe);
+        mMap.put("P2", sUserCon);
+        mMap.put("P3", sIdDebai);
+        mMap.put("P4", sIdSticker);
 
+        mApiService.getApiService(new CallbackData<String>() {
+            @Override
+            public void onGetDataErrorFault(Exception e) {
+                mView.show_error_api(null);
+                Log.i(TAG, "onGetDataErrorFault: " + e);
+            }
+
+            @Override
+            public void onGetDataSuccess(String objT) {
+                Log.i(TAG, "onGetDataSuccess: " + objT);
+                try {
+                    List<ErrorApi> mLis = ErrorApi.getList(objT);
+                    mView.show_list_gift_sticker(mLis);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    mView.show_error_api(null);
+                    Log.i(TAG, "Log_error_api_filght: " + e);
+                }
+            }
+        }, mMap);
     }
 
     @Override

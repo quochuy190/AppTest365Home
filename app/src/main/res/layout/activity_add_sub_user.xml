@@ -47,12 +47,13 @@
                     android:src="@drawable/back_ground_login" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+
                     android:id="@+id/img_avata_update"
                     android:layout_width="@dimen/dp120"
                     android:layout_height="@dimen/dp120"
                     android:layout_centerHorizontal="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/avatar_default" />
+                    android:src="@drawable/icon_family" />
 
                 <ImageView
                     android:id="@+id/img_get_image"

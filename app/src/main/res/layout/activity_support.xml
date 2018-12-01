@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/bg_app"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/title_bar_main_new"/>
+
+    <TextView
+        android:layout_margin="@dimen/dp20"
+        android:textSize="@dimen/text_15sp"
+        android:text="@string/txt_title_support"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txt_hotline"
+        android:background="@drawable/spr_click_textview"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:textSize="@dimen/text_16sp"
+        android:text="@string/txt_hotline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:background="@drawable/spr_click_textview"
+        android:id="@+id/txt_email"
+        android:textSize="@dimen/text_16sp"
+        android:text="@string/txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:background="@drawable/spr_click_textview"
+        android:id="@+id/txt_facebook"
+        android:textSize="@dimen/text_16sp"
+        android:text="@string/txt_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:background="@drawable/spr_click_textview"
+        android:id="@+id/txt_web"
+        android:textSize="@dimen/text_16sp"
+        android:text="@string/txt_website"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Trân trọng cảm ơn"
+        android:gravity="center"
+        android:layout_margin="@dimen/dp20"
+        android:textSize="@dimen/text_30sp"
+        android:textColor="@color/red_mo"
+        android:fontFamily="@font/roboco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

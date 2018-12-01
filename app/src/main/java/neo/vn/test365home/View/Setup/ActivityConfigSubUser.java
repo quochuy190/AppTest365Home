@@ -297,9 +297,9 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
                     pvietnam_taken_time = txt_time_tv.getText().toString().substring(0, 5) + ":00";
                     peng_taken_time = txt_time_ta.getText().toString().substring(0, 5) + ":00";
 
-                    pmath_taken_duration = "" + (Integer.parseInt(txt_setuptime_toan.getText().toString()) * 60);
-                    pvietnam_taken_duration = "" + (Integer.parseInt(txt_setuptime_tv.getText().toString()) * 60);
-                    peng_taken_duration = "" + (Integer.parseInt(txt_setuptime_ta.getText().toString()) * 60);
+                    pmath_taken_duration = "" + (Integer.parseInt(txt_setuptime_toan.getText().toString().replaceAll(" phút", "")) * 60);
+                    pvietnam_taken_duration = "" + (Integer.parseInt(txt_setuptime_tv.getText().toString().replaceAll(" phút", "")) * 60);
+                    peng_taken_duration = "" + (Integer.parseInt(txt_setuptime_ta.getText().toString().replaceAll(" phút", "")) * 60);
                     showDialogLoading();
                     sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
                     if (objChildren.getsUSERNAME() != null)
@@ -591,8 +591,8 @@ public class ActivityConfigSubUser extends BaseActivity implements ImpSetup.View
     @Override
     public void show_config_to_children(List<ErrorApi> mLis) {
         hideDialogLoading();
-        if (mLis != null && mLis.get(0).equals("0000")) {
-            showDialogNotify("Thông báo", "Cài đặt thành công");
+        if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            showDialogNotify("Thông báo", mLis.get(0).getsRESULT());
             if (objChildren != null && objChildren.getsUSERNAME() != null)
                 mPresenter.api_get_config_children(sUserMe, objChildren.getsUSERNAME());
         } else {

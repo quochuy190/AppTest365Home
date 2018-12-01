@@ -13,47 +13,65 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:padding="@dimen/dp5"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp5">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
-                        android:textStyle="bold"
                         android:id="@+id/txt_number_de"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/dp5"
                         android:text="Câu hỏi 1:"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_16sp" />
+                        android:textSize="@dimen/text_16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
                     <TextView
-                        android:layout_below="@id/txt_number_de"
                         android:id="@+id/txt_debai_huongdan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/txt_number_de"
+                        android:layout_toLeftOf="@id/img_anwser_chil"
                         android:maxLines="4"
                         android:padding="@dimen/dp5"
                         android:text="hehe"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/text_15sp" />
+                        android:textSize="@dimen/text_15sp"
+                        android:textStyle="bold" />
 
+                    <ImageView
+                        android:id="@+id/img_anwser_chil"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/icon_anwser_true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </RelativeLayout>
 
                 <TextView
-                    android:textStyle="bold"
                     android:id="@+id/txtSubNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp5"
                     android:text="Câu hỏi: "
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp" />
+                    android:textSize="@dimen/text_16sp"
+                    android:textStyle="bold" />
 
                 <WebView
                     android:id="@+id/txtCauhoi"
@@ -66,18 +84,19 @@
 
                 <View
                     android:id="@+id/view_anwser"
-                    android:background="@color/red_test365"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:background="@color/red_test365" />
+
                 <TextView
                     android:id="@+id/title_anwser"
-                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp5"
                     android:text="Trả lời: "
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp" />
+                    android:textSize="@dimen/text_16sp"
+                    android:textStyle="bold" />
 
                 <WebView
                     android:id="@+id/txtTraloi"
@@ -89,18 +108,18 @@
                     android:textSize="@dimen/text_15sp" />
 
                 <View
-                    android:background="@color/gray"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="1dp"
+                    android:background="@color/gray" />
 
                 <TextView
-                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dp5"
                     android:text="Đáp án: "
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_16sp" />
+                    android:textSize="@dimen/text_16sp"
+                    android:textStyle="bold" />
 
                 <WebView
                     android:id="@+id/txtDapan"
@@ -142,16 +161,5 @@
 
 
     </LinearLayout>
-    <ImageView
 
-        android:id="@+id/img_anwser_chil"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
 </android.support.constraint.ConstraintLayout>

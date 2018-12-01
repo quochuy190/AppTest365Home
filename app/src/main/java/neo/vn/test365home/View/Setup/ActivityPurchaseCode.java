@@ -94,7 +94,7 @@ public class ActivityPurchaseCode extends BaseActivity implements ImpPayCard.Vie
         btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String my_package_name = "neo.vn.test365children";  // <- HERE YOUR PACKAGE NAME!!
+                final String my_package_name = "neo.vn.test365home";  // <- HERE YOUR PACKAGE NAME!!
                 String url = "";
                 mLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
                 try {
@@ -107,11 +107,6 @@ public class ActivityPurchaseCode extends BaseActivity implements ImpPayCard.Vie
                     sAux = sAux + url + "\n\n";
                     i.putExtra(Intent.EXTRA_TEXT, sAux);
                     startActivity(Intent.createChooser(i, "Home365"));
-                  /*  String message = "Home365 ngay nhập mã để nhận đc 100k vào tài khoản.";
-                    Intent share = new Intent(Intent.ACTION_SEND);
-                    share.setType("text/plain");
-                    share.putExtra(Intent.EXTRA_TEXT, message);
-                    startActivity(Intent.createChooser(share, "Home365"));*/
                 } catch (Exception e) {
                     e.toString();
                 }

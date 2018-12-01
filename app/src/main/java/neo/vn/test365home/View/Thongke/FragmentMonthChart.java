@@ -144,7 +144,7 @@ public class FragmentMonthChart extends BaseFragment implements ImpThongke.View 
                     if (obj.getsLEVEL_NAME() != null && obj.getsLEVEL_NAME().length() > 0)
                         txt_class.setText(obj.getsLEVEL_NAME());*/
                     if (obj.getsSPEED() != null && obj.getsSPEED().length() > 0)
-                        txt_speed_time.setText(obj.getsSPEED());
+                        txt_speed_time.setText("" + Float.parseFloat(obj.getsSPEED()));
                     if (obj.getsDTB() != null && obj.getsDTB().length() > 0)
                         txt_point.setText(StringUtil.format_point(Float.parseFloat(obj.getsDTB())));
                     txt_stt.setText("" + (i + 1));

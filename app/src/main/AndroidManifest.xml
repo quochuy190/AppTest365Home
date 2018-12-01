@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="neo.vn.test365home">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -40,6 +41,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.Setup.ActivityNaptienTructuyen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivityFeedback"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".View.Setup.ActivitySupport"
             android:screenOrientation="portrait" />
         <activity
             android:name=".View.Setup.ActivityWebviewNaptien"

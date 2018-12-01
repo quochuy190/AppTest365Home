@@ -27,6 +27,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/txt_number_de"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -38,17 +39,28 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:layout_toLeftOf="@id/img_anwser_chil"
+                        android:textStyle="bold"
                         android:id="@+id/txt_debai_huongdan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txt_number_de"
-                        android:layout_marginRight="@dimen/dp55"
                         android:maxLines="4"
                         android:padding="@dimen/dp5"
                         android:text="hehe"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_16sp" />
-
+                    <ImageView
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/img_anwser_chil"
+                        android:layout_width="@dimen/dp50"
+                        android:layout_height="@dimen/dp50"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/icon_anwser_true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"  />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -276,16 +288,5 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_anwser_chil"
-        android:layout_width="@dimen/dp50"
-        android:layout_height="@dimen/dp50"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/icon_anwser_true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
-        />
 </android.support.constraint.ConstraintLayout>

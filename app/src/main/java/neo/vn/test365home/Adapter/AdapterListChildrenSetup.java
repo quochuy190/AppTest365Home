@@ -56,7 +56,7 @@ public class AdapterListChildrenSetup extends RecyclerView.Adapter<AdapterListCh
         if (obj.getsAVATAR() != null && obj.getsAVATAR().length() > 0) {
             Glide.with(context).load(Config.URL_IMAGE + obj.getsAVATAR()).into(holder.img_avata);
         } else {
-            Glide.with(context).load(R.drawable.avatar_default).into(holder.img_avata);
+            Glide.with(context).load(R.drawable.icon_avata).into(holder.img_avata);
         }
         if (obj.getsFULLNAME() != null)
             holder.txt_fullname.setText("Họ tên: " + obj.getsFULLNAME());

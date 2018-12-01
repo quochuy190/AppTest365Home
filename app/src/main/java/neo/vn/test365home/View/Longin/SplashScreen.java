@@ -44,7 +44,7 @@ public class SplashScreen extends BaseActivity {
             if (isLogin) {
                 mainIntent.setClass(SplashScreen.this, ActivityHome.class);
             } else
-                mainIntent.setClass(SplashScreen.this, ActivityRegister.class);
+                mainIntent.setClass(SplashScreen.this, ActivityLogin.class);
         }
 
         new Handler().postDelayed(new Runnable() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -42,7 +43,7 @@
                     android:singleLine="true"
                     android:text="Năm học: "
                     android:textColor="@color/app_bar"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:textStyle="bold"
 
                     />
@@ -57,7 +58,7 @@
                     android:singleLine="true"
                     android:text=""
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_16sp"
+                    android:textSize="@dimen/text_17sp"
                     android:textStyle="bold"
 
                     />
@@ -94,7 +95,7 @@
                     android:padding="@dimen/dp2"
                     android:text=""
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_17sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -114,7 +115,7 @@
                     android:padding="@dimen/dp2"
                     android:text="Tuần: "
                     android:textColor="@color/app_bar"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -126,7 +127,7 @@
                     android:padding="@dimen/dp2"
                     android:text=""
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_16sp"
+                    android:textSize="@dimen/text_17sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -151,7 +152,7 @@
                     android:padding="@dimen/dp2"
                     android:text="Môn: "
                     android:textColor="@color/app_bar"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -163,7 +164,7 @@
                     android:padding="@dimen/dp2"
 
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_16sp"
+                    android:textSize="@dimen/text_17sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -173,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp5"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_15sp"
+                android:textSize="@dimen/text_17sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_tuanhoc"  />
@@ -184,7 +185,7 @@
                 android:gravity="left"
                 android:padding="@dimen/dp5"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_15sp"
+                android:textSize="@dimen/text_17sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_name" />
@@ -227,7 +228,7 @@
                     android:padding="@dimen/dp10"
                     android:text="0 ĐIỂM"
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_30sp"
+                    android:textSize="35sp"
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -235,6 +236,7 @@
 
                 <!--Sticker-->
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/img_sticker"
                     android:layout_width="@dimen/dp70"
                     android:layout_height="@dimen/dp70"
@@ -299,8 +301,8 @@
                     android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
 
-                    android:textSize="@dimen/text_15sp"
-                    android:visibility="gone"
+                    android:textSize="@dimen/text_16sp"
+                    android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_tangsticker" />
@@ -319,8 +321,8 @@
                     android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
 
-                    android:textSize="@dimen/text_15sp"
-                    android:visibility="gone"
+                    android:textSize="@dimen/text_16sp"
+                    android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_time_start" />
@@ -337,8 +339,7 @@
                     android:paddingRight="@dimen/dp5"
                     android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
-
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -355,7 +356,7 @@
                     android:padding="@dimen/dp5"
                     android:text="Thống kê"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -373,7 +374,7 @@
                     android:paddingRight="@dimen/dp5"
                     android:paddingBottom="@dimen/dp2"
                     android:textColor="@color/txt_baitap_detail"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_thongke" />
@@ -391,7 +392,7 @@
                     android:paddingBottom="@dimen/dp2"
 
                     android:textColor="@color/txt_baitap_detail"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_sobanlamcung" />
@@ -408,7 +409,7 @@
                     android:paddingBottom="@dimen/dp7"
 
                     android:textColor="@color/txt_baitap_detail"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_sobancungtruong" />
@@ -433,6 +434,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txt_sobancunglop">
 
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -442,7 +444,8 @@
                         android:paddingRight="@dimen/dp2"
                         android:paddingBottom="@dimen/dp5"
                         android:text="Điểm cao nhất"
-                        android:textColor="@color/app_bar"
+                        android:textColor="@color/red_test365"
+
                         android:textSize="@dimen/text_14sp"
                         android:textStyle="bold" />
 
@@ -455,7 +458,7 @@
                         android:padding="@dimen/dp5"
 
                         android:textColor="@color/red_test365"
-                        android:textSize="@dimen/text_17sp"
+                        android:textSize="@dimen/text_18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -481,7 +484,8 @@
                         android:paddingRight="@dimen/dp2"
                         android:paddingBottom="@dimen/dp5"
                         android:text="Điểm trung bình"
-                        android:textColor="@color/app_bar"
+                        android:textColor="@color/red_test365"
+
                         android:textSize="@dimen/text_14sp"
                         android:textStyle="bold" />
 
@@ -494,7 +498,7 @@
                         android:padding="@dimen/dp5"
 
                         android:textColor="@color/red_test365"
-                        android:textSize="@dimen/text_17sp"
+                        android:textSize="@dimen/text_18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -519,7 +523,8 @@
                         android:paddingRight="@dimen/dp2"
                         android:paddingBottom="@dimen/dp5"
                         android:text="Điểm thấp nhất"
-                        android:textColor="@color/app_bar"
+                        android:textColor="@color/red_test365"
+
                         android:textSize="@dimen/text_14sp"
                         android:textStyle="bold" />
 
@@ -532,7 +537,7 @@
                         android:padding="@dimen/dp5"
 
                         android:textColor="@color/red_test365"
-                        android:textSize="@dimen/text_17sp"
+                        android:textSize="@dimen/text_18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -542,11 +547,11 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:padding="@dimen/dp5"
-                    android:text="Nhận xét của hệ thống:"
+                    android:text="Nhận xét của mẹ:"
                     android:textColor="@color/app_bar"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ll_diemtrungbinh" />
@@ -555,14 +560,12 @@
                     android:id="@+id/txt_nhanxet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:paddingLeft="@dimen/dp5"
-                    android:paddingTop="@dimen/dp2"
                     android:paddingRight="@dimen/dp5"
                     android:paddingBottom="@dimen/dp2"
                     android:text="Mời mẹ nhận xét và tặng sticker động viên con"
                     android:textColor="@color/app_bar"
-                    android:textSize="@dimen/text_15sp"
+                    android:textSize="@dimen/text_16sp"
                     android:visibility="visible"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -582,12 +585,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/constrain_1">
 
                 <EditText
+                    android:textSize="@dimen/text_16sp"
                     android:id="@+id/edt_content_comment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/dp5"
                     android:layout_weight="1"
-                    android:background="@drawable/spr_edt_comment_mother"
+                    android:background="@drawable/spr_edt_feedback"
                     android:padding="@dimen/dp5" />
 
                 <ImageView

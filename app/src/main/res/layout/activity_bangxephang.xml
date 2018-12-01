@@ -28,13 +28,13 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/rl_myrank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:paddingTop="@dimen/dp7"
-            android:paddingBottom="@dimen/dp7">
+            android:paddingBottom="@dimen/dp7"
+            android:visibility="visible">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_avata"
@@ -42,38 +42,40 @@
                 android:layout_height="@dimen/item_avata_bxh"
                 android:padding="@dimen/dp5"
                 android:src="@drawable/avatar_default" />
+
             <RelativeLayout
                 android:id="@+id/rl_point"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/dp2"
-                android:layout_alignParentRight="true"
                 android:layout_width="@dimen/dp55"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp2">
+
                 <TextView
                     android:id="@+id/txt_lable"
-                    android:gravity="center"
-                    android:textSize="10sp"
-                    android:text="Hạng của bé"
                     android:layout_width="@dimen/dp55"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Hạng của bé"
+                    android:textSize="10sp" />
 
                 <ImageView
-                    android:layout_marginTop="@dimen/dp2"
-                    android:layout_below="@id/txt_lable"
                     android:id="@+id/img_bg_point"
                     android:layout_width="@dimen/dp55"
                     android:layout_height="@dimen/dp55"
+                    android:layout_below="@id/txt_lable"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp2"
                     android:padding="@dimen/dp2"
                     android:src="@drawable/icon_bxh_1" />
 
                 <TextView
-                    android:layout_marginTop="@dimen/dp2"
-                    android:layout_below="@id/txt_lable"
                     android:id="@+id/txt_rank"
                     android:layout_width="@dimen/dp55"
                     android:layout_height="@dimen/dp55"
+                    android:layout_below="@id/txt_lable"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/dp2"
                     android:fontFamily="@font/font1"
                     android:gravity="center"
                     android:padding="@dimen/dp2"
@@ -98,56 +100,58 @@
                     android:layout_marginBottom="@dimen/dp3"
                     android:text="Nguyễn Quôc Huy"
                     android:textColor="@color/red_test365"
-                    android:textSize="@dimen/text_16sp"
+                    android:textSize="@dimen/text_17sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dp2"
                     android:id="@+id/ll_speed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-
-                        android:layout_width="0dp"
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginTop="@dimen/dp1"
+
                         android:text="Tốc độ làm bài: "
-                        android:textSize="@dimen/text_15sp" />
+                        android:textSize="@dimen/text_16sp" />
 
                     <TextView
                         android:id="@+id/txt_speed_time"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/dp3"
-                        android:text=""
-                        android:textSize="@dimen/text_15sp" />
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:text="0.555"
+                        android:textSize="@dimen/text_16sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dp2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ll_speed"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
                         android:text="Điểm trung bình: "
-                        android:textSize="@dimen/text_15sp" />
+                        android:textSize="@dimen/text_16sp" />
 
                     <TextView
                         android:id="@+id/txt_point"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-
+                        android:paddingLeft="@dimen/dp5"
+                        android:paddingRight="@dimen/dp5"
                         android:textAllCaps="true"
                         android:textColor="@color/red_test365"
                         android:textSize="@dimen/text_18sp"
@@ -156,17 +160,18 @@
             </LinearLayout>
 
         </RelativeLayout>
+
         <TextView
             android:id="@+id/txt_bxh_notify"
-            android:visibility="gone"
-            android:textStyle="bold|italic"
-            android:textColor="@color/red_test365"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/dp15"
-            android:textSize="@dimen/text_16sp"
             android:text="@string/txt_bxh_notify"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/red_test365"
+            android:textSize="@dimen/text_16sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
     </LinearLayout>
 
 

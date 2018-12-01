@@ -268,6 +268,7 @@ public class ActivityCauhoiDetail extends BaseActivity implements ImpBaitap.View
                 }
 
             }
+            adapterViewpager.addFragment(FragmentComplete.getInstance(), "");
             viewPager.setOffscreenPageLimit(maxPage);
             viewPager.setAdapter(adapterViewpager);
 

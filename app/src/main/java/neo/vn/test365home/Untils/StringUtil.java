@@ -65,9 +65,17 @@ public class StringUtil {
             int iPoint = (int) Math.round(fPoint);
             return "" + iPoint;
         } else {
-            double f = ((double) Math.round(fPoint * 100) / 100);
-
-            return "" + f;
+            double f = Double.parseDouble("0." + sTest[1]);
+            if (f > 0 && f < 0.25) {
+                return sTest[0];
+            } else if (f >= 0.25 && f < 0.5) {
+                return sTest[0] + ".25";
+            } else if (f >= 0.5 && f < 0.75) {
+                return sTest[0] + ".5";
+            } else if (f >= 0.75 && f < 1) {
+                return sTest[0] + ".75";
+            }
+            return "";
         }
     }
 

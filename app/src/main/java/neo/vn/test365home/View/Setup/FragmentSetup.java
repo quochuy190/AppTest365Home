@@ -80,19 +80,24 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
         if (objLogin != null && objLogin.getsAVARTAR() != null && objLogin.getsAVARTAR().length() > 0)
             Glide.with(this)
                     .load(Config.URL_IMAGE + objLogin.getsAVARTAR())
-                    .placeholder(R.drawable.avatar_default)
+                    .placeholder(R.drawable.icon_family)
                     .into(img_avata_menu);
             // Glide.with(this).load(Config.URL_IMAGE + objLogin.getsAVARTAR()).into(img_avata_menu);
         else
-            Glide.with(this).load(R.drawable.avatar_default).into(img_avata_menu);
+            Glide.with(this).load(R.drawable.icon_family).into(img_avata_menu);
         lisMenuSetup = new ArrayList<>();
-        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_info), R.drawable.icon_user, ""));
-        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_setup_notify), R.drawable.icon_setup_notify, ""));
         lisMenuSetup.add(new ObjMenu(getString(R.string.txt_setup_sub_user), R.drawable.icon_setup_sub, ""));
         lisMenuSetup.add(new ObjMenu(getString(R.string.txt_account), R.drawable.icon_wallet, ""));
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_setup_notify), R.drawable.icon_setup_notify, ""));
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_info), R.drawable.icon_user, ""));
         lisMenuSetup.add(new ObjMenu(getString(R.string.txt_change_pass), R.drawable.icon_change_pass, ""));
-        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_guild_app), R.drawable.icon_change_pass, ""));
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_guild_app), R.drawable.menu_huong_dan, ""));
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_share_app), R.drawable.menu_share, ""));
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_feedback_app), R.drawable.menu_feedback, ""));
+        lisMenuSetup.add(new ObjMenu(getString(R.string.txt_support_app), R.drawable.menu_support, ""));
     }
+
+    Login mLogin;
 
     private void init() {
         mLayoutmanager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
@@ -107,20 +112,46 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
             public void onClickItem(int position, Object item) {
                 switch (position) {
                     case 0:
+                        startActivity(new Intent(getContext(), ActivitySetupSubUser.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(getContext(), ActivityManageAccount.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getContext(), ActivitySetupNotify.class));
+                        break;
+                    case 3:
                         Intent intent = new Intent(getContext(), ActivityUpdateInfo.class);
                         startActivityForResult(intent, Constants.RequestCode.GET_UPDATE_INFO_USER);
                         break;
-                    case 1:
-                        startActivity(new Intent(getContext(), ActivitySetupNotify.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(getContext(), ActivitySetupSubUser.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(getContext(), ActivityManageAccount.class));
-                        break;
                     case 4:
                         startActivity(new Intent(getContext(), ActivityChangePassWord.class));
+                        break;
+                    case 5:
+                    //Hướng dẫn sử dụng
+                        break;
+                    case 6:
+                        final String my_package_name = "neo.vn.test365home";  // <- HERE YOUR PACKAGE NAME!!
+                        String url = "";
+                        mLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
+                        try {
+                            Intent i = new Intent(Intent.ACTION_SEND);
+                            i.setType("text/plain");
+                            i.putExtra(Intent.EXTRA_SUBJECT, "Home365");
+                            String sAux = "Tải Home365 tại https://home365.online để con làm bài tập về nhà, rất tuyệt vời.";
+                            url = "https://play.google.com/store/apps/details?id=" + my_package_name;
+                            sAux = sAux + url + "\n\n";
+                            i.putExtra(Intent.EXTRA_TEXT, sAux);
+                            startActivity(Intent.createChooser(i, "Home365"));
+                        } catch (Exception e) {
+                            e.toString();
+                        }
+                        break;
+                    case 7:
+                        startActivity(new Intent(getContext(), ActivityFeedback.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(getContext(), ActivitySupport.class));
                         break;
                 }
             }

@@ -71,7 +71,8 @@ public class ExcerciseDetail {
     String sPOINT;
     @SerializedName("RECOMMENT")
     String sRECOMMENT;
-
+    @SerializedName("RECOMMENT_MOTHER")
+    String sRECOMMENT_MOTHER;
     @SerializedName("WORKHARD_POINT")
     String sWORKHARD_POINT;
     @SerializedName("IMPROMENT_POINT")
@@ -106,6 +107,14 @@ public class ExcerciseDetail {
         Gson gson = new Gson();
         arrayList = gson.fromJson(jsonArray, type);
         return arrayList;
+    }
+
+    public String getsRECOMMENT_MOTHER() {
+        return sRECOMMENT_MOTHER;
+    }
+
+    public void setsRECOMMENT_MOTHER(String sRECOMMENT_MOTHER) {
+        this.sRECOMMENT_MOTHER = sRECOMMENT_MOTHER;
     }
 
     public String getsCunglam() {

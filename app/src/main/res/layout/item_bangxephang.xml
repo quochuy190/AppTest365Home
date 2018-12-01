@@ -60,7 +60,7 @@
                 android:layout_marginLeft="@dimen/dp3"
                 android:text="Nguyễn Quôc Huy"
                 android:textColor="@color/red_test365"
-                android:textSize="@dimen/text_16sp"
+                android:textSize="@dimen/text_17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_marginBottom="@dimen/dp1"
                 android:layout_marginLeft="@dimen/dp3"
                 android:text="lớp 2"
-                android:textSize="@dimen/text_15sp" />
+                android:textSize="@dimen/text_16sp" />
 
             <TextView
                 android:layout_marginBottom="@dimen/dp3"
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Trường tiểu học đức lý"
-                android:textSize="@dimen/text_15sp" />
+                android:textSize="@dimen/text_16sp" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -96,6 +96,7 @@
         android:paddingBottom="@dimen/dp7">
 
         <LinearLayout
+            android:layout_marginTop="@dimen/dp2"
             android:id="@+id/ll_speed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,43 +104,45 @@
 
             <TextView
 
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/dp3"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
                 android:text="Tốc độ làm bài: "
-                android:textSize="@dimen/text_15sp" />
+                android:textSize="@dimen/text_16sp" />
 
             <TextView
                 android:id="@+id/txt_speed"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="@dimen/dp3"
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
                 android:text=""
-                android:textSize="@dimen/text_15sp" />
+                android:textSize="@dimen/text_16sp" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="@dimen/dp2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_speed"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
 
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Điểm trung bình: "
-                android:textSize="@dimen/text_15sp" />
+                android:textSize="@dimen/text_16sp" />
 
             <TextView
+                android:paddingLeft="@dimen/dp5"
+                android:paddingRight="@dimen/dp5"
                 android:id="@+id/txt_point"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-
                 android:textAllCaps="true"
                 android:textColor="@color/red_test365"
                 android:textSize="@dimen/text_18sp"

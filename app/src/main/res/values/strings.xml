@@ -26,11 +26,14 @@
     <string name="txt_luuy">Lưu ý: <i>Vẫn còn bài tập các tuần khác ba mẹ chưa tải</i></string>
     <string name="txt_info">Thông tin cá nhân</string>
     <string name="txt_setup_notify">Cài đặt thông báo</string>
-    <string name="txt_setup_sub_user">Cấu hình tài khoản con</string>
+    <string name="txt_setup_sub_user">Quản lý tài khoản con</string>
     <string name="txt_change_pass">Đổi mật khẩu</string>
-    <string name="txt_account">Quản lý tài khoản</string>
+    <string name="txt_account">Số dư và nạp tiền</string>
     <string name="txt_logout">Đăng xuất</string>
-    <string name="txt_guild_app">Hướng dẫn sử dụng ứng dụng</string>
+    <string name="txt_guild_app">Hướng dẫn sử dụng</string>
+    <string name="txt_share_app">Giới thiệu cho bạn bè</string>
+    <string name="txt_feedback_app">Góp ý, nhận xét</string>
+    <string name="txt_support_app">Hỗ trợ</string>
     <!--Thông tin tài khoản-->
     <string name="lable_user">Tên đăng nhập: </string>
     <string name="lable_fullname">Họ tên: </string>
@@ -137,4 +140,13 @@ các thông tin phù hợp khác.
     <string name="txt_notify_addchil">Bạn chưa tạo tài khoản con </string>
     <string name="txt_download_appcon">Các con sẽ làm bài tập và chơi các trò chơi trên một App riêng có tên <b><u>Home365 Kid</u></b>.
         \n\nQuý phụ huynh vui lòng tìm kiếm và tải app trên Google Play </string>
+    <string name="txt_reset_pass"><u>Quên mật khẩu</u></string>
+    <string name="txt_hotline">Hotline <b><u>1900561548</u></b></string>
+    <string name="txt_email">Email <b><u>cskh@home365.online</u></b></string>
+    <string name="txt_facebook">Email <b><u>https://www.facebook.com/Home365-909939962530854/</u></b></string>
+    <string name="txt_website">Website <b><u>https://home365.online</u></b></string>
+    <string name="txt_title_feedback">Những ý kiến của Quý phụ huynh sẽ giúp đội ngũ Home365 hoàn thiện sản phẩm
+        để mang lại giá trị nhiều hơn cho các con.</string>
+    <string name="txt_title_support">Đội ngũ Home365 luôn sẵn sàng hỗ trợ Phụ huynh và các con bất cứ khi nào.
+        Vui lòng kết nối với chúng tôi qua các cách sau:</string>
 </resources>

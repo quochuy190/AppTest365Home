@@ -197,7 +197,7 @@ public class ActivityUpdateSubUser extends BaseActivity implements View.OnClickL
                 sAvata = mChildren.getsAVATAR();
                 Glide.with(this).load(Config.URL_IMAGE + mChildren.getsAVATAR()).into(img_avata_update);
             } else
-                Glide.with(this).load(R.drawable.avatar_default).into(img_avata_update);
+                Glide.with(this).load(R.drawable.icon_family).into(img_avata_update);
             if (mChildren.getsSCHOOL_NAME() != null && mChildren.getsSCHOOL_NAME().length() > 0)
                 edtSchools.setText(mChildren.getsSCHOOL_NAME());
             if (mChildren.getsSCHOOL_ID() != null && mChildren.getsSCHOOL_ID().length() > 0)

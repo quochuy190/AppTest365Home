@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -24,6 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import neo.vn.test365home.Adapter.AdapterListSticker;
 import neo.vn.test365home.Base.BaseActivity;
+import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Cauhoi;
@@ -36,6 +36,7 @@ import neo.vn.test365home.Models.TuanDamua;
 import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
+import neo.vn.test365home.Untils.TimeUtils;
 
 /**
  * @author Quốc Huy
@@ -111,13 +112,14 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
         mTuanDamua = (TuanDamua) getIntent().getSerializableExtra(Constants.KEY_SEND_ID_WEEKTEST);
         mChildren = SharedPrefs.getInstance()
                 .get(Constants.KEY_SEND_CHILDREN_FRAGMENT, Childrens.class);
-        showDialogLoading();
-        mPresenter.get_api_des_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
-        mPresenter.get_api_report_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
-        mPresenter.get_api_get_sticker(sUserMe, mChildren.getsID_LEVEL());
+        if (isNetwork()) {
+            showDialogLoading();
+            mPresenter.get_api_get_sticker(sUserMe, mChildren.getsID_LEVEL());
+        }
+
         if (mChildren != null)
             txt_title.setText(mChildren.getsFULLNAME());
-        Glide.with(this).load(R.drawable.sticker).into(img_sticker);
+
         txt_mota.setText(Html.fromHtml("<b>Mục tiêu: </b>" + mTuanDamua.getsREQUIREMENT()));
         if (mTuanDamua.getsNAME() != null) {
             txt_name.setText(Html.fromHtml("<b>Nội dung: </b>" + mTuanDamua.getsNAME()));
@@ -174,7 +176,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             public void onClick(View view) {
                 showDialogLoading();
                 sUserCon = mChildren.getsUSERNAME();
-                mPresenter.get_api_mt_comment(sUserMe, sUserCon, mEX.getsID(),
+                mPresenter.get_api_mt_comment(sUserMe, sUserCon, mEX.getsWEEK_TEST_ID(),
                         edt_content_comment.getText().toString());
             }
         });
@@ -197,6 +199,17 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
                     }
                 });
                 horizontalList.setAdapter(horizontalAdapter);
+                horizontalAdapter.setOnIListener(new ItemClickListener() {
+                    @Override
+                    public void onClickItem(int position, Object item) {
+                        showDialogLoading();
+                        Sticker obj = (Sticker) item;
+                        sUserCon = mChildren.getsUSERNAME();
+                        mPresenter.get_api_gift_sticker(sUserMe, sUserCon, mEX.getsWEEK_TEST_ID(),
+                                obj.getsID());
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
             }
         });
@@ -275,24 +288,35 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
 
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {
-        hideDialogLoading();
         if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
+            mPresenter.get_api_des_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
+            mPresenter.get_api_report_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
             lisSticker.addAll(mLis);
         }
     }
 
     @Override
     public void show_list_gift_sticker(List<ErrorApi> mLis) {
-
+        if (mLis != null) {
+            if (mLis.get(0).getsERROR().equals("0000")) {
+                edt_content_comment.setText("");
+                showDialogNotify("Thông báo", "Cảm ơn mẹ, Sticker đã được gửi tới con");
+                mPresenter.get_api_des_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
+                // Toast.makeText(this, "Nhận xét con thành công", Toast.LENGTH_SHORT).show();
+            } else {
+                showDialogNotify("Thông báo", mLis.get(0).getsRESULT());
+            }
+        }
     }
 
     @Override
     public void show_list_mt_comment(List<ErrorApi> mLis) {
-        hideDialogLoading();
         if (mLis != null) {
             if (mLis.get(0).getsERROR().equals("0000")) {
+                mPresenter.get_api_des_excercise(sUserMe, mChildren.getsUSERNAME(), mTuanDamua.getsWEEK_TEST_ID());
                 edt_content_comment.setText("");
-                Toast.makeText(this, "Nhận xét con thành công", Toast.LENGTH_SHORT).show();
+                showDialogNotify("Thông báo", "Cảm ơn mẹ, nhận xét đã được gửi tới con");
+                // Toast.makeText(this, "Nhận xét con thành công", Toast.LENGTH_SHORT).show();
             } else {
                 showDialogNotify("Thông báo", mLis.get(0).getsRESULT());
             }
@@ -319,6 +343,10 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
     TextView txt_point_average;
     @BindView(R.id.txt_point_min)
     TextView txt_point_min;
+    @BindView(R.id.txt_nhanxet)
+    TextView txt_nhanxet;
+    @BindView(R.id.lable_nhanxet)
+    TextView lable_nhanxet;
 
     private void setInfo(ExcerciseDetail excerciseDetail) {
         if (excerciseDetail != null) {
@@ -333,8 +361,33 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
                 txt_nam.setText(excerciseDetail.getsYEAR_NAME());
             if (excerciseDetail.getsYEAR_NAME() != null && excerciseDetail.getsYEAR_NAME().length() > 0)
                 txt_tuan.setText(excerciseDetail.getsWEEK_ID());
-
+            if (excerciseDetail.getsSTART_TAKE_TIME() != null) {
+                txt_time_start.setText("Bắt đầu: " + TimeUtils.convent_date(excerciseDetail.getsSTART_TAKE_TIME(),
+                        "yyyy-MM-dd HH:mm:ss", "dd-MM-yyyy HH:mm"));
+            }
+            if (excerciseDetail.getsDURATION() != null && excerciseDetail.getsDURATION().length() > 0) {
+                int iDuration = Integer.parseInt(excerciseDetail.getsDURATION()) * 1000;
+                txt_time_lambai.setText("Thời gian làm bài: "
+                        + TimeUtils.formatDuration(iDuration));
+            }
+            txt_speed_lambai.setText("Tốc độ làm bài");
             //  setTexMonhoc(excerciseDetail.getsSUBJECT_ID());
+            if (lisSticker != null && lisSticker.size() > 0) {
+                for (Sticker obj : lisSticker) {
+                    if (excerciseDetail.getsSTICKER_ID().equals(obj.getsID())) {
+                        img_sticker.setVisibility(View.VISIBLE);
+                        Glide.with(this).load(Config.URL_IMAGE + obj.getsPATH()).into(img_sticker);
+                    }
+                }
+            }
+            if (excerciseDetail.getsRECOMMENT_MOTHER() != null && excerciseDetail.getsRECOMMENT_MOTHER().length() > 0) {
+                lable_nhanxet.setVisibility(View.VISIBLE);
+                txt_nhanxet.setText(excerciseDetail.getsRECOMMENT_MOTHER());
+            } else {
+                lable_nhanxet.setVisibility(View.INVISIBLE);
+                txt_nhanxet.setText("Mời mẹ nhận xét và tặng sticker động viên con");
+            }
+
         }
     }
 

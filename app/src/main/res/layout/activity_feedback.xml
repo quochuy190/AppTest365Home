@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar_main_new" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp20"
+        android:text="@string/txt_title_feedback"
+        android:textSize="@dimen/text_15sp" />
+
+    <EditText
+        android:id="@+id/edt_content"
+        android:textSize="@dimen/text_15sp"
+        android:padding="@dimen/dp15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20"
+        android:background="@drawable/spr_edt_feedback"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:maxLines="10"
+        android:minLines="6"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:textSize="@dimen/text_16sp"
+        android:layout_width="@dimen/dp120"
+        android:layout_height="@dimen/dp35"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/spr_click_button"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:text="gửi"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
+
+</LinearLayout>

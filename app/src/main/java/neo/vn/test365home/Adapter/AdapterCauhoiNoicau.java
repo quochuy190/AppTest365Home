@@ -118,12 +118,12 @@ public class AdapterCauhoiNoicau extends RecyclerView.Adapter<AdapterCauhoiNoica
     }
 
     private void initWebview(WebView webview_debai, String link_web) {
-        webview_debai.setInitialScale(200);
+
         webview_debai.getSettings().setJavaScriptEnabled(true);
         webview_debai.getSettings();
         webview_debai.setBackgroundColor(Color.TRANSPARENT);
         WebSettings webSettings = webview_debai.getSettings();
-        webSettings.setTextSize(WebSettings.TextSize.LARGEST);
+        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
         webSettings.setDefaultFontSize(17);
         /* <html><body  align='center'>You scored <b>192</b> points.</body></html>*/
         String pish = "<html><body  align='center'>";

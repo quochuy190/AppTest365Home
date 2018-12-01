@@ -1,8 +1,16 @@
 package neo.vn.test365home.View.Longin;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.text.Html;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -50,6 +58,8 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
     LinearLayout ll_bottom;
     @BindView(R.id.txt_quenmatkhau)
     TextView txt_quenmatkhau;
+    @BindView(R.id.txt_hotline)
+    TextView txt_hotline;
     boolean isRegister;
 
     @Override
@@ -74,6 +84,8 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
     }
 
     public void initData() {
+        String s = "Hotline " + "<b><u><font color='#3F51B5'>1900561548</font></u></b> ";
+        txt_hotline.setText(Html.fromHtml(s));
         isRegister = getIntent().getBooleanExtra(Constants.KEY_REGISTER_SUCCESS, false);
         sUserName = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
         sPassWord = SharedPrefs.getInstance().get(Constants.KEY_PASSWORD, String.class);
@@ -88,6 +100,12 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
     }
 
     private void initEvent() {
+        txt_hotline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                call_phone(ActivityLogin.this, "1900561548");
+            }
+        });
         txt_quenmatkhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,5 +276,49 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
         mPresenter.api_login(sUserName, sPassWord, BuildConfig.VERSION_NAME,
                 android.os.Build.BRAND + " " + android.os.Build.MODEL,
                 "2", android.os.Build.VERSION.RELEASE, sTokenKey);
+    }
+
+    public static void call_phone(Context mContext, String phone) {
+        sPhone = phone;
+        if (Build.VERSION.SDK_INT < 23) {
+            phoneCall(mContext, phone);
+        } else {
+            if (ActivityCompat.checkSelfPermission(mContext,
+                    Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                phoneCall(mContext, phone);
+            } else {
+                final String[] PERMISSIONS_STORAGE = {Manifest.permission.CALL_PHONE};
+                //Asking request Permissions
+                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS_STORAGE, 9);
+            }
+        }
+    }
+
+    public static String sPhone;
+
+    private static void phoneCall(Context mContext, String phone) {
+        if (ActivityCompat.checkSelfPermission(mContext,
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:" + phone));
+            mContext.startActivity(callIntent);
+        } else {
+            Toast.makeText(mContext, "You don't assign permission.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        boolean permissionGranted = false;
+        switch (requestCode) {
+            case 9:
+                permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                break;
+        }
+        if (permissionGranted) {
+            phoneCall(this, sPhone);
+        } else {
+            Toast.makeText(this, "You don't assign permission.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

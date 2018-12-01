@@ -143,10 +143,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp10"
         android:padding="@dimen/dp5"
-        android:text="Quên mật khẩu?"
+        android:text="@string/txt_reset_pass"
         android:textColor="@color/tab_layout"
-        android:textSize="@dimen/text_15sp"
-        android:textStyle="bold" />
+        android:textSize="@dimen/text_14sp"
+        android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/btn_dangnhap_Login"
@@ -161,6 +161,18 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/text_20sp" />
+
+    <TextView
+        android:background="@drawable/spr_click_textview"
+        android:id="@+id/txt_hotline"
+        android:textSize="@dimen/text_14sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_bottom"
+        android:padding="@dimen/dp5"
+        android:text="@string/txt_hotline" />
 
     <LinearLayout
         android:id="@+id/ll_bottom"

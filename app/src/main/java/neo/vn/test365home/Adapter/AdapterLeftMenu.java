@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Childrens;
 import neo.vn.test365home.R;
@@ -54,8 +57,12 @@ public class AdapterLeftMenu extends BaseAdapter implements StickyListHeadersAda
         TextView txt_class = rowView.findViewById(R.id.txt_class);
         TextView txt_school = rowView.findViewById(R.id.txt_school);
         Childrens obj = mLis.get(position);
-        if (obj.getsAVATAR()!=null&&obj.getsAVATAR().length()>0){
-
+        if (obj.getsAVATAR() != null && obj.getsAVATAR().length() > 0) {
+            Glide.with(context).load(Config.URL_IMAGE + obj.getsAVATAR())
+                    .placeholder(R.drawable.icon_avata).into(img_avata);
+        } else {
+            Glide.with(context).load(R.drawable.icon_avata)
+                    .placeholder(R.drawable.icon_avata).into(img_avata);
         }
         if (obj.getsFULLNAME() != null)
             txt_name.setText(obj.getsFULLNAME());

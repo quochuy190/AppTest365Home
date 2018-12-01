@@ -127,7 +127,7 @@ public class AdapterHeader extends BaseAdapter implements StickyListHeadersAdapt
                 label.setText("Bài tập đã làm hết");
 
             } else if (mLis.get(position).getsHeaderId().equals("e")) {
-                label.setText("Bài tập chưa có");
+                label.setText("Bài tập chưa giao");
 
             }
         } else {
