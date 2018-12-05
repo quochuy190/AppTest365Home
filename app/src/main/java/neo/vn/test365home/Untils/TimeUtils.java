@@ -31,11 +31,21 @@ public class TimeUtils {
         minute %= 60;
         int second = duration % 60;
         if (hour != 0)
-            return String.format("%2d giờ:%02d phút:%02d giây", hour, minute, second);
+            return String.format("%2d giờ:%02d:%02d", hour, minute, second);
         else
-            return String.format("%02d phút:%02d giây", minute, second);
+            return String.format("%02d:%02d", minute, second);
     }
-
+    public static String formatTime_lambai(int duration) {
+        duration /= 1000; // milliseconds into seconds
+        int minute = duration / 60;
+        int hour = minute / 60;
+        minute %= 60;
+        int second = duration % 60;
+        if (hour != 0)
+            return String.format("%2d giờ %02d phút %02d giây", hour, minute, second);
+        else
+            return String.format("%02d phút %02d giây", minute, second);
+    }
     public static String convent_date(String sDateinput, String fomatDateinput, String fomatDateoutput) {
         String strDateTime = "";
         DateFormat inputFormatter = new SimpleDateFormat(fomatDateinput);

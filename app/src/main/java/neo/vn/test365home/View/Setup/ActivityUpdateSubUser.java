@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -130,16 +132,34 @@ public class ActivityUpdateSubUser extends BaseActivity implements View.OnClickL
             }
         }
     }
-
+    boolean isShowpassComfirm = true;
+    @BindView(R.id.img_showpass)
+    ImageView img_showpass;
     private void initEvent() {
         img_getImage.setOnClickListener(this);
         edtDistrict.setOnClickListener(this);
         edtCity.setOnClickListener(this);
         edtSchools.setOnClickListener(this);
+        img_showpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isShowpassComfirm) {
+                    img_showpass.setImageDrawable(getResources().getDrawable(R.drawable.ic_eye_hide));
+                    //Glide.with(ActivityLogin.this).load(R.drawable.ic_eye_hide).into(img_showpass);
+                    edtPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    isShowpassComfirm = !isShowpassComfirm;
+
+                } else {
+                    img_showpass.setImageDrawable(getResources().getDrawable(R.drawable.ic_eye_show));
+                    edtPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    isShowpassComfirm = !isShowpassComfirm;
+                }
+            }
+        });
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isNetwork()){
+                if (isNetwork()) {
                     if (!(sIdTruong != null && sIdTruong.length() > 0)) {
                         showDialogNotify("Thông báo", "Bạn chưa chọn trường của bé");
                         return;
@@ -195,7 +215,9 @@ public class ActivityUpdateSubUser extends BaseActivity implements View.OnClickL
         if (mChildren != null) {
             if (mChildren.getsAVATAR() != null && mChildren.getsAVATAR().length() > 0) {
                 sAvata = mChildren.getsAVATAR();
-                Glide.with(this).load(Config.URL_IMAGE + mChildren.getsAVATAR()).into(img_avata_update);
+                Glide.with(this).load(Config.URL_IMAGE + mChildren.getsAVATAR())
+                        .placeholder(R.drawable.icon_family)
+                        .into(img_avata_update);
             } else
                 Glide.with(this).load(R.drawable.icon_family).into(img_avata_update);
             if (mChildren.getsSCHOOL_NAME() != null && mChildren.getsSCHOOL_NAME().length() > 0)

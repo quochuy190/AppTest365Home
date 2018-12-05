@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -147,85 +148,23 @@ public class ActivityAddSubUser extends BaseActivity implements View.OnClickList
         edtCity.setOnClickListener(this);
         edtSchools.setOnClickListener(this);
         edtClass.setOnClickListener(this);
-       // edt_year_addsub.setOnClickListener(this);
+        // edt_year_addsub.setOnClickListener(this);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isNetwork()){
-                    if (App.mCity == null) {
-                        showDialogNotify("Thông báo", "Bạn chưa chọn tỉnh/thành phố");
-                        return;
-                    }
-                    if (App.mDistrict == null) {
-                        showDialogNotify("Thông báo", "Bạn chưa chọn quận/huyện");
-                        return;
-                    }
-                    if (App.mSchools == null) {
-                        showDialogNotify("Thông báo", "Bạn chưa chọn trường của bé");
-                        return;
-                    }
-                    if (App.mKhoihoc == null) {
-                        showDialogNotify("Thông báo", "Bạn chưa chọn khối học của bé");
-                        return;
-                    }
-                    if (edtClassName.getText().length() == 0) {
-                        // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên lớp của bé");
-                        Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên lớp của bé", Toast.LENGTH_SHORT).show();
-                        edtClassName.requestFocus();
-                        KeyboardUtil.requestKeyboard(edtClassName);
-                        return;
-                    } else sLop = edtClassName.getText().toString();
-                    sFullname = edtFullname.getText().toString().trim();
-                    if (sFullname.length() == 0) {
-                        //  showDialogNotify("Thông báo", "Bạn chưa nhập vào tên của bé");
-                        Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên cho bé", Toast.LENGTH_SHORT).show();
-                        edtFullname.requestFocus();
-                        KeyboardUtil.requestKeyboard(edtFullname);
-                        return;
-                    }
-                    sUser = edtUser.getText().toString().trim();
-                    if (sUser.length() == 0) {
-                        edtUser.requestFocus();
-                        KeyboardUtil.requestKeyboard(edtUser);
-                        Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
-                        // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
-                        return;
-                    }
-                    if (!StringUtil.check_tiengviet(sUser)) {
-                        showDialogNotify("Lỗi", "Tên đăng nhập phải là tiếng việt không dấu," +
-                                " không chứa dấu cách và ký tự đặc biệt");
-                        return;
-                    }
-                    sPass = edtPass.getText().toString().trim();
-                    if (edtPass.getText().length() == 0) {
-                        edtPass.requestFocus();
-                        KeyboardUtil.requestKeyboard(edtPass);
-                        //  showDialogNotify("Thông báo", "Bạn chưa nhập mật khẩu");
-                        Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào mật khẩu", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (!StringUtil.check_tiengviet(sPass)) {
-                        showDialogNotify("Lỗi", "Mật khẩu phải là tiếng việt không dấu");
-                        return;
-                    }
-                    if (App.mCity != null && App.mDistrict != null && App.mSchools != null && App.mKhoihoc != null) {
-                        if (sUser.length() > 3 && sUser.indexOf(" ") < 0) {
-                            if (sPass.length() > 7 && sPass.indexOf(" ") < 0) {
-                                showDialogLoading();
-                                String sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
-                                mPresenter.api_create_children(sUserMe, App.mCity.getsID(), App.mDistrict.getsID(),
-                                        App.mSchools.getsID(), App.mKhoihoc, "1", sLop, sFullname, sAvata, sUser, sPass);
-                            } else
-                                showDialogNotify("Thông báo",
-                                        "Mật khẩu phải lớn hơn 8 ký tự");
-                        } else showDialogNotify("Thông báo",
-                                "Tên đăng nhập tài khoản con phải dài hơn hoặc bằng 4 ký tự," +
-                                        " không chứa dấu cách và ký tự đặc biệt");
-                    }
-                }
+                api_login();
             }
         });
-
+        edtPass.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    api_login();
+                    return true;
+                }
+                return false;
+            }
+        });
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -238,6 +177,81 @@ public class ActivityAddSubUser extends BaseActivity implements View.OnClickList
             }
         });
 
+    }
+
+    public void api_login() {
+        if (isNetwork()) {
+            if (App.mCity == null) {
+                showDialogNotify("Thông báo", "Bạn chưa chọn tỉnh/thành phố");
+                return;
+            }
+            if (App.mDistrict == null) {
+                showDialogNotify("Thông báo", "Bạn chưa chọn quận/huyện");
+                return;
+            }
+            if (App.mSchools == null) {
+                showDialogNotify("Thông báo", "Bạn chưa chọn trường của bé");
+                return;
+            }
+            if (App.mKhoihoc == null) {
+                showDialogNotify("Thông báo", "Bạn chưa chọn khối học của bé");
+                return;
+            }
+            sLop = edtClassName.getText().toString().trim();
+            if (sLop.length() == 0) {
+                Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên lớp của bé", Toast.LENGTH_SHORT).show();
+                edtClassName.requestFocus();
+                KeyboardUtil.requestKeyboard(edtClassName);
+                return;
+            } else sLop = edtClassName.getText().toString().trim();
+            sFullname = edtFullname.getText().toString().trim();
+            if (sFullname.length() == 0) {
+                //  showDialogNotify("Thông báo", "Bạn chưa nhập vào tên của bé");
+                Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên cho bé", Toast.LENGTH_SHORT).show();
+                edtFullname.requestFocus();
+                KeyboardUtil.requestKeyboard(edtFullname);
+                return;
+            }else sFullname = edtFullname.getText().toString().trim();
+            sUser = edtUser.getText().toString().trim();
+            if (sUser.length() == 0) {
+                edtUser.requestFocus();
+                KeyboardUtil.requestKeyboard(edtUser);
+                Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
+                // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
+                return;
+            }
+            if (!StringUtil.check_tiengviet(sUser)) {
+                showDialogNotify("Lỗi", "Tên đăng nhập phải là tiếng việt không dấu," +
+                        " không chứa dấu cách và ký tự đặc biệt");
+                return;
+            }
+            sPass = edtPass.getText().toString().trim();
+            if (edtPass.getText().length() == 0) {
+                edtPass.requestFocus();
+                KeyboardUtil.requestKeyboard(edtPass);
+                //  showDialogNotify("Thông báo", "Bạn chưa nhập mật khẩu");
+                Toast.makeText(ActivityAddSubUser.this, "Bạn chưa nhập vào mật khẩu", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (!StringUtil.check_tiengviet(sPass)) {
+                showDialogNotify("Lỗi", "Mật khẩu phải là tiếng việt không dấu");
+                return;
+            }
+            if (App.mCity != null && App.mDistrict != null && App.mSchools != null && App.mKhoihoc != null) {
+                if (sUser.length() > 3 && sUser.indexOf(" ") < 0) {
+                    if (sPass.length() > 7 && sPass.indexOf(" ") < 0) {
+                        showDialogLoading();
+                        String sUserMe = SharedPrefs.getInstance().get(Constants.KEY_USERNAME, String.class);
+                        mPresenter.api_create_children(sUserMe, App.mCity.getsID(), App.mDistrict.getsID(),
+                                App.mSchools.getsID(), App.mKhoihoc, "1", sLop, sFullname, sAvata, sUser, sPass);
+                    } else
+                        showDialogNotify("Thông báo",
+                                "Mật khẩu phải lớn hơn 8 ký tự");
+                } else showDialogNotify("Thông báo",
+                        "Tên đăng nhập tài khoản con phải dài hơn hoặc bằng 4 ký tự," +
+                                " không chứa dấu cách và ký tự đặc biệt");
+            }
+        }
     }
 
     boolean isStartLogin;

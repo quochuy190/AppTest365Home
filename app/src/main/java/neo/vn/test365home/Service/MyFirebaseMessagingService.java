@@ -35,7 +35,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             hienThiThongBao(mMap);
 
         }
-
     }
 
     private void hienThiThongBao(Map<String, String> mMap) {

@@ -1,5 +1,4 @@
 package neo.vn.test365home.View.Baitap;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import neo.vn.test365home.Adapter.AdapterListSticker;
 import neo.vn.test365home.Base.BaseActivity;
@@ -37,7 +33,6 @@ import neo.vn.test365home.R;
 import neo.vn.test365home.Untils.SharedPrefs;
 import neo.vn.test365home.Untils.StringUtil;
 import neo.vn.test365home.Untils.TimeUtils;
-
 /**
  * @author Quốc Huy
  * @version 1.0.0
@@ -84,12 +79,10 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
     @BindView(R.id.ll_comment)
     LinearLayout ll_comment;
     List<Sticker> lisSticker;
-
     @Override
     public int setContentViewId() {
         return R.layout.activity_baitap_detail;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,9 +92,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
         initEvent();
 
     }
-
     boolean isClickView = false;
-
     @SuppressLint("NewApi")
     private void initData() {
         txt_xembailam.setTextColor(getResources().getColor(R.color.button_not_click));
@@ -116,10 +107,8 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             showDialogLoading();
             mPresenter.get_api_get_sticker(sUserMe, mChildren.getsID_LEVEL());
         }
-
         if (mChildren != null)
             txt_title.setText(mChildren.getsFULLNAME());
-
         txt_mota.setText(Html.fromHtml("<b>Mục tiêu: </b>" + mTuanDamua.getsREQUIREMENT()));
         if (mTuanDamua.getsNAME() != null) {
             txt_name.setText(Html.fromHtml("<b>Nội dung: </b>" + mTuanDamua.getsNAME()));
@@ -153,9 +142,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             ll_comment.setVisibility(View.GONE);
         }
     }
-
     TextView txt_title;
-
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
         txt_title = findViewById(R.id.txt_title_main);
@@ -169,7 +156,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
         });
 
     }
-
     private void initEvent() {
         btn_send_comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,7 +211,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             }
         });
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -234,12 +219,10 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
                 break;
         }
     }
-
     private void click(AppCompatActivity appCompatActivity) {
         Intent intent = new Intent(ActivityBaitapDetail.this, appCompatActivity.getClass());
         startActivity(intent);
     }
-
     @Override
     public void show_error_api(List<ErrorApi> mLis) {
         hideDialogLoading();
@@ -283,9 +266,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
         if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
             setInfoReport(mLis.get(0));
         }
-
     }
-
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {
         if (mLis != null && mLis.get(0).getsERROR().equals("0000")) {
@@ -294,7 +275,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             lisSticker.addAll(mLis);
         }
     }
-
     @Override
     public void show_list_gift_sticker(List<ErrorApi> mLis) {
         if (mLis != null) {
@@ -308,7 +288,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             }
         }
     }
-
     @Override
     public void show_list_mt_comment(List<ErrorApi> mLis) {
         if (mLis != null) {
@@ -322,7 +301,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             }
         }
     }
-
     @BindView(R.id.txt_diem)
     TextView txt_diem;
     @BindView(R.id.txt_time_start)
@@ -347,7 +325,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
     TextView txt_nhanxet;
     @BindView(R.id.lable_nhanxet)
     TextView lable_nhanxet;
-
     private void setInfo(ExcerciseDetail excerciseDetail) {
         if (excerciseDetail != null) {
             if (excerciseDetail.getsPOINT() != null && excerciseDetail.getsPOINT().length() > 0) {
@@ -368,7 +345,7 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             if (excerciseDetail.getsDURATION() != null && excerciseDetail.getsDURATION().length() > 0) {
                 int iDuration = Integer.parseInt(excerciseDetail.getsDURATION()) * 1000;
                 txt_time_lambai.setText("Thời gian làm bài: "
-                        + TimeUtils.formatDuration(iDuration));
+                        + TimeUtils.formatTime_lambai(iDuration));
             }
             txt_speed_lambai.setText("Tốc độ làm bài");
             //  setTexMonhoc(excerciseDetail.getsSUBJECT_ID());
@@ -387,10 +364,8 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
                 lable_nhanxet.setVisibility(View.INVISIBLE);
                 txt_nhanxet.setText("Mời mẹ nhận xét và tặng sticker động viên con");
             }
-
         }
     }
-
     private void setInfoReport(ExcerciseDetail excerciseDetail) {
         if (excerciseDetail != null) {
             if (excerciseDetail.getsCungtruong() != null && excerciseDetail.getsCungtruong().length() > 0) {
@@ -416,7 +391,6 @@ public class ActivityBaitapDetail extends BaseActivity implements View.OnClickLi
             }
         }
     }
-
     private void setTexMonhoc(String sMon) {
         switch (sMon) {
             case "1":

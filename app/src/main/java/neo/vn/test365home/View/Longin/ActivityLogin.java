@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -143,43 +144,23 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
                 finish();
             }
         });
+
         btn_dangnhap_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isNetwork()) {
-                 /*   showDialogNotify("Thông báo",
-                            "Mất kết nối, vui lòng kiểm tra lại mạng để tiếp tục");*/
-                    return;
-                }
-                sUserName = edt_taikhoan_Login.getText().toString().trim();
-                sPassWord = edt_matkhau_Login.getText().toString().trim();
-                if (sUserName.length() == 0) {
-                    edt_taikhoan_Login.requestFocus();
-                    KeyboardUtil.requestKeyboard(edt_taikhoan_Login);
-                    Toast.makeText(ActivityLogin.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
-                    // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
-                    return;
-                }
-                if (sPassWord.length() == 0) {
-                    edt_matkhau_Login.requestFocus();
-                    KeyboardUtil.requestKeyboard(edt_matkhau_Login);
-                    Toast.makeText(ActivityLogin.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
-                    // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
-                    return;
-                }
-                if (!StringUtil.check_tiengviet(sUserName)) {
-                    btn_dangnhap_Login.setEnabled(true);
-                    showDialogNotify("Lỗi", "Tên đăng nhập phải là tiếng việt không dấu," +
-                            " không chứa dấu cách và ký tự đặc biệt");
-                    return;
-                }
-                if (!StringUtil.check_tiengviet(sPassWord)) {
-                    btn_dangnhap_Login.setEnabled(true);
-                    showDialogNotify("Lỗi", "Mật khẩu nhập vào là tiếng việt không dấu");
-                    return;
-                }
                 login_api();
 
+            }
+        });
+
+        edt_matkhau_Login.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    login_api();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -271,6 +252,38 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
     }
 
     public void login_api() {
+        if (!isNetwork()) {
+                 /*   showDialogNotify("Thông báo",
+                            "Mất kết nối, vui lòng kiểm tra lại mạng để tiếp tục");*/
+            return;
+        }
+        sUserName = edt_taikhoan_Login.getText().toString().trim();
+        sPassWord = edt_matkhau_Login.getText().toString().trim();
+        if (sUserName.length() == 0) {
+            edt_taikhoan_Login.requestFocus();
+            KeyboardUtil.requestKeyboard(edt_taikhoan_Login);
+            Toast.makeText(ActivityLogin.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
+            // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
+            return;
+        }
+        if (sPassWord.length() == 0) {
+            edt_matkhau_Login.requestFocus();
+            KeyboardUtil.requestKeyboard(edt_matkhau_Login);
+            Toast.makeText(ActivityLogin.this, "Bạn chưa nhập vào tên đăng nhập cho bé", Toast.LENGTH_SHORT).show();
+            // showDialogNotify("Thông báo", "Bạn chưa nhập vào tên đăng nhập cho bé");
+            return;
+        }
+        if (!StringUtil.check_tiengviet(sUserName)) {
+            btn_dangnhap_Login.setEnabled(true);
+            showDialogNotify("Lỗi", "Tên đăng nhập phải là tiếng việt không dấu," +
+                    " không chứa dấu cách và ký tự đặc biệt");
+            return;
+        }
+        if (!StringUtil.check_tiengviet(sPassWord)) {
+            btn_dangnhap_Login.setEnabled(true);
+            showDialogNotify("Lỗi", "Mật khẩu nhập vào là tiếng việt không dấu");
+            return;
+        }
         sTokenKey = SharedPrefs.getInstance().get(Constants.KEY_TOKEN, String.class);
         showDialogLoading();
         mPresenter.api_login(sUserName, sPassWord, BuildConfig.VERSION_NAME,

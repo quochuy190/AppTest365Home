@@ -14,11 +14,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import butterknife.BindView;
 import neo.vn.test365home.Adapter.AdapterListKhobaitap;
 import neo.vn.test365home.Base.BaseActivity;
@@ -42,7 +40,6 @@ import neo.vn.test365home.Untils.StringUtil;
 import neo.vn.test365home.View.Setup.ActivityManageAccount;
 import neo.vn.test365home.View.Setup.ImpSetup;
 import neo.vn.test365home.View.Setup.PresenterSetup;
-
 /**
  * @author Quốc Huy
  * @version 1.0.0
@@ -78,7 +75,6 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
     int iPrice = 0;
     TextView txt_title;
     PresenterSetup mPesenterSetup;
-
     @Override
     public int setContentViewId() {
         return R.layout.activity_khobaitap;
@@ -94,7 +90,6 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         init();
         initEvent();
     }
-
     public void initAppbar() {
         ImageView img_back = findViewById(R.id.img_back);
         txt_title = findViewById(R.id.txt_title_main);
@@ -105,9 +100,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
                 finish();
             }
         });
-
     }
-
     String user;
     boolean isChonAll = false;
     String sChuoimade = "";
@@ -203,7 +196,6 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
             }
         });
     }
-
     private void initData() {
         mChildren = getIntent().getParcelableExtra(Constants.KEY_SEND_CHILDREN);
 
@@ -226,10 +218,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         mPesenterSetup.api_get_user_info(user);
         if (mChildren != null)
             mPresenter.get_api_weektest(user, mChildren.getsID_LEVEL(), sObjective, mChildren.getsUSERNAME());
-
-
     }
-
     private void init() {
         mLisBaitap = new ArrayList<>();
         // mLisBaitap.add(new ObjTuanhoc("", "",""));
@@ -268,14 +257,11 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
             }
         });
     }
-
     @Override
     public void show_error_api(List<ErrorApi> mLis) {
         hideDialogLoading();
     }
-
     int iTkTotal;
-
     @Override
     public void show_user_info(List<UserInfo> mLis) {
         hideDialogLoading();
@@ -287,47 +273,32 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
             txt_taikhoan.setText(StringUtil.formatNumber("" + iTkTotal));
         }
     }
-
     @Override
     public void show_config_to_children(List<ErrorApi> mLis) {
 
     }
-
     @Override
     public void show_get_config_children(List<ConfigChildren> mLis) {
-
     }
-
     @Override
     public void show_payment(List<ErrorApi> mLis) {
-
     }
-
     @Override
     public void show_change_pass(List<ErrorApi> mLis) {
-
     }
-
     @Override
     public void show_get_info_chil(List<Childrens> mLis) {
-
     }
-
     @Override
     public void show_update_info_chil(List<ErrorApi> mLis) {
-
     }
-
     @Override
     public void show_get_history_balance(List<HistoryBalance> mLis) {
-
     }
-
     @Override
     public void show_list_children(List<Childrens> mLis) {
         hideDialogLoading();
     }
-
     @Override
     public void show_list_week_test(List<ObjTuanhoc> mList) {
         hideDialogLoading();
@@ -351,10 +322,7 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
                 }
             }
         }
-
-
     }
-
     @Override
     public void show_list_buy_excercise(List<ErrorApi> mLis) {
         if (mLis != null) {
@@ -365,43 +333,27 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         }
         hideDialogLoading();
     }
-
     @Override
     public void show_list_list_buy(List<TuanDamua> mLis) {
-
     }
-
     @Override
     public void show_list_des_excercise(List<ExcerciseDetail> mLis) {
-
     }
-
     @Override
     public void show_list_get_part(List<Cauhoi> mLis) {
-
     }
-
     @Override
     public void show_list_report_excercise(List<ExcerciseDetail> mLis) {
-
     }
-
-
     @Override
     public void show_list_get_sticker(List<Sticker> mLis) {
-
     }
-
     @Override
     public void show_list_gift_sticker(List<ErrorApi> mLis) {
-
     }
-
     @Override
     public void show_list_mt_comment(List<ErrorApi> mLis) {
-
     }
-
     public void showDialogComfirm_Khobaitap(String title, String message, boolean is_hide_cancel,
                                   final ClickDialog clickDialog) {
         final Dialog dialog_yes = new Dialog(this);
@@ -409,7 +361,6 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
         dialog_yes.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog_yes.setContentView(R.layout.dialog_warning);
         dialog_yes.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
         TextView txt_title = (TextView) dialog_yes.findViewById(R.id.txt_warning_title);
         TextView txt_message = (TextView) dialog_yes.findViewById(R.id.txt_warning_message);
         TextView btn_ok = (TextView) dialog_yes.findViewById(R.id.btn_warning_ok);
@@ -441,6 +392,5 @@ public class ActivityKhobaitap extends BaseActivity implements ImpBaitap.View, I
             btn_cancel.setVisibility(View.VISIBLE);
         }
         dialog_yes.show();
-
     }
 }
