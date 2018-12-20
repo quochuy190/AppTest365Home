@@ -203,6 +203,10 @@ public class ActivityLogin extends BaseActivity implements ImpLogin.View {
                 SharedPrefs.getInstance().put(Constants.KEY_USERNAME, sUserName);
                 SharedPrefs.getInstance().put(Constants.KEY_PASSWORD, sPassWord);
                 SharedPrefs.getInstance().put(Constants.KEY_LOGININFO, mLis.get(0));
+/*                SharedPrefs.getInstance().put(Constants.KEY_URL_MEDIA, mLis.get(0).getsMEDIA_SERVER());
+                SharedPrefs.getInstance().put(Constants.KEY_BASE_URL, mLis.get(0).getsAPI_SERVER());*/
+             /*   Config.URL_IMAGE = mLis.get(0).getsMEDIA_SERVER();
+                Config.URL_VIDEO = mLis.get(0).getsMEDIA_SERVER();*/
                 if (isRegister) {
                     SharedPrefs.getInstance().put(Constants.KEY_REGISTER_SUCCESS, false);
                     Intent intent = new Intent(ActivityLogin.this, ActivityUpdateInfo.class);

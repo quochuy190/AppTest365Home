@@ -169,8 +169,9 @@ public class ActivityUpdateInfo extends BaseActivity implements ImpLogin.View, I
         if (mLogin != null) {
             if (mLogin.getsAVARTAR() != null && mLogin.getsAVARTAR().length() > 0) {
                 sAvata = mLogin.getsAVARTAR();
+                String s = Config.URL_IMAGE +sAvata;
                 Glide.with(this)
-                        .load(Config.URL_IMAGE + mLogin.getsAVARTAR())
+                        .load(s)
                         .placeholder(R.drawable.avatar_default)
                         .into(imgAvata);
                 //  Glide.with(this).load(Config.URL_IMAGE + mLogin.getsAVARTAR()).into(imgAvata);

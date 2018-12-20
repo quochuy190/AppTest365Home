@@ -1,8 +1,11 @@
 package neo.vn.test365home.View.Setup;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +39,6 @@ public class ActivityWebviewNaptien extends BaseActivity {
     }
 
     private void goUrl(String url) {
-
         if (url.isEmpty()) {
             Toast.makeText(this, "Please enter url", Toast.LENGTH_SHORT).show();
             return;
@@ -44,8 +46,29 @@ public class ActivityWebviewNaptien extends BaseActivity {
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.getSettings();
+        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setTextSize(WebSettings.TextSize.NORMAL);
+        webSettings.setDefaultFontSize(18);
+        webSettings.setTextZoom((int) (webSettings.getTextZoom() * 1.2));
         webView.loadUrl(url);
+    /*    webView.loadDataWithBaseURL("", url,
+                "text/html", "UTF-8", "");*/
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+            }
+        });
     }
+
     TextView txt_title;
     String sUserMe, SUserCon;
 

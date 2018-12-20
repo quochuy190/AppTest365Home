@@ -58,7 +58,8 @@ public class AdapterLeftMenu extends BaseAdapter implements StickyListHeadersAda
         TextView txt_school = rowView.findViewById(R.id.txt_school);
         Childrens obj = mLis.get(position);
         if (obj.getsAVATAR() != null && obj.getsAVATAR().length() > 0) {
-            Glide.with(context).load(Config.URL_IMAGE + obj.getsAVATAR())
+            String sUrl = Config.URL_IMAGE+obj.getsAVATAR();
+            Glide.with(context).load(sUrl)
                     .placeholder(R.drawable.icon_avata).into(img_avata);
         } else {
             Glide.with(context).load(R.drawable.icon_avata)

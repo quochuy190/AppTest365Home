@@ -24,7 +24,6 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import neo.vn.test365home.Adapter.AdapterMenuSetup;
 import neo.vn.test365home.Base.BaseFragment;
-import neo.vn.test365home.Config.Config;
 import neo.vn.test365home.Config.Constants;
 import neo.vn.test365home.Listener.ItemClickListener;
 import neo.vn.test365home.Models.Login;
@@ -73,13 +72,14 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
         return view;
     }
 
+    String sUrlAvata;
 
     private void initData() {
         objLogin = SharedPrefs.getInstance().get(Constants.KEY_LOGININFO, Login.class);
-
+        sUrlAvata = SharedPrefs.getInstance().get(Constants.KEY_URL_MEDIA, String.class);
         if (objLogin != null && objLogin.getsAVARTAR() != null && objLogin.getsAVARTAR().length() > 0)
             Glide.with(this)
-                    .load(Config.URL_IMAGE + objLogin.getsAVARTAR())
+                    .load(sUrlAvata + objLogin.getsAVARTAR())
                     .placeholder(R.drawable.icon_family)
                     .into(img_avata_menu);
             // Glide.with(this).load(Config.URL_IMAGE + objLogin.getsAVARTAR()).into(img_avata_menu);
@@ -128,7 +128,7 @@ public class FragmentSetup extends BaseFragment implements View.OnClickListener 
                         startActivity(new Intent(getContext(), ActivityChangePassWord.class));
                         break;
                     case 5:
-                    //Hướng dẫn sử dụng
+                        //Hướng dẫn sử dụng
                         break;
                     case 6:
                         final String my_package_name = "neo.vn.test365home";  // <- HERE YOUR PACKAGE NAME!!

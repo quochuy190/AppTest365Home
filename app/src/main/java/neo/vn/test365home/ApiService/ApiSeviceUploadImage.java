@@ -4,6 +4,8 @@ package neo.vn.test365home.ApiService;
 import java.util.concurrent.TimeUnit;
 
 import neo.vn.test365home.Config.Config;
+import neo.vn.test365home.Config.Constants;
+import neo.vn.test365home.Untils.SharedPrefs;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -19,6 +21,7 @@ import retrofit2.http.Part;
  */
 
 public interface ApiSeviceUploadImage {
+    String sURL = SharedPrefs.getInstance().get(Constants.KEY_URL_MEDIA, String.class);
     //Log info action user
     @Multipart
     @POST("/ImageUpload")
@@ -31,6 +34,7 @@ public interface ApiSeviceUploadImage {
             .build();
 
     Retrofit retrofit = new Retrofit.Builder()
+            //.baseUrl(sURL)
             .baseUrl(Config.BASE_URL_IMAGE_UPLOAD)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)

@@ -32,6 +32,8 @@ public class Constants {
     public static final String KEY_ISTOKEN = "KEY_ISTOKEN";
     public static final String KEY_USERNAME = "KEY_USERNAME";
     public static final String KEY_PASSWORD = "KEY_PASSWORD";
+    public static final String KEY_URL_MEDIA = "KEY_URL_MEDIA";
+    public static final String KEY_BASE_URL = "KEY_BASE_URL";
     public static final String KEY_LOGININFO = "KEY_LOGININFO";
     public static final String KEY_REGISTER_SUCCESS = "KEY_REGISTER_SUCCESS";
     public static final String KEY_ISLOGIN = "KEY_ISLOGIN";
